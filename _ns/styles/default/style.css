@@ -1,0 +1,110 @@
+/* ------------------------------------------------------------------------ */
+/* IMPORT FONTS FROM GOOGLE FONTS                                           */
+/* ------------------------------------------------------------------------ */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,900italic,700italic,900,700,500italic,500,400italic,300italic,100italic,300,100);
+
+/* ------------------------------------------------------------------------ */
+/* GENERAL SETTINGS FOR PAGE                                                */
+/* ------------------------------------------------------------------------ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Roboto, sans-serif;
+}
+
+a img {border: none;}
+
+.invisible {
+	display: none;
+}
+
+/* ------------------------------------------------------------------------ */
+/* HEADER                                                                   */
+/* ------------------------------------------------------------------------ */
+
+header {
+	color: #ffffff;
+	background: #000000;
+}
+
+header h1 {
+	display: inline-block;
+	font-size: 100%;
+	padding: 0.5em 1em;
+}
+
+header a {
+	color: #ffffff;
+}
+
+header h1.page-title a {
+	display: block;
+	padding-left: 32px;
+	line-height: 24px;
+	background: url(nettserierboble.png) no-repeat;
+}
+
+header h1 a {
+	text-decoration: none;
+}
+
+header nav.main-menu ul {
+	border-top: dotted 1px #ffffff;
+}
+
+header nav.main-menu ul li {
+	padding: 0.5em 1em;
+	border-bottom: dotted 1px #ffffff;
+}
+
+header nav.show-menu {
+	float: right;
+}
+
+header nav.show-menu ul li {
+	display: inline-block;
+	padding: 0.5em 1em;
+	border-left: dotted 1px #ffffff;
+}
+
+/* ------------------------------------------------------------------------ */
+/* MAIN SECTION                                                             */
+/* ------------------------------------------------------------------------ */
+
+.main {
+	padding: 1em;
+}
+
+/* ------------------------------------------------------------------------ */
+/* DESKTOP EDITION                                                          */
+/* ------------------------------------------------------------------------ */
+
+@media screen and (min-width: 800px) {
+	/* -------------------------------------------------------------------- */
+	/* Desktop: Header                                                      */
+	/* -------------------------------------------------------------------- */
+
+	header h1 {
+		display: inline-block;
+	}
+	header nav {
+		display: inline-block;
+	}
+
+	header nav.main-menu ul {
+		border-top: none;
+		border-left: dotted 1px #ffffff;
+	}
+
+	header nav.main-menu ul li {
+		display: inline-block;
+		border-bottom: none;
+		border-right: dotted 1px #ffffff;
+	}
+
+}
