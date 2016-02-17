@@ -16,11 +16,11 @@
     $c .= '<p>'.__('Your preferred username:').'<br>'."\n";
     $c .= '<input type="text" name="reg_username"></p>'."\n";
     $c .= '<p>'.__('Your e-mail:').'<br>'."\n";
-    $c .= '<input type="text" name="reg_username"></p>'."\n";
+    $c .= '<input type="text" name="reg_email"></p>'."\n";
     $c .= '<p>'.__('Your password:').'<br>'."\n";
-    $c .= '<input type="password" name="reg_username"></p>'."\n";
+    $c .= '<input type="password" name="reg_pass"></p>'."\n";
     $c .= '<p>'.__('Repeat password:').'<br>'."\n";
-    $c .= '<input type="password" name="reg_username"></p>'."\n";
+    $c .= '<input type="password" name="reg_pass2"></p>'."\n";
     $c .= '</form>'."\n";
   }
   
