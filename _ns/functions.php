@@ -45,4 +45,19 @@ function mysql_install_table($tabname, $cols) {
 
 // ===================================================================
 
+function validate_input($arr) {
+	global $conn;
+	if ($arr['check'] == 'unique') {
+		// Check if value is already in use in the specified field
+		$query = 'SELECT id FROM '.$arr['table'].' WHERE LOWER('.$arr['field'].') = \''.$conn->real_escape_string(strtolower($arr['field'])).'\'';
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+		if ($num) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
 ?>
