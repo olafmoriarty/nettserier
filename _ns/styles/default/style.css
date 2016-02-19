@@ -80,6 +80,20 @@ header nav.show-menu ul li {
 	padding: 1em;
 }
 
+p {
+	margin: 0 0 1em;
+}
+
+/* Form errors */
+
+.errorbox {
+	background: #ffdddd;
+}
+
+.errorbox .errormsg {
+	font-weight: bold; color: #800000;
+}
+
 /* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */
 /* ------------------------------------------------------------------------ */

@@ -8,12 +8,11 @@ else {
       $password = $_POST['password']; // The unhashed password.
 
       if (login($email, $password) == true) {
-          // Login success 
-//          header("Location: ".NS_DOMAIN);
+          header("Location: ".NS_DOMAIN);
           exit();
       } else {
         $error = true;
-        $c .= 'Ein feil oppstod under innlogging: '. $email . ' / '. $password;
+        $c .= 'Ein feil oppstod under innlogging';
       }
   }
   

@@ -46,20 +46,106 @@ function mysql_install_table($tabname, $cols) {
 // ===================================================================
 
 function validate_input($arr) {
-	global $conn, $_POST, $validate_input_table;
+	global $conn, $_POST;
+	if (isset($arr['error'])) {
+		$error = $arr['error'];
+	}
+	else {
+		$error = __('Something went wrong.');
+	}
 	if ($arr['check'] == 'unique') {
 		// Check if value is already in use in the specified field
-		$query = 'SELECT id FROM '.$validate_input_table.' WHERE LOWER('.$arr['field'].') = \''.$conn->real_escape_string(strtolower($_POST[$arr['input']])).'\'';
+		$query = 'SELECT id FROM '.$arr['table'].' WHERE LOWER('.$arr['field'].') = \''.$conn->real_escape_string(strtolower($_POST[$arr['input']])).'\'';
 		$result = $conn->query($query);
 		$num = $result->num_rows;
 		if ($num) {
-			return true;
+			return $error;
+		}
+		else {
+			return false;
+		}
+	}
+
+	if ($arr['check'] == 'empty') {
+		// returns error if field is empty
+		if (!$_POST[$arr['input']]) {
+			return $error;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	if ($arr['check'] == 'matching') {
+		// Check if two input fields hold the same value. Neat for "Confirm password".
+		if ($_POST[$arr['input']] == $_POST[$arr['input2']]) {
+			return false;
+		}
+		else {
+			return $error;
+		}
+	}
+	
+	if ($arr['check'] == 'email') {
+		// Returns TRUE if field does not contain an e-mail address
+		if (!filter_var($_POST[$arr['input']], FILTER_VALIDATE_EMAIL)) {
+			return $error;
 		}
 		else {
 			return false;
 		}
 	}
 }
+
+// ----------
+
+function mysql_string($text) {
+	global $conn;
+	return '\''.($conn->escape_string($text)).'\'';
+}
+
+// ----------
+
+function input_field($arr) {
+  global $error_array;
+  $c = '<div id="'.$arr['name'].'_box"';
+  if (isset($error_array[$arr['name']]) && $error_array[$arr['name']]) {
+		$c .= ' class="errorbox"';
+	}
+	$c .= '>';
+    $c .= '<p>'.$arr['text'].'<br>'."\n";
+    $c .= '<input type="';
+    if (isset($arr['type'])) {
+      $c .= $arr['type'];
+    }
+  else {
+    $c .= 'text';
+  }
+    $c .= '" name="'.$arr['name'].'" id="';
+    if (isset($arr['id'])) {
+      $c .= $arr['id'];
+    }
+  else {
+    $c .= $arr['name'];
+  }
+    $c .= '"';
+	if (isset($_POST[$arr['name']])) {
+		$c .= ' value="'.htmlspecialchars($_POST[$arr['name']]).'"';
+	}
+	$c .= '></p>'."\n";
+    if (isset($error_array[$arr['name']]) && $error_array[$arr['name']]) {
+      $c .= '<p class="errormsg">'.$error_array[$arr['name']].'</p>';
+    }
+    $c .= '</div>'."\n";
+  return $c;
+}
+
+
+
+
+
+
+
 
 // ----------
 // Secure login: Functions stolen from / heavily inspired by https://github.com/peredurabefrog/phpSecureLogin/
@@ -228,4 +314,3 @@ function esc_url($url) {
         return $url;
     }
 }
-?>
