@@ -16,3 +16,4 @@ setcookie(session_name(),
 // Destroy session 
 session_destroy();
 header('Location: '.NS_DOMAIN);
+exit;

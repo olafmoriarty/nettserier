@@ -79,6 +79,10 @@ else {
       $fields[] = 'regtime';
       $values[] = 'NOW()';
       
+      // User level (1 by default)
+      $fields[] = 'level';
+      $values[] = '1';
+      
       $query = 'INSERT INTO '.$table.' ('.implode(', ', $fields).') VALUES ('.implode(', ', $values).')';
       $conn->query($query);
 

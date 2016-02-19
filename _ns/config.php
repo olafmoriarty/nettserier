@@ -52,6 +52,11 @@ include(NS_PATH.'plugins/users/psl-config.php');
 sec_session_start();
 
 $logged_in = login_check();
+if ($logged_in) {
+	$query = 'SELECT id, username, email, level FROM ns_users WHERE id = '.$_SESSION['user_id'].' LIMIT 1';
+	$result = $conn->query($query);
+	$user_info = $result->fetch_assoc();
+}
 
 // ---------------------------------------------------------------------------
 // LOAD PLUGINS
