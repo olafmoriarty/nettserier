@@ -1,4 +1,11 @@
 <?php
+if ($logged_in) {
+    $c .= '<h2>'.__('Register new user').'</h2>'."\n";
+	$c .= '<p>'.__('You can\'t register - you are already logged in.').'</p>';
+	$c .= '<p><a href="/n/log-out/">'.__('Log out').'</a></p>'."\n";
+}
+else {
+
   $submitted = false;
   $errors = false;
   $error_array = array();
@@ -93,3 +100,4 @@
     $c .= '<p><input type="submit" name="reg_button" id="reg_button" value="'.__('Register!').'"></p>';
     $c .= '</form>'."\n";
   }
+}

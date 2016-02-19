@@ -3,7 +3,7 @@
 	$tpf = NS_PATH.'plugins/'.basename(dirname(__FILE__)).'/';
 
 	// Setup 
-	$n_urls->add_line(['url' => 'login', 'script' => $tpf.'login.php']);
+	$n_urls->add_line(['url' => 'log-in', 'script' => $tpf.'login.php']);
 	$n_urls->add_line(['url' => 'register', 'script' => $tpf.'register.php']);
 	$n_urls->add_line(['url' => 'welcome', 'script' => $tpf.'welcome.php']);
 
