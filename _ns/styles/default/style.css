@@ -64,12 +64,31 @@ header nav.main-menu ul li {
 
 header nav.show-menu {
 	float: right;
+	padding: 0.5em;
 }
 
 header nav.show-menu ul li {
 	display: inline-block;
-	padding: 0.5em 1em;
-	border-left: dotted 1px #ffffff;
+	padding: 0 0 0 10px;
+	vertical-align: middle;
+}
+
+header nav.show-menu ul li a.icons {
+	display: block;
+	padding-left: 24px;
+	line-height: 24px;
+	background: no-repeat;
+	width: 0;
+	overflow: hidden;
+	text-decoration: none;;
+}
+
+header nav.show-menu ul li a.show-menu-link {
+	background: url(menu.png);
+}
+
+header nav.show-menu ul li a.show-search-link {
+	background: url(search.png);
 }
 
 nav.user-menu {
@@ -98,19 +117,6 @@ p {
 	font-weight: bold; color: #800000;
 }
 
-nav.user-menu {
-	display: block;
-	margin: 0 0.5em;
-	text-align: right;
-	font-size: 80%;
-}
-
-nav.user-menu ul li {
-	display: inline-block;
-	padding: 0.5em;
-	vertical-align: middle;
-}
-
 /* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */
 /* ------------------------------------------------------------------------ */
@@ -137,5 +143,19 @@ nav.user-menu ul li {
 		border-bottom: none;
 		border-right: dotted 1px #ffffff;
 	}
+
+	nav.user-menu {
+		display: block;
+		margin: 0 0.5em;
+		text-align: right;
+		font-size: 80%;
+	}
+
+	nav.user-menu ul li {
+		display: inline-block;
+		padding: 0.5em;
+		vertical-align: middle;
+	}
+
 
 }
