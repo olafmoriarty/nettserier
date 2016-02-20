@@ -8,8 +8,10 @@ $( document ).ready(function() {
 	if ($(window).width() < 800) {
 		$("#main-menu").removeClass("main-menu").addClass("invisible");
 		$("#show-menu").removeClass("invisible").addClass("show-menu");
+		$("#user-menu").addClass("invisible");
 		menySynlig = false;
 		menyStor = false;
+		userMenuVisible = false;
 	}
 
 	// Link som viser menyen dersom den er skjult
@@ -21,6 +23,20 @@ $( document ).ready(function() {
 		else {
 			$("#main-menu").removeClass("main-menu").addClass("invisible");
 			menySynlig = false;
+		}
+
+		event.preventDefault();
+	});
+
+	// Link som viser brukarmenyen dersom den er skjult
+	$("#show-user-menu-link").click(function(event) {
+		if (!userMenuVisible) {
+			$("#user-menu").removeClass("invisible");
+			userMenuVisible = true;
+		}
+		else {
+			$("#user-menu").addClass("invisible");
+			userMenuVisible = false;
 		}
 
 		event.preventDefault();
