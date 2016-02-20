@@ -47,7 +47,7 @@ $header .= '<ul>';
 $header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'.__('Menu').'</a></li>';
 $header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'.__('Search').'</a></li>';
 if ($logged_in) {
-	$header .= '<li><img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($user_info['email']))).'?s=24&amp;d=mm" alt="'.htmlspecialchars($user_info['username']).'"></li>';
+	$header .= '<li><a href="" id="show-user-menu-link"><img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($user_info['email']))).'?s=24&amp;d=mm" alt="'.htmlspecialchars($user_info['username']).'"></a></li>';
 }
 $header .= '</ul>'."\n";
 $header .= '</nav>';
@@ -62,11 +62,9 @@ $header .= '</nav>'."\n";
 $header .= '</header>'."\n";
 
 if ($logged_in) {
-	$header .= '<nav class="user-menu">'."\n";
+	$header .= '<nav class="user-menu" id="user-menu">'."\n";
 	$header .= '<ul>';
-	$header .= '<li><img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($user_info['email']))).'?s=24&amp;d=mm" alt="'.htmlspecialchars($user_info['username']).'"></li>';
-	$header .= '<li>'.str_replace('{n}', htmlspecialchars($user_info['username']), __('You are logged in as {n}.')).'</li>';
-	$header .= '<li><a href="/n/dashboard/">'.__('Dashboard').'</a></li>';
+	$header .= '<li><a href="/n/dashboard/">'.str_replace('{n}', htmlspecialchars($user_info['username']), __('{n}\'s dashboard')).'</a></li>';
 	$header .= '<li><a href="/n/user-settings/">'.__('Settings').'</a></li>';
 	$header .= '<li><a href="/n/log-out/">'.__('Log out').'</a></li>';
 	$header .= '</ul>';

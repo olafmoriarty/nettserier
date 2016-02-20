@@ -91,9 +91,11 @@ header nav.show-menu ul li a.show-search-link {
 	background: url(search.png);
 }
 
-nav.user-menu {
-	display: none;
+nav.user-menu ul li {
+	padding: 0.5em 1em;
+	border-bottom: dotted 1px #808080;
 }
+
 
 /* ------------------------------------------------------------------------ */
 /* MAIN SECTION                                                             */
