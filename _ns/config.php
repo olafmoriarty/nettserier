@@ -38,7 +38,10 @@ define('NS_DOMAIN', 'http://'.$_SERVER['HTTP_HOST']);
 
 $n_urls = new ArrayHandler;
 $c_urls = new ArrayHandler;
+$d_urls = new ArrayHandler;
+
 $n_menu = new ArrayHandler;
+$d_menu = new ArrayHandler;
 
 define('PAGE_TITLE', 'Nettserier.no');
 $ns_tsep = ' :: ';
