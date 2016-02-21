@@ -105,7 +105,7 @@ nav.user-menu ul li {
 	padding: 1em;
 }
 
-p {
+.main p, .main h2 {
 	margin: 0 0 1em;
 }
 
@@ -117,6 +117,19 @@ p {
 
 .errorbox .errormsg {
 	font-weight: bold; color: #800000;
+}
+
+.main .nav_menu {
+	list-style-type: none;
+}
+
+.main .nav_menu li {
+	background: #eeeeee;
+	border: solid 1px #808080;
+	margin: 0 0 1em;
+	text-align: center;
+	padding: .5em;
+	border-radius: .5em;
 }
 
 /* ------------------------------------------------------------------------ */
@@ -157,6 +170,7 @@ p {
 		display: inline-block;
 		padding: 0.5em;
 		vertical-align: middle;
+		border: none;
 	}
 
 
