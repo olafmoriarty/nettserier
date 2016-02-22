@@ -105,8 +105,23 @@ nav.user-menu ul li {
 	padding: 1em;
 }
 
-p {
+.main p {
 	margin: 0 0 1em;
+}
+
+.main h2 {
+	font-size: 200%;
+	margin: 0 0 .5em;
+}
+
+.main h3 {	
+	font-size: 166.66%;
+	margin: 0 0 .6em;
+}
+
+.main ul {
+	margin: 0 0 1em;
+	padding: 0 0 0 40px;
 }
 
 /* Form errors */
@@ -119,6 +134,35 @@ p {
 	font-weight: bold; color: #800000;
 }
 
+.main .nav_menu {
+	padding: 0;
+	list-style-type: none;
+}
+
+.main .nav_menu li {
+	background: #eeeeee;
+	border: solid 1px #808080;
+	margin: 0 0 1em;
+	text-align: center;
+	padding: .5em;
+	border-radius: .5em;
+}
+
+.main input {
+  width: 100%;
+  border: solid 1px #808080;
+  padding: .5em;
+  border-radius: .5em;
+  box-sizing: border-box;
+  }
+
+.main input.urlpart {
+	border: none;
+	border-radius: none;
+	border-bottom: dotted 1px #808080;
+	width: 40%;
+}
+  
 /* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */
 /* ------------------------------------------------------------------------ */
@@ -157,6 +201,7 @@ p {
 		display: inline-block;
 		padding: 0.5em;
 		vertical-align: middle;
+		border: none;
 	}
 
 

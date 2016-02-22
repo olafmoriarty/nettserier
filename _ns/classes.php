@@ -69,8 +69,13 @@ class ArrayHandler {
 		return null;
 	}
 	
-	public function return_ul() {
-		$ret = '<ul>';
+	public function return_ul($class = '') {
+		$ret = '<ul';
+		if ($class) {
+			$ret .= ' class="'.$class.'"';
+		}
+		$ret .= '>';
+		$this->sort_arr();
 		foreach ($this->arr as $subarr) {
 			if (isset($subarr['text']) && isset($subarr['link'])) {
 				$ret .= '<li><a href="'.$subarr['link'].'">'.$subarr['text'].'</a></li>';
@@ -78,6 +83,20 @@ class ArrayHandler {
 		}
 		$ret .= '</ul>';
 		return $ret;
+	}
+
+	private function sort_arr() {
+		$sorting_arr = $this->arr;
+		foreach ($sorting_arr as $key => $row) {
+			if (isset($row['order'])) {
+				$order[$key] = $row['order'];
+			}
+			else {
+				$order[$key] = 0;
+			}
+		}
+		array_multisort($order, $sorting_arr);
+		$this->arr = $sorting_arr;
 	}
 }
 

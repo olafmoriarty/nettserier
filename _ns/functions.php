@@ -114,7 +114,12 @@ function input_field($arr) {
 	}
 	$c .= '>';
     $c .= '<p>'.$arr['text'].'<br>'."\n";
-    $c .= '<input type="';
+
+	if (isset($arr['text_before_field'])) {
+		$c .= $arr['text_before_field'];
+	}
+
+	$c .= '<input type="';
     if (isset($arr['type'])) {
       $c .= $arr['type'];
     }
@@ -132,7 +137,14 @@ function input_field($arr) {
 	if (isset($_POST[$arr['name']])) {
 		$c .= ' value="'.htmlspecialchars($_POST[$arr['name']]).'"';
 	}
-	$c .= '></p>'."\n";
+	if (isset($arr['class'])) {
+		$c .= ' class="'.htmlspecialchars($arr['class']).'"';
+	}
+	$c .= '>';
+	if (isset($arr['text_after_field'])) {
+		$c .= $arr['text_after_field'];
+	}
+	$c .= '</p>'."\n";
     if (isset($error_array[$arr['name']]) && $error_array[$arr['name']]) {
       $c .= '<p class="errormsg">'.$error_array[$arr['name']].'</p>';
     }
