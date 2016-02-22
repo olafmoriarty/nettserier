@@ -19,6 +19,7 @@ if ($logged_in) {
 			$content_file = $folderscript['script'];
 		}
 		include($content_file);
+		$c .= '<p><a href="/n/dashboard/">'.__('Return to dashboard').'</a></p>';
 	}
 }
 else {

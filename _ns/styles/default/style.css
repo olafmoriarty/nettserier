@@ -105,8 +105,23 @@ nav.user-menu ul li {
 	padding: 1em;
 }
 
-.main p, .main h2 {
+.main p {
 	margin: 0 0 1em;
+}
+
+.main h2 {
+	font-size: 200%;
+	margin: 0 0 .5em;
+}
+
+.main h3 {	
+	font-size: 166.66%;
+	margin: 0 0 .6em;
+}
+
+.main ul {
+	margin: 0 0 1em;
+	padding: 0 0 0 40px;
 }
 
 /* Form errors */
@@ -120,6 +135,7 @@ nav.user-menu ul li {
 }
 
 .main .nav_menu {
+	padding: 0;
 	list-style-type: none;
 }
 
