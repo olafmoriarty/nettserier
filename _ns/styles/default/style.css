@@ -132,6 +132,14 @@ nav.user-menu ul li {
 	border-radius: .5em;
 }
 
+.main input {
+  width: 100%;
+  border: solid 1px #808080;
+  padding: .5em;
+  border-radius: .5em;
+  box-sizing: border-box;
+  }
+  
 /* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */
 /* ------------------------------------------------------------------------ */
