@@ -155,6 +155,13 @@ nav.user-menu ul li {
   border-radius: .5em;
   box-sizing: border-box;
   }
+
+.main input.urlpart {
+	border: none;
+	border-radius: none;
+	border-bottom: dotted 1px #808080;
+	width: 40%;
+}
   
 /* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */

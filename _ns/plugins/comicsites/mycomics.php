@@ -11,7 +11,7 @@ $c .= '<h2>'.__('My comics').'</h2>';
 		$result = $conn->query($query);
 		while ($arr = $result->fetch_assoc()) {
 			$c .= '<h3>'.htmlspecialchars($arr['name']).'</h3>';
-			$c .= str_replace('{comic}', $arr['url'], $comicadm_menu->return_ul());
+			$c .= str_replace('{comic}', $arr['url'], $comicadm_menu->return_ul('nav_menu'));
 		}
 	}
 	else {

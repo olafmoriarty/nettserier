@@ -81,7 +81,7 @@
     $c .= '<h2>'.__('Create new comic').'</h2>'."\n";
     $c .= '<form method="post" name="registration_form" action="/n/dashboard/new-comic/">'."\n";
     $c .= input_field(['name' => 'comic_name', 'text' => __('Name of the comic')]);
-    $c .= input_field(['name' => 'comic_url', 'text' => __('Preferred URL to your comic'), 'text_before_field' => NS_DOMAIN.'/', 'text_after_field' => '/']);
+    $c .= input_field(['name' => 'comic_url', 'text' => __('Preferred URL to your comic'), 'text_before_field' => NS_DOMAIN.'/', 'text_after_field' => '/', 'class' => 'urlpart']);
 	$c .= '<p><a href="">'.__('More settings ...').'</a></p>';
 	$c .= '<p><input type="submit" name="create_comic_submit" id="create_comic_submit" value="'.__('Create comic!').'"></p>';
     $c .= '</form>'."\n";
