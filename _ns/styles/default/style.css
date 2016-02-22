@@ -162,7 +162,17 @@ nav.user-menu ul li {
 	border-bottom: dotted 1px #808080;
 	width: 40%;
 }
-  
+
+.main .profile_pic {
+	text-align: center;
+}
+
+.main .profile_pic img {
+	border: solid 1px #808080;
+	border-radius: 10px;
+	max-width: 100%;
+}
+
 /* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */
 /* ------------------------------------------------------------------------ */
@@ -204,5 +214,8 @@ nav.user-menu ul li {
 		border: none;
 	}
 
+	.main .profile_pic {
+		float: right;
+	}
 
 }
