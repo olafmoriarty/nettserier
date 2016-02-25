@@ -14,6 +14,12 @@
       $errors = true;
     }
 
+    if ($err = validate_input(['check' => 'regex', 'input' => 'comic_url', 'regex' => '[A-Za-z0-9-]+', 'error' => __('The comic\'s URL part can only contain letters (a-z), digits (0-9) and hyphens.')])) {
+      $error_array['comic_url'] = $err;
+      $errors = true;
+    }
+
+
     if ($_POST['comic_url'] == 'n') {
       $error_array['comic_url'] = __('Sorry! The chosen URL is reserved by the system and therefore can\'t be used.');
       $errors = true;
@@ -39,7 +45,7 @@
       $values[] = mysql_string($_POST['comic_name']);
       
       $fields[] = 'url';
-      $values[] = mysql_string($_POST['comic_url']);
+      $values[] = mysql_string(strtolower($_POST['comic_url']));
       
       $fields[] = 'regtime';
       $values[] = 'NOW()';

@@ -95,6 +95,16 @@ function validate_input($arr) {
 			return false;
 		}
 	}
+	
+	if ($arr['check'] == 'regex') {
+		// Returns TRUE if field does not match given regex
+		if (!preg_match('/^'.$arr['regex'].'$/', $_POST[$arr['input']])) {
+			return $error;
+		}
+		else {
+			return false;
+		}
+	}
 }
 
 // ----------
