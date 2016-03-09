@@ -16,4 +16,7 @@ mysql_install_table('ns_plugins', ['name VARCHAR(100) NOT NULL', 'folder VARCHAR
 
 // ns_comics
 mysql_install_table('ns_comics', ['url VARCHAR(100) NOT NULL', 'name VARCHAR(100) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP']);
+
+// ns_updates
+mysql_install_table('ns_updates', ['updtype VARCHAR(3) NOT NULL', 'comic VARCHAR(100) NOT NULL', 'user INT(10) NOT NULL', 'title VARCHAR(100) NOT NULL', 'text TEXT NOT NULL', 'imgtype VARCHAR(5) NOT NULL', 'ip VARCHAR(45) NOT NULL', 'published INT(1) NOT NULL', 'pubtime TIMESTAMP NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP']);
 ?>

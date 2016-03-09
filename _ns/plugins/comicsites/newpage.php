@@ -83,6 +83,8 @@
 
   if (!$submitted || $errors) {
     
+		$ns_title = __('Create new comic');
+		
     // Registration form
     $c .= '<h2>'.__('Create new comic').'</h2>'."\n";
     $c .= '<form method="post" name="registration_form" action="/n/dashboard/new-comic/">'."\n";

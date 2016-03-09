@@ -1,4 +1,5 @@
 <?php
+$ns_title = __('Register new user');
 if ($logged_in) {
     $c .= '<h2>'.__('Register new user').'</h2>'."\n";
 	$c .= '<p>'.__('You can\'t register - you are already logged in.').'</p>';

@@ -4,6 +4,7 @@ $folder = strtok('/');
 
 if (!$folder) {
 
+	$ns_title = __('My comics');
 $c .= '<h2>'.__('My comics').'</h2>';
 	if (owns_comics($user_info['id'])) {
 		$c .= '<p><a href="/n/dashboard/new-comic/">'.__('Create a new comic').'</a></p>';

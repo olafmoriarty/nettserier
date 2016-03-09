@@ -1,4 +1,7 @@
 <?php
+
+$ns_title = __('Log in');
+
 if ($logged_in) {
   $c .= '<h2>'.__('Log in').'</h2>'."\n";
 	$c .= '<p>'.__('You can\'t log in - you are already logged in.').'</p>';

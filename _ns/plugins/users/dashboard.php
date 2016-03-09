@@ -4,6 +4,7 @@ if ($logged_in) {
 	$folder = strtok('/');
 
 	if (!$folder) {
+		$ns_title = __('User dashboard');
 		$c .= '<h2>'.__('User dashboard').'</h2>';
 
 		$c .= $d_menu->return_ul('nav_menu');
