@@ -117,7 +117,7 @@ function mysql_string($text) {
 // ----------
 
 function input_field($arr) {
-  global $error_array;
+  global $error_array, $conn;
   $c = '<div id="'.$arr['name'].'_box"';
   if (isset($error_array[$arr['name']]) && $error_array[$arr['name']]) {
 		$c .= ' class="errorbox"';
@@ -147,6 +147,13 @@ function input_field($arr) {
 	if (isset($_POST[$arr['name']])) {
 		$c .= ' value="'.htmlspecialchars($_POST[$arr['name']]).'"';
 	}
+	elseif ($arr['value']) {
+		$c .= ' value="'.htmlspecialchars($arr['value']).'"';
+	}
+	
+	
+	$c .= ' placeholder="'.htmlspecialchars($arr['text']).'"';
+
 	if (isset($arr['class'])) {
 		$c .= ' class="'.htmlspecialchars($arr['class']).'"';
 	}

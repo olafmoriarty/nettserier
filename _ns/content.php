@@ -65,7 +65,7 @@ if ($logged_in) {
 	$header .= '<nav class="user-menu" id="user-menu">'."\n";
 	$header .= '<ul>';
 	$header .= '<li><a href="/n/dashboard/">'.str_replace('{n}', htmlspecialchars($user_info['username']), __('{n}\'s dashboard')).'</a></li>';
-	$header .= '<li><a href="/n/user-settings/">'.__('Settings').'</a></li>';
+	$header .= '<li><a href="/n/dashboard/settings/">'.__('Settings').'</a></li>';
 	$header .= '<li><a href="/n/log-out/">'.__('Log out').'</a></li>';
 	$header .= '</ul>';
 	$header .= '</nav>'."\n";

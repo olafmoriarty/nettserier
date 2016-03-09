@@ -12,5 +12,7 @@
 
 	$n_menu->add_line(['text' => __('New user?'), 'link' => '/n/register/']);
 
-	$d_menu->add_line(['text' => __('Settings'), 'link' => '/n/settings/', 'order' => 99]);
+	$d_urls->add_line(['url' => 'settings', 'script' => $tpf.'settings.php']);
+
+	$d_menu->add_line(['text' => __('Settings'), 'link' => '/n/dashboard/settings/', 'order' => 99]);
 	$d_menu->add_line(['text' => __('Log out'), 'link' => '/n/log-out/', 'order' => 100]);
