@@ -56,6 +56,9 @@ function validate_input($arr) {
 	if ($arr['check'] == 'unique') {
 		// Check if value is already in use in the specified field
 		$query = 'SELECT id FROM '.$arr['table'].' WHERE LOWER('.$arr['field'].') = \''.$conn->real_escape_string(strtolower($_POST[$arr['input']])).'\'';
+		if (isset($arr['this_id'])) {
+			$query .= ' AND id != '.$arr['this_id'];
+		}
 		$result = $conn->query($query);
 		$num = $result->num_rows;
 		if ($num) {
