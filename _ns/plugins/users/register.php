@@ -97,7 +97,7 @@ else {
 		$email_sender = 'post@nettserier.no';
 	  $email_text = str_replace(array('{username}', '{pagetitle}', '{url}'), array($_POST['reg_username'], PAGE_TITLE, NS_DOMAIN.'/n/email-verify/'.$emailtoken), __('Dear {username},'."\r\n\r\n".'Welcome to {pagetitle}! We hope you will enjoy our wide selection of user-generated comics - or perhaps even add one (or more!) of your own?'."\r\n\r\n".'Your registration is almost complete. To finish it, we just need you to click this link to confirm that this is actually your e-mail address:'."\r\n".'{url}'."\r\n\r\n".'Have a wonderful day!'."\r\n\r\n".'Best wishes,'."\r\n".'{pagetitle}'))."\n";
 
-	  mail($_POST['reg_email'], str_replace('{pagetitle}', PAGE_TITLE, __('{pagetitle} Registration Confirmation')), $email_text, 'From: '.PAGE_TITLE.' '.$email_sender);
+	  mail($_POST['reg_email'], str_replace('{pagetitle}', PAGE_TITLE, __('{pagetitle} Registration Confirmation')), $email_text, 'From: "'.PAGE_TITLE.'" <'.$email_sender.'>');
 
       header('Location: '.NS_DOMAIN.'/n/welcome/');
       exit;
