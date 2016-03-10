@@ -47,7 +47,7 @@
 	function delete_user_comics($id) {
 		global $conn;
 		// Deletes all comics by user $id, unless that comic has more than one creator
-		$query = 'SELECT comic FROM ns_user_comic_rel WHERE id = '.$id.' AND reltype IN (\'c\', \'e\')';
+		$query = 'SELECT comic FROM ns_user_comic_rel WHERE user = '.$id.' AND reltype IN (\'c\', \'e\')';
 		$result = $conn->query($query);
 		if ($result->num_rows) {
 			while ($arr = $result->fetch_assoc()) {
