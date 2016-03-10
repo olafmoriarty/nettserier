@@ -80,6 +80,9 @@ class ArrayHandler {
 			if (isset($subarr['text']) && isset($subarr['link'])) {
 				$ret .= '<li><a href="'.$subarr['link'].'">'.$subarr['text'].'</a></li>';
 			}
+			elseif (isset($subarr['text'])) {
+				$ret .= '<li>'.$subarr['text'].'</li>';
+			}
 		}
 		$ret .= '</ul>';
 		return $ret;

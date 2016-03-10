@@ -117,4 +117,5 @@ if (!$submitted || $errors) {
 	$c .= '<p><input type="submit" name="ed_button" id="ed_button" value="'.__('Deploy changes!').'"></p>';
 	$c .= '</form>'."\n";
 
+	$c .= '<p><a href="/n/dashboard/delete-user/">'.__('Delete my account').'</a></p>';
 }

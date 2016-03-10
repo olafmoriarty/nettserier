@@ -43,6 +43,9 @@ $d_urls = new ArrayHandler;
 $n_menu = new ArrayHandler;
 $d_menu = new ArrayHandler;
 
+$delete_concequences = new ArrayHandler;
+
+
 define('PAGE_TITLE', 'Nettserier.no');
 $ns_tsep = ' :: ';
 

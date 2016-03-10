@@ -22,6 +22,11 @@
 	$comicadm_menu->add_line(['text' => __('Go to comic'), 'link' => '/{comic}/', 'order' => -100]);
 	$comicadm_menu->add_line(['text' => __('Delete comic'), 'link' => '/n/dashboard/my-comics/{comic}/delete/', 'order' => 999]);
 
+	$delete_concequences->add_line(['text' => __('If you have created any comics: Any comic <strong>where you are the only listed creator or editor</strong> will be deleted. Deleting a comic also deletes all comic strips, blog posts, comments, statistics and everything else that is related to that comic.'), 'order' => 10]);
+	$delete_concequences->add_line(['text' => __('Any comic you have created or contributed to <strong>with more than one creator/editor listed</strong> will not be deleted automatically, but you will be removed from its creator list and lose your access to edit this comic. If you want to delete such a comic, you have to do that manually before deleting your profile.'), 'order' => 10.5]);
+
+
+
 	function owns_comics($id) {
 		global $conn;
 		$query = 'SELECT id FROM ns_user_comic_rel WHERE user = '.$id.' AND reltype IN (\'c\', \'e\')';
