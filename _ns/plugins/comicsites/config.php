@@ -24,7 +24,9 @@
 	}
 
 	$comicadm_urls->add_line(['url' => 'delete', 'script' => $tpf.'delete-comic.php']);
+	$comicadm_urls->add_line(['url' => 'edit', 'script' => $tpf.'edit-comic.php']);
 	$comicadm_menu->add_line(['text' => __('Go to comic'), 'link' => '/{comic}/', 'order' => -100]);
+	$comicadm_menu->add_line(['text' => __('Edit comic settings'), 'link' => '/n/dashboard/my-comics/{comic}/edit/', 'order' => 100]);
 	$comicadm_menu->add_line(['text' => __('Delete comic'), 'link' => '/n/dashboard/my-comics/{comic}/delete/', 'order' => 999]);
 
 	$delete_concequences->add_line(['text' => __('If you have created any comics: Any comic <strong>where you are the only listed creator or editor</strong> will be deleted. Deleting a comic also deletes all comic strips, blog posts, comments, statistics and everything else that is related to that comic.'), 'order' => 10]);
