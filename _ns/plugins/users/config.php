@@ -19,3 +19,15 @@
 
 	$d_menu->add_line(['text' => __('Settings'), 'link' => '/n/dashboard/settings/', 'order' => 99]);
 	$d_menu->add_line(['text' => __('Log out'), 'link' => '/n/log-out/', 'order' => 100]);
+
+	function delete_user($id) {
+		global $conn;
+		if (is_numeric($id)) {
+			// Delete user
+			$query = 'DELETE FROM ns_users WHERE id = '.$id;
+			$conn->query($query);
+
+			// Delete user comics (MOVE TO ARRAYHANDLER!)
+			delete_user_comics($id);
+		}
+	}

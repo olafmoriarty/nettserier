@@ -4,6 +4,41 @@ $submitted = false;
 $errors = false;
 $error_array = array();
 
+if (isset($_POST) && isset($_POST['password_confirmed']) && $_POST['password_confirmed']) {
+	// The form has been submitted
+	$submitted = true;
+
+	if (is_numeric($user_info['id'])) {
+		$query = 'SELECT password, salt FROM ns_users WHERE id = '.$user_info['id'].' LIMIT 1';
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+		if ($num) {
+			$arr = $result->fetch_assoc();
+			if (hash('sha512', $_POST['password'].$arr['salt']) == $arr['password']) {
+
+				// Delete user
+				delete_user($user_info['id']);
+				header('Location: '.NS_DOMAIN);
+				exit;
+			
+			}
+			else {
+				$errors = true;
+				$error_array['password'] = __('That\'s not the correct password.');
+			}
+		}
+		else {
+			$errors = true;
+			$error_array['password'] = __('Impossible error. Please try again.');
+		}
+	}
+	else {
+		$errors = true;
+		$error_array['password'] = __('Impossible error. Please try again.');
+	}
+}
+
+
 if (!$submitted || $errors) {
 
 	$ns_title = __('Delete account');
