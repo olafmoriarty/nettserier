@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 <?php
 	echo '<link rel="stylesheet" href="/_ns/styles/'.$ns_style.'/style.css">'."\n";
+	echo implode("\n", $head->return_arr())."\n";
 ?>	</head>
 	<body>
 <?php

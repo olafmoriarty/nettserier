@@ -45,6 +45,10 @@ $d_menu = new ArrayHandler;
 
 $delete_concequences = new ArrayHandler;
 
+$head = new ArrayHandler;
+
+// Add javascript for Adaptive Images
+$head->add_line('<script>document.cookie=\'resolution=\'+Math.max(screen.width,screen.height)+\'; path=/\';</script>');
 
 define('PAGE_TITLE', 'Nettserier.no');
 $ns_tsep = ' :: ';
