@@ -52,6 +52,9 @@
       
       $query = 'INSERT INTO '.$table.' ('.implode(', ', $fields).') VALUES ('.implode(', ', $values).')';
       $conn->query($query);
+			
+			// Get id
+			$comic_id = $conn->insert_id;
 
 	// ------
 
@@ -63,7 +66,7 @@
       $values[] = $user_info['id'];
       
       $fields[] = 'comic';
-      $values[] = mysql_string($_POST['comic_url']);
+      $values[] = $comic_id;
       
       $fields[] = 'reltype';
       $values[] = mysql_string('c');

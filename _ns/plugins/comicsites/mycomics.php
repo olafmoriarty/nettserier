@@ -8,7 +8,7 @@ if (!$folder) {
 $c .= '<h2>'.__('My comics').'</h2>';
 	if (owns_comics($user_info['id'])) {
 		$c .= '<p><a href="/n/dashboard/new-comic/">'.__('Create a new comic').'</a></p>';
-		$query = 'SELECT c.url, c.name FROM ns_comics AS c LEFT JOIN ns_user_comic_rel AS r ON c.url = r.comic WHERE r.user = '.$user_info['id'].' AND r.reltype IN (\'c\', \'e\') ORDER BY c.name';
+		$query = 'SELECT c.url, c.name FROM ns_comics AS c LEFT JOIN ns_user_comic_rel AS r ON c.id = r.comic WHERE r.user = '.$user_info['id'].' AND r.reltype IN (\'c\', \'e\') ORDER BY c.name';
 		$result = $conn->query($query);
 		while ($arr = $result->fetch_assoc()) {
 			$c .= '<h3>'.htmlspecialchars($arr['name']).'</h3>';
