@@ -147,7 +147,7 @@ function input_field($arr) {
     $c .= $arr['name'];
   }
     $c .= '"';
-	if (isset($_POST[$arr['name']])) {
+	if (isset($_POST[$arr['name']]) && $arr['type'] != 'file') {
 		$c .= ' value="'.htmlspecialchars($_POST[$arr['name']]).'"';
 	}
 	elseif ($arr['value']) {
@@ -159,6 +159,9 @@ function input_field($arr) {
 
 	if (isset($arr['class'])) {
 		$c .= ' class="'.htmlspecialchars($arr['class']).'"';
+	}
+	if (isset($arr['extra-attributes'])) {
+		$c .= ' '.$arr['extra-attributes'];
 	}
 	$c .= '>';
 	if (isset($arr['text_after_field'])) {
