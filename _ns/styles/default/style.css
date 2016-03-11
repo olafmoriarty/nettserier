@@ -2,7 +2,7 @@
 /* IMPORT FONTS FROM GOOGLE FONTS                                           */
 /* ------------------------------------------------------------------------ */
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,900italic,700italic,900,700,500italic,500,400italic,300italic,100italic,300,100);
+@import url(https://fonts.googleapis.com/css?family=Oxygen:400,700&subset=latin,latin-ext);
 
 /* ------------------------------------------------------------------------ */
 /* GENERAL SETTINGS FOR PAGE                                                */
@@ -14,7 +14,7 @@
 }
 
 body {
-	font-family: Roboto, sans-serif;
+	font-family: Oxygen, sans-serif;
 }
 
 a img {border: none;}
