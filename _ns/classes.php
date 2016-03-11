@@ -90,6 +90,7 @@ class ArrayHandler {
 
 	private function sort_arr() {
 		$sorting_arr = $this->arr;
+		if (is_array($sorting_arr) && count($sorting_arr)) {
 		foreach ($sorting_arr as $key => $row) {
 			if (isset($row['order'])) {
 				$order[$key] = $row['order'];
@@ -100,6 +101,7 @@ class ArrayHandler {
 		}
 		array_multisort($order, $sorting_arr);
 		$this->arr = $sorting_arr;
+		}
 	}
 }
 
