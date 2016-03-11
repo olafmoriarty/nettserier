@@ -2,7 +2,7 @@
 /* IMPORT FONTS FROM GOOGLE FONTS                                           */
 /* ------------------------------------------------------------------------ */
 
-@import url(https://fonts.googleapis.com/css?family=Oxygen:400,700&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Exo:400,700,400italic,700italic&subset=latin,latin-ext);
 
 /* ------------------------------------------------------------------------ */
 /* GENERAL SETTINGS FOR PAGE                                                */
@@ -14,7 +14,7 @@
 }
 
 body {
-	font-family: Oxygen, sans-serif;
+	font-family: Exo, sans-serif;
 }
 
 a img {border: none;}
