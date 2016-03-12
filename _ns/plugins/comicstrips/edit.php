@@ -1,6 +1,50 @@
 <?php
 
-if (1 == 0) {
+$folder = strtok('/');
+
+// HANDLING BULK CHANGES
+
+if (isset($_POST) && isset($_POST['bulk']) && $_POST['bulk']) {
+	// Which checkboxes are checked?
+	$formfields = array_keys($_POST);
+	$checked = array();
+	$formnum = count($formfields);
+	for ($i = 0; $i < $formnum; $i++) {
+		if (substr($formfields[$i], 0, 6) == 'check-' && is_numeric($this_id = substr($formfields[$i], 6))) {
+			$checked[] = $this_id;
+		}
+	}
+
+	// How many boxes are checked?
+	$checked_num = count($checked);
+
+	// Abort and go back if no boxes are checked
+	if (!$checked_num) {
+		header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
+		exit;
+	
+	}
+	elseif ($_POST['bulk'] == 'publish') {
+		// Change 'published' for all selected IDs to 1
+		$query = 'UPDATE ns_updates SET published = 1 WHERE id IN ('.implode(', ', $checked).') AND comic = '.$active_comic_id;
+		$conn->query($query);
+		// Also, if any of these lack a pubtime, set it to NOW()
+		$query = 'UPDATE ns_updates SET pubtime = NOW() WHERE id IN ('.implode(', ', $checked).') AND comic = '.$active_comic_id.' AND pubtime IS NULL';
+		$conn->query($query);
+		header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
+		exit;
+	}
+	elseif ($_POST['bulk'] == 'draft') {
+		// Change 'published' for all selected IDs to 0
+		$query = 'UPDATE ns_updates SET published = 0 WHERE id IN ('.implode(', ', $checked).') AND comic = '.$active_comic_id;
+		$conn->query($query);
+		header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
+		exit;
+	}
+}
+
+elseif (is_numeric($folder)) {
+	// A single comic to edit is selected
 }
 else {
 	// No comic to edit is selected
@@ -8,12 +52,13 @@ else {
 	$ns_title = __('Edit comic strips and pages');
 	$c .= '<h2>'.__('Edit comic strips and pages').'</h2>';
 
+	$c .= '<p>'.__('To edit a single strip/page, click it below. To ').'</p>';
 	$query = 'SELECT id, imgtype, title, pubtime, published FROM ns_updates WHERE comic = '.$active_comic_id.' AND updtype = \'c\' ORDER BY id DESC';
 	$result = $conn->query($query);
 	$num = $result->num_rows;
 
 	if ($num){
-		$c .= '<form>'."\n";
+		$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/">'."\n";
 		$c .= '<table>'."\n";
 		while ($arr = $result->fetch_assoc()) {
 			$c .= '<tr>'."\n";
