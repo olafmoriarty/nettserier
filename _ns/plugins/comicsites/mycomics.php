@@ -29,6 +29,7 @@ else {
 
 	if (can_edit_comic($user_info['id'], $folder)) {
 		$active_comic = $folder;
+		$active_comic_id = comic_id($folder);
 		$folder = strtok('/');
 
 		$folderscript = $comicadm_urls->find('url', $folder);

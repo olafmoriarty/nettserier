@@ -127,12 +127,12 @@
 
 
 					// Save image to uploads folder
-					move_uploaded_file($_FILES['file']['tmp_name'][$i], NS_PATH.'files/'.md5($comic_id . $strip_id . $extension).'.'.$extension);
+					move_uploaded_file($_FILES['file']['tmp_name'][$i], NS_PATH.'files/'.md5($strip_id . $extension).'.'.$extension);
 				}
 			}
 
 			// Everything should be uploaded now, so let's get out of here. (To be changed to correct address later ...)
-		  header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/');
+		  header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
 		  exit;
 		}
 

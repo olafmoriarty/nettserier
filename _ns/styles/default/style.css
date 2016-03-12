@@ -124,6 +124,10 @@ nav.user-menu ul li {
 	padding: 0 0 0 40px;
 }
 
+.main table {
+	margin: 0 0 1em;
+}
+
 /* Form errors */
 
 .errorbox {
@@ -148,13 +152,17 @@ nav.user-menu ul li {
 	border-radius: .5em;
 }
 
-.main input {
+.main input, .main select {
   width: 100%;
   border: solid 1px #808080;
   padding: .5em;
   border-radius: .5em;
   box-sizing: border-box;
   }
+
+.main input[type="checkbox"] {
+	width: auto;
+}
 
 .main input.urlpart {
 	border: none;
@@ -170,6 +178,19 @@ nav.user-menu ul li {
 .main .profile_pic img {
 	border: solid 1px #808080;
 	border-radius: 10px;
+	max-width: 100%;
+}
+
+.main .thumbnail-cell {
+	width: 30%;
+}
+
+.main .thumbnail-box {
+	max-height: 80px;
+	overflow: hidden;
+}
+
+.main .thumbnail-cell img {
 	max-width: 100%;
 }
 
@@ -217,5 +238,10 @@ nav.user-menu ul li {
 	.main .profile_pic {
 		float: right;
 	}
+
+	.main .thumbnail-box {
+		max-height: 200px;
+	}
+
 
 }
