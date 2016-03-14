@@ -12,7 +12,7 @@
 
 	if (!$logged_in) {
 		$n_menu->add_line(['text' => __('Sign up'), 'link' => '/n/register/', 'order' => 90]);
-		$n_menu->add_line(['text' => __('Sign in'), 'link' => '/n/log-in/', 'order' => 91]);
+		$n_menu->add_line(['text' => __('Log in'), 'link' => '/n/log-in/', 'order' => 91]);
 	}
 
 	$d_urls->add_line(['url' => 'settings', 'script' => $tpf.'settings.php']);
