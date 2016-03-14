@@ -11,6 +11,9 @@
 	$comicadm_urls = new ArrayHandler;
 	$comicadm_menu = new ArrayHandler;
 
+	$n_urls->add_line(['url' => 'browse', 'script' => $tpf.'browse.php']);
+	$n_menu->add_line(['text' => __('Comics'), 'link' => '/n/browse/', 'order' => 10]);
+
 	$d_urls->add_line(['url' => 'new-comic', 'script' => $tpf.'newpage.php']);
 	$d_urls->add_line(['url' => 'my-comics', 'script' => $tpf.'mycomics.php']);
 
