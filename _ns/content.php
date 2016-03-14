@@ -25,8 +25,12 @@ elseif ($folder == 'n') {
 else {
 }
 
-
-include($content_file);
+if (file_exists($content_file)) {
+	include($content_file);
+}
+else {
+	include(NS_PATH.'pages/404.php');
+}
 
 // ---------------------------------------------------------------------------
 // GENERATE HEADER
@@ -82,7 +86,14 @@ $header .= '<section class="main">'."\n";
 $footer = '';
 
 // Close main section
-$footer = '</section>'."\n";
+$footer .= '</section>'."\n";
+
+$footer .= '<footer>'."\n";
+$footer .= '<nav><h2 class="expand">Language</h2><ul><li><a href="">English</a></li><li><a href="">Norsk bokmål</a></li><li><a href="">Norsk nynorsk</a></li></ul></nav>';
+$footer .= '<nav><h2 class="expand">Help</h2><ul><li><a href="">About</a></li><li><a href="">FAQ</a></li><li><a href="">Privacy policy</a></li><li><a href="">Cookies</a></li></ul></nav>';
+$footer .= '<nav><h2 class="expand">Follow us!</h2><ul><li><a href="">Facebook</a></li><li><a href="">Twitter</a></li><li><a href="">YouTube</a></li><li><a href="">Patreon</a></li><li><a href="">Github</a></li></ul></nav>';
+$footer .= '<div class="copyright">Nettserier.no &copy; Comicopia AS, 2006-2016<br>All comics are &copy; their respective creators</div>';
+$footer .= '</footer>'."\n";
 
 // ---------------------------------------------------------------------------
 // ADD HEADER/FOOTER TO CONTENT

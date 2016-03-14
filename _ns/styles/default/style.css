@@ -195,6 +195,34 @@ nav.user-menu ul li {
 }
 
 /* ------------------------------------------------------------------------ */
+/* FOOTER                                                                   */
+/* ------------------------------------------------------------------------ */
+
+footer {
+	font-size: 80%;
+	color: #454545;
+	padding: .5em 1em;
+	position: relative;
+}
+
+footer h2 {
+	font-size: 100%;
+}
+
+footer nav {
+	margin-bottom: .5em;
+}
+
+footer nav ul {
+	margin: 0 0 1em;
+	padding: 0 0 0 30px;
+}
+
+
+footer .copyright {text-align: center;}
+
+
+/* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */
 /* ------------------------------------------------------------------------ */
 
@@ -243,5 +271,26 @@ nav.user-menu ul li {
 		max-height: 200px;
 	}
 
+	footer h2 {display: inline;}
+	footer nav ul {display: inline; margin: 0; padding: 0;}
+	footer nav li {display: inline;}
+	footer nav li:before {content: " | ";}
 
+	footer .copyright {
+		text-align: right;
+		position: absolute;
+		bottom: 1em;
+		right: 1em;
+	}
+
+}
+
+/* ------------------------------------------------------------------------ */
+/* PRINTER FRIENDLY                                                         */
+/* ------------------------------------------------------------------------ */
+
+@media print {
+	header {display: none;}
+	nav.user-menu {display: none;}
+	footer {display: none;}
 }
