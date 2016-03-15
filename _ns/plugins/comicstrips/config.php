@@ -61,8 +61,8 @@ function feed_comic_strip($arr) {
 	
 	$c = '';
 	
-	$c .= '<h3>'.$comic_linked.'</h3>';
-	$c .= '<p><img src="/_ns/files/'.md5($arr['id'] . $arr['other']).'.'.$arr['other'].'" alt="'.$alt.'"></p>';
+	$c .= '<h3>'.str_replace(array('{comic}', '{creator}'), array($comic_linked, htmlspecialchars($arr['comic_creator'])), __('{comic} by {creator}')).'</h3>';
+	$c .= '<p class="comic-para"><img src="/_ns/files/'.md5($arr['id'] . $arr['other']).'.'.$arr['other'].'" alt="'.$alt.'"></p>';
 
 	if ($arr['title']) {
 		$c .= '<h4>'.htmlspecialchars($arr['title']).'</h4>'."\n";

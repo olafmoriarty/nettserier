@@ -198,11 +198,22 @@ nav.user-menu ul li {
 	max-width: 100%;
 }
 
+/* _ns/pages/feed.php */
+
 .main .feed-box {
 	margin-bottom: 1em;
 	border: solid 1px #dddddd;
 	border-radius: 1em;
 	padding: 1em;
+	font-size: 90%;
+}
+
+.main .feed-box h3 {
+	text-align: center;
+}
+
+.main .feed-box .comic-para {
+	text-align: center;
 }
 
 .main .feed-box .feed-pubtime {
@@ -211,6 +222,26 @@ nav.user-menu ul li {
 	font-size: 80%;
 	color: #808080;
 	letter-spacing: .1em;
+}
+
+.main .feed-sidebar {
+	background: #dddddd;
+	padding: 1em;
+	border: solid 1px #808080;
+	border-radius: 1em;
+}
+
+.main .feed-sidebar h3 {
+	font-size: 120%;
+}
+
+.main .feed-sidebar h4 {
+	font-size: 100%;
+	margin-bottom: .5em;
+}
+
+.main .feed-sidebar p {
+	margin-bottom: .5em;
 }
 
 /* ------------------------------------------------------------------------ */
@@ -222,6 +253,7 @@ footer {
 	color: #454545;
 	padding: .5em 1em;
 	position: relative;
+	clear: both;
 }
 
 footer h2 {
@@ -302,6 +334,21 @@ footer .copyright {text-align: center;}
 		right: 1em;
 	}
 
+}
+
+@media screen and (min-width: 1200px) {
+	.main .feed {
+		float: left;
+		width: calc(80% - 2em - 3px);
+	}
+	.main .feed-sidebar {
+		float: right;
+		width: 20%;
+		margin-right: -1em;
+		border-right: none;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
 }
 
 /* ------------------------------------------------------------------------ */
