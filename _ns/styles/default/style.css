@@ -105,6 +105,10 @@ nav.user-menu ul li {
 	padding: 1em;
 }
 
+.main img {
+	max-width: 100%;
+}
+
 .main p {
 	margin: 0 0 1em;
 }
@@ -192,6 +196,21 @@ nav.user-menu ul li {
 
 .main .thumbnail-cell img {
 	max-width: 100%;
+}
+
+.main .feed-box {
+	margin-bottom: 1em;
+	border: solid 1px #dddddd;
+	border-radius: 1em;
+	padding: 1em;
+}
+
+.main .feed-box .feed-pubtime {
+	margin: 0;
+	text-align: center; 
+	font-size: 80%;
+	color: #808080;
+	letter-spacing: .1em;
 }
 
 /* ------------------------------------------------------------------------ */

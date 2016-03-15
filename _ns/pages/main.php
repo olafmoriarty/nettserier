@@ -1,7 +1,7 @@
 <?php
 
 if ($logged_in) {
-	$c .= '<p>There will be something interesting here soon. I hope.</p>';
+	include(NS_PATH.'pages/feed.php');
 }
 else {
 	$c .= '<p>There will be something interesting here soon. I hope.</p>';

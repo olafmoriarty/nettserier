@@ -4,7 +4,7 @@ $folder = strtok('/');
 
 // HANDLING BULK CHANGES
 
-if (isset($_POST) && isset($_POST['bulk']) && $_POST['bulk']) {
+if (isset($_POST['bulk']) && $_POST['bulk'] && $_POST['bulk'] != 'edit') {
 	// Which checkboxes are checked?
 	$formfields = array_keys($_POST);
 	$checked = array();
@@ -44,7 +44,17 @@ if (isset($_POST) && isset($_POST['bulk']) && $_POST['bulk']) {
 }
 
 elseif (is_numeric($folder)) {
+	if ($_POST['edit']) {
+		
+	}
 	// A single comic to edit is selected
+
+	$c .= '<h2>'.__('Edit comic strip or page').'</h2>';
+	$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit/">';
+	$c .= '<p>Description:<br>'."\n".'<textarea name="test" class="wysiwyg"></textarea></p>';
+	$c .= '<p><input type="submit" name="save-draft" value="'.__('Save as draft').'"></p>';
+	$c .= '<p><input type="submit" name="save-publish" value="'.__('Save and publish').'"></p>';
+	$c .= '</form>';
 }
 else {
 	// No comic to edit is selected
@@ -52,7 +62,7 @@ else {
 	$ns_title = __('Edit comic strips and pages');
 	$c .= '<h2>'.__('Edit comic strips and pages').'</h2>';
 
-	$c .= '<p>'.__('To edit a single strip/page, click it below. To ').'</p>';
+	$c .= '<p>'.__('To edit a single strip/page, click it below. To edit multiple strips/pages, use the checkboxes to select them and then choose "Edit" from "Bulk actions" below.').'</p>';
 	$query = 'SELECT id, imgtype, title, pubtime, published FROM ns_updates WHERE comic = '.$active_comic_id.' AND updtype = \'c\' ORDER BY id DESC';
 	$result = $conn->query($query);
 	$num = $result->num_rows;
