@@ -8,6 +8,47 @@
 	$comicadm_urls->add_line(['url' => 'edit-strip', 'script' => $tpf.'edit.php']);
 	$comicadm_menu->add_line(['text' => __('Edit uploaded comic strips and pages'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/', 'order' => 11]);
 
+// Stuff for user feed
+
+// Settings (will be moved to a database ...)
+$feed_settings = array();
+
+$feed_settings['comics_mine'] = true;
+$feed_settings['comics_i_follow'] = true;
+$feed_settings['comics_other'] = false;
+
+$feed_settings['albums_mine'] = true;
+$feed_settings['albums_i_follow'] = true;
+$feed_settings['albums_other'] = false;
+
+$feed_settings['blogs_mine'] = true;
+$feed_settings['blogs_i_follow'] = true;
+$feed_settings['blogs_other'] = false;
+
+if ($feed_settings['comics_mine'] || $feed_settings['comics_i_follow'] || $feed_settings['comics_other']) {
+  $select_updates = 'SELECT comupd.updtype AS type, comupd.id, comupd.comic, comupd.pubtime, comupd.title, comupd.text, comupd.slug, comupd.user, comupd.imgtype AS other FROM ns_updates AS comupd';
+  if (!$feed_settings['comics_other']) {
+    // Don't show all comics, only selection. So find the selection ...
+    $select_updates .= ' LEFT JOIN ns_user_comic_rel AS comupdr ON comupd.comic = comupdr.comic';
+  }
+  $select_updates .= ' WHERE comupd.updtype = \'c\' AND comupd.published = 1 AND comupd.pubtime <= NOW()';
+  if (!$feed_settings['comics_other']) {
+    $select_updates .= ' AND comupdr.reltype ';
+    if ($feed_settings['comics_mine'] && $feed_settings['comics_i_follow']) {
+      $select_updates .= 'IN (\'c\', \'e\', \'f\')';
+    }
+    elseif ($feed_settings['comics_mine']) {
+      $select_updates .= 'IN (\'c\', \'e\')';
+    }
+    elseif ($feed_settings['comics_i_follow']) {
+      $select_updates .= '= \'f\'';
+    }
+    $select_updates .= ' AND comupdr.user = {user_id} GROUP BY comupd.id';
+  }
+	$feed_queries->add_line($select_updates);
+}
+
+
 	$feed_functions->add_line(['type' => 'c', 'func' => 'feed_comic_strip']);
 
 function feed_comic_strip($arr) {

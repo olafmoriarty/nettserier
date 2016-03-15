@@ -36,6 +36,8 @@ $c = '';
 define('NS_URL', strtok($_SERVER['REQUEST_URI'], '?'));
 define('NS_DOMAIN', 'http://'.$_SERVER['HTTP_HOST']);
 
+// TO DO: Make a function run plugin setup files (pre-config) and move all ArrayHandlers THERE!
+
 $n_urls = new ArrayHandler;
 $c_urls = new ArrayHandler;
 $d_urls = new ArrayHandler;
@@ -45,6 +47,7 @@ $d_menu = new ArrayHandler;
 
 $delete_concequences = new ArrayHandler;
 
+$feed_queries = new ArrayHandler;
 $feed_functions = new ArrayHandler;
 
 $head = new ArrayHandler;
