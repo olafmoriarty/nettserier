@@ -45,6 +45,8 @@ $d_menu = new ArrayHandler;
 
 $delete_concequences = new ArrayHandler;
 
+$feed_functions = new ArrayHandler;
+
 $head = new ArrayHandler;
 
 // Add javascript for Adaptive Images
@@ -73,7 +75,7 @@ if ($logged_in) {
 // ---------------------------------------------------------------------------
 
 // FOR TESTING; REMOVE LATER!!!!!
-$user_info['level'] = 99;
+$user_info['level'] = 100;
 
 $query = 'SELECT folder FROM ns_plugins WHERE level <= '.$user_info['level'];
 $result = $conn->query($query);
