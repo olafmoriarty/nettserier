@@ -3,7 +3,7 @@ $( document ).ready(function() {
 	var menySynlig = true;
 	var menyStor = true;
 
-	// For small screens:
+	// For small changes:
 	
 	if ($(window).width() < 800) {
 		// Hide menus, add buttons to make menus visible
