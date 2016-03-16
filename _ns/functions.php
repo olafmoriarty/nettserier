@@ -203,7 +203,7 @@ function sec_session_start() {
     session_regenerate_id();    // regenerated the session, delete the old one. 
 }
 
-function login($email, $password) {
+function login($email, $password, $remember = false) {
 	global $conn;
     // Using prepared statements means that SQL injection is not possible. 
     if ($stmt = $conn->prepare('SELECT id, username, password, salt FROM ns_users WHERE email = ? LIMIT 1')) {
@@ -237,7 +237,14 @@ function login($email, $password) {
                     $_SESSION['username'] = $username;
                     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
 									// Login successful. 
-                    return true;
+
+					if ($remember) {
+						$expiration_time = 60 * 60 * 24 * 365; // One year
+						setcookie('user_id', $user_id, time() + $expiration_time, '/', '', SECURE);
+						setcookie('login_string', $_SESSION['login_string'], time() + $expiration_time, '/', '', SECURE);
+					}
+
+					return true;
                 } else {
                     // Password is not correct 
                     // We record this attempt in the database 
@@ -283,11 +290,16 @@ function checkbrute($user_id) {
 
 function login_check() {
 	global $conn;
+	// If no session variables, get them from cookies
+	if (!isset($_SESSION['user_id'], $_SESSION['login_string']) && isset($_COOKIE['user_id'], $_COOKIE['login_string'])) {
+		$_SESSION['user_id'] = $_COOKIE['user_id'];
+		$_SESSION['login_string'] = $_COOKIE['login_string'];
+	}
+
 	// Check if all session variables are set 
-    if (isset($_SESSION['user_id'], $_SESSION['username'], $_SESSION['login_string'])) {
+    if (isset($_SESSION['user_id'], $_SESSION['login_string'])) {
         $user_id = $_SESSION['user_id'];
         $login_string = $_SESSION['login_string'];
-        $username = $_SESSION['username'];
         // Get the user-agent string of the user.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
         if ($stmt = $conn->prepare("SELECT password FROM ns_users WHERE id = ? LIMIT 1")) {
