@@ -114,6 +114,10 @@
 					$fields[] = 'imgtype';
 					$values[] = mysql_string($extension);
 
+					// What's the original filename?
+					$fields[] = 'filename';
+					$values[] = mysql_string($_FILES['file']['name'][$i]);
+
 					// Upload time
 					$fields[] = 'regtime';
 					$values[] = 'NOW()';
@@ -131,8 +135,7 @@
 				}
 			}
 
-			// Everything should be uploaded now, so let's get out of here. (To be changed to correct address later ...)
-		  header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
+		  header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/drafts/?uploaded=yep');
 		  exit;
 		}
 

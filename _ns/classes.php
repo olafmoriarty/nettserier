@@ -51,6 +51,10 @@ class ArrayHandler {
 		$this->arr[] = $subarr;
 	}
 
+	public function add_js($script) {
+		$this->arr[] = '<script src="'.$script.'"></script>';
+	}
+
 	public function return_arr() {
 		return $this->arr;
 	}

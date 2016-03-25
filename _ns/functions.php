@@ -126,44 +126,126 @@ function input_field($arr) {
 		$c .= ' class="errorbox"';
 	}
 	$c .= '>';
-    $c .= '<p>'.$arr['text'].'<br>'."\n";
+    $c .= '<p>';
+	if ($arr['text']) {
+		$c .= $arr['text'].'<br>'."\n";
+	}
 
 	if (isset($arr['text_before_field'])) {
 		$c .= $arr['text_before_field'];
 	}
 
-	$c .= '<input type="';
-    if (isset($arr['type'])) {
-      $c .= $arr['type'];
-    }
-  else {
-    $c .= 'text';
-  }
-    $c .= '" name="'.$arr['name'].'" id="';
+	$attributes = ' name="'.$arr['name'].'" id="';
     if (isset($arr['id'])) {
-      $c .= $arr['id'];
-    }
-  else {
-    $c .= $arr['name'];
-  }
-    $c .= '"';
-	if (isset($_POST[$arr['name']]) && $arr['type'] != 'file') {
-		$c .= ' value="'.htmlspecialchars($_POST[$arr['name']]).'"';
+		$attributes .= $arr['id'];
 	}
-	elseif ($arr['value']) {
-		$c .= ' value="'.htmlspecialchars($arr['value']).'"';
+	else {
+		$attributes .= $arr['name'];
 	}
+	$attributes .= '"';
 	
 	
-	$c .= ' placeholder="'.htmlspecialchars($arr['text']).'"';
+	$attributes .= ' placeholder="'.htmlspecialchars($arr['text']).'"';
 
 	if (isset($arr['class'])) {
-		$c .= ' class="'.htmlspecialchars($arr['class']).'"';
+		$attributes .= ' class="'.htmlspecialchars($arr['class']).'"';
 	}
 	if (isset($arr['extra-attributes'])) {
-		$c .= ' '.$arr['extra-attributes'];
+		$attributes .= ' '.$arr['extra-attributes'];
 	}
-	$c .= '>';
+
+	if (isset($_POST[$arr['name']]) && $arr['type'] != 'file') {
+		$value = htmlspecialchars($_POST[$arr['name']]);
+	}
+	elseif ($arr['value']) {
+		$value = htmlspecialchars($arr['value']);
+	}
+	else {
+		$value = false;
+	}
+
+	if ($arr['type'] == 'textarea') {
+		$c .= '<textarea'.$attributes.'>'.$value.'</textarea>';
+	}
+	elseif ($arr['type'] == 'datetime') {
+		$c .= '<input type="date" ';
+
+		$c .= ' name="'.$arr['name'].'-date" id="';
+		if (isset($arr['id'])) {
+			$c .= $arr['id'];
+		}
+		else {
+			$c .= $arr['name'];
+		}
+		$c .= '-date"';
+		
+		$c .= ' placeholder="'.__('Date (YYYY-MM-DD)').'"';
+		$c .= ' title="'.__('Date (YYYY-MM-DD)').'"';
+		$c .= ' pattern="^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"';
+
+		if (isset($arr['class'])) {
+			$c .= ' class="'.htmlspecialchars($arr['class']).'"';
+		}
+		if (isset($arr['extra-attributes'])) {
+			$c .= ' '.$arr['extra-attributes'];
+		}
+
+		if (isset($_POST[$arr['name'].'-date'])) {
+			$c .= ' value="'.htmlspecialchars($_POST[$arr['name'].'-date']).'"';
+		}
+		elseif ($arr['value']) {
+			$old_value_explode = explode(' ', $arr['value']);
+			$c .= ' value="'.htmlspecialchars($old_value_explode[0]).'"';
+		}
+
+		$c .= '>'."\n";
+		$c .= '<input type="time" ';
+
+		$c .= ' name="'.$arr['name'].'-time" id="';
+		if (isset($arr['id'])) {
+			$c .= $arr['id'];
+		}
+		else {
+			$c .= $arr['name'];
+		}
+		$c .= '-time"';
+		
+		$c .= ' placeholder="'.__('Time (HH:MM:SS)').'"';
+		$c .= ' title="'.__('Time (HH:MM:SS)').'"';
+		$c .= ' pattern="^([01][0-9]|2[0123])[.:][012345][0-9][.:][012345][0-9]$"';
+		if (isset($arr['class'])) {
+			$c .= ' class="'.htmlspecialchars($arr['class']).'"';
+		}
+		if (isset($arr['extra-attributes'])) {
+			$c .= ' '.$arr['extra-attributes'];
+		}
+
+		if (isset($_POST[$arr['name'].'-date'])) {
+			$c .= ' value="'.htmlspecialchars($_POST[$arr['name'].'-time']).'"';
+		}
+		elseif ($arr['value']) {
+			$c .= ' value="'.htmlspecialchars($old_value_explode[1]).'"';
+		}
+		$c .= ' step="1"';
+
+
+		$c .= '>';
+	}
+	else {
+		$c .= '<input type="';
+		if (isset($arr['type'])) {
+		  $c .= $arr['type'];
+		}
+		else {
+			$c .= 'text';
+		}
+		$c .= '"'.$attributes;
+		if ($value) {
+			$c .= ' value="'.$value.'"';
+		}
+		$c .= '>';
+	}
+	
 	if (isset($arr['text_after_field'])) {
 		$c .= $arr['text_after_field'];
 	}
