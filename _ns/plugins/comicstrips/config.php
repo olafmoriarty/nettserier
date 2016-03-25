@@ -47,7 +47,7 @@ if ($feed_settings['comics_mine'] || $feed_settings['comics_i_follow'] || $feed_
     }
     $select_updates .= ' AND comupdr.user = {user_id} GROUP BY comupd.id';
   }
-	$feed_queries->add_line(['text' => $select_updates]);
+	$feed_queries->add_line($select_updates);
 }
 
 

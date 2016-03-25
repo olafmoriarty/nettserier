@@ -6,11 +6,11 @@
 	$mysql_host = 'localhost';
 
 // Database
-	$mysql_db = 'nettseri_hellesund';
+	$mysql_db = 'Add database name here';
 
 // Username
-	$mysql_user = 'nettseri_nsmysql';
+	$mysql_user = 'Add username here';
 
 // Password
-	$mysql_pass = 'h3lg3bY3';
+	$mysql_pass = 'Add password here';
 ?>

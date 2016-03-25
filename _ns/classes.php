@@ -51,33 +51,12 @@ class ArrayHandler {
 		$this->arr[] = $subarr;
 	}
 
-	public function add_js($subarr) {
-		$subarr['text'] = '<script src="'.$subarr['js'].'"></script>';
-		$this->arr[] = $subarr;
+	public function add_js($script) {
+		$this->arr[] = '<script src="'.$script.'"></script>';
 	}
 
 	public function return_arr() {
 		return $this->arr;
-	}
-
-	public function return_text($mode = 'text') {
-		$n = count($this->arr);
-		$text = '';
-		$arr = array();
-
-		for ($i = 0; $i < $n; $i++) {
-			if ($i) {
-				$text .= "\n";
-			}
-			$text .= $this->arr[$i]['text'];
-			$arr[] = $this->arr[$i]['text'];
-		}
-		if ($mode == 'array') {
-			return $arr;
-		}
-		else {
-			return $text;
-		}
 	}
 
 	public function find($key, $value, $r = null) {

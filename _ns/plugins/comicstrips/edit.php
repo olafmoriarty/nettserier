@@ -159,7 +159,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 		$c .= '<input type="hidden" name="edit-ids" value="'.htmlspecialchars(serialize($ids)).'">'."\n";
 
 		if ($num > 1) {
-			$body_js->add_js(['js' => '/_ns/plugins/comicstrips/comic-strips-mass-edit.js']);
+			$body_js->add_js('/_ns/plugins/comicstrips/comic-strips-mass-edit.js');
 			$c .= '<fieldset class="bulk-schedule-change">'."\n";
 			$c .= '<legend>'.__('Bulk schedule change').'</legend>'."\n";
 			$c .= '<p>'.str_replace('{num}', $num, __('You are editing {num} comic strips or pages. You can select a publication time for each strip/page separately, or you can use one of these bulk options:')).'</p>'."\n";
