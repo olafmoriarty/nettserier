@@ -16,7 +16,7 @@
 $query = 'SELECT t1.type, t1.id, c.url AS comic_url, c.name AS comic_name, GROUP_CONCAT(IF(cr.realname = \'\', cr.username, cr.realname) SEPARATOR \', \') AS comic_creator, t1.pubtime, t1.title, t1.text, t1.user, usr.username, t1.other FROM (';
 
 
-$tables = $feed_queries->return_arr();
+$tables = $feed_queries->return_text('array');
 $query .= str_replace('{user_id}', $user_info['id'], '('.implode(') UNION (', $tables).')');
 
 $query .= ') AS t1 LEFT JOIN ns_comics AS c ON t1.comic = c.id LEFT JOIN ns_user_comic_rel AS r ON t1.comic = r.comic LEFT JOIN ns_users AS cr ON r.user = cr.id LEFT JOIN ns_users AS usr ON t1.user = usr.id WHERE r.reltype = \'c\' GROUP BY t1.id ORDER BY t1.pubtime DESC';

@@ -107,7 +107,7 @@ $c .= '
 <script src="/_ns/plugins/jquery/jquery.js"></script>
 <script src="/_ns/basic.js"></script>
 ';
-$c .= implode("\n", $body_js->return_arr())."\n";
+$c .= $body_js->return_text()."\n";
 
 $c .= $footer;
 ?>
