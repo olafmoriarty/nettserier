@@ -10,6 +10,8 @@
 
 // Stuff for user feed
 
+if ($logged_in) {
+
 // Settings (will be moved to a database ...)
 $feed_settings = array();
 
@@ -72,4 +74,5 @@ function feed_comic_strip($arr) {
 	}
 	
 	return $c;
+}
 }

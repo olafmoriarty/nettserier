@@ -24,6 +24,7 @@ $result = $conn->query($query);
 
 $num = $result->num_rows;
 $c .= '<section class="feed">'."\n";
+$c .= '<h2>'.__('User feed').'</h2>';
 if ($num) {
   while ($arr = $result->fetch_assoc()) {
     $func = $feed_functions->find('type', $arr['type'], 'func');
@@ -35,19 +36,32 @@ if ($num) {
     }
   }
 }
+else {
+  $c .= '<p>'.__('This is your user feed. This is where updates that are relevant for you will be shown. But currently, it\'s completely empty. That\'s a little sad...').'</p>';
+  $c .= '<p>'.__('To start getting interesting content here, you could:').'</p>';
+  $c .= '<ul>';
+  $c .= '<li><a href="/n/browse/">'.__('Follow more comics').'</a></li>';
+  $c .= '<li><a href="#feed-settings">'.__('Change your feed settings to allow more updates through').'</a></li>';
+  $c .= '</ul>';
+}
 $c .= '</section>'."\n";
 
 $c .= '<section class="feed-sidebar">'."\n";
-$c .= '<h3 class="expand">'.__('Feed settings').'</h3>';
+
+$c .= '<h3 class="expand">'.__('Recommended comics').'</h3>';
+$c .= '<p>Where a not-yet-made plugin will give you a list of recommended comics based on your taste</p>';
+$c .= '<p>This is lorem ipsum text</p>';
+
+$c .= '<h3 class="expand" id="feed-settings">'.__('Feed settings').'</h3>';
 $c .= '<p>'.__('Use the checkboxes below to select what kinds of updates you want to see in your feed.').'</p>';
 $c .= '<h4>'.__('Comic strips').'</h4>';
-$c .= '<p><input type="checkbox" checked> Comics I\'ve created</p>';
-$c .= '<p><input type="checkbox" checked> Comics I follow</p>';
-$c .= '<p><input type="checkbox"> All other comics</p>';
+$c .= '<p><input name="comics-mine" type="checkbox" checked> Comics I\'ve created</p>';
+$c .= '<p><input name="comics-i-follow" type="checkbox" checked> Comics I follow</p>';
+$c .= '<p><input name="comics-other" type="checkbox"> All other comics</p>';
 $c .= '<h4>'.__('Blog posts').'</h4>';
-$c .= '<p><input type="checkbox" checked> Comics I\'ve created</p>';
-$c .= '<p><input type="checkbox" checked> Comics I follow</p>';
-$c .= '<p><input type="checkbox"> All other comics</p>';
+$c .= '<p><input name="blogs-mine" type="checkbox" checked> Comics I\'ve created</p>';
+$c .= '<p><input name="blogs-i-follow" type="checkbox" checked> Comics I follow</p>';
+$c .= '<p><input name="blogs-other" type="checkbox"> All other comics</p>';
 $c .= '<h4>'.__('Albums').'</h4>';
 $c .= '<p><input type="checkbox" checked> Comics I\'ve created</p>';
 $c .= '<p><input type="checkbox" checked> Comics I follow</p>';
@@ -59,7 +73,4 @@ $c .= '<p><input type="checkbox"> All other comics</p>';
 $c .= '<h4>'.__('Other updates').'</h4>';
 $c .= '<p><input type="checkbox" checked> Daily compilations</p>';
 
-$c .= '<h3 class="expand">'.__('Recommended comics').'</h3>';
-$c .= '<p>Where a not-yet-made plugin will give you a list of recommended comics based on your taste</p>';
-$c .= '<p>This is lorem ipsum text</p>';
 $c .= '</section>';

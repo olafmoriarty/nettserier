@@ -22,7 +22,9 @@ elseif ($folder == 'n') {
 		$content_file = $folderscript['script'];
 	}
 }
-else {
+elseif ($comic_id = comic_id($folder)) {
+	$comic_url = $folder;
+	$content_file = NS_PATH.'pages/comic.php';
 }
 
 if (file_exists($content_file)) {
@@ -105,5 +107,7 @@ $c .= '
 <script src="/_ns/plugins/jquery/jquery.js"></script>
 <script src="/_ns/basic.js"></script>
 ';
+$c .= implode("\n", $body_js->return_arr())."\n";
+
 $c .= $footer;
 ?>

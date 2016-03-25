@@ -69,4 +69,9 @@ $( document ).ready(function() {
 		}
 	});
 
+	// THIS IS A TEST
+	$('input[type="checkbox"]').change(function() {
+		// Do stuff
+	});
+
  });
