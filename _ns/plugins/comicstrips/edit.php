@@ -72,8 +72,29 @@ elseif ($_POST['edit-ids']) {
 			// Description
 			$desc = $_POST['comic-desc-'.$id];
 			$desc = $filter['html']->run($desc);
-			$values[$id]['desc'] = mysql_string($desc);
+			$values[$id]['text'] = mysql_string($desc);
 
+			// Published status
+			$values[$id]['published'] = 0;
+			if ($_POST['save-publish']) {
+				$values[$id]['published'] = 1;
+			}
+
+			// Time
+			$unixtime = time();
+			if ($_POST['comic-pubradio-'.$id] == 'time' && $_POST['comic-datetime-'.$id.'-date'] && $_POST['comic-datetime-'.$id.'-time']) {
+				$pubtime = $_POST['comic-datetime-'.$id.'-date'].' '.$_POST['comic-datetime-'.$id.'-time'];
+				$unixtime = strtotime($pubtime);
+				if ($unixtime === false) {
+					$unixtime = time();
+				} 
+			}
+			$pubtime = date('Y-m-d H:i:s', $unixtime);
+
+			// Save pubtime only if radio button is set to "choose time" or if status is set to "publish" (i.e. do NOT save time if radiobutton is left at "now" and we're saving as draft)
+			if ($_POST['save-publish'] || $_POST['comic-pubradio-'.$id] == 'time') {
+				$values[$id]['pubtime'] = mysql_string($pubtime);
+			}
 
 		}
 	}
@@ -171,19 +192,19 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= input_field(['name' => 'comic-title-'.$id, 'text' => __('Title (optional)'), 'value' => $old_values['title']]);
 			$c .= '<fieldset class="pubtime-single">'."\n";
 			$c .= '<legend>'.__('Publication time:').'</legend>'."\n";
-			$c .= '<ul><li><input name="comic-pubradio-'.$id.'" type="radio"';
+			$c .= '<ul><li><input name="comic-pubradio-'.$id.'" type="radio" value="now"';
 			if (!$old_values['pubtime']) {
 				$c .= ' checked="checked"';
 			}
 			$c .= '> '.__('The moment I press the "Publish" button"').'</li>'."\n";
-			$c .= '<li><input name="comic-pubradio-'.$id.'" type="radio"';
+			$c .= '<li><input name="comic-pubradio-'.$id.'" type="radio" value="time"';
 			if ($old_values['pubtime']) {
 				$c .= ' checked="checked"';
 			}
 			$c .= '> At the following time:<br>'."\n".input_field(['name' => 'comic-datetime-'.$id, 'type' => 'datetime', 'class' => 'dateandtime', 'value' => $old_values['pubtime']]).'</li></ul></fieldset>'."\n";
 
 			$c .= input_field(['name' => 'comic-desc-'.$id, 'text' => __('Description (optional)'), 'type' => 'textarea', 'class' => 'wysiwyg', 'value' => $old_values['text']]);
-			$c .= '<input type="hidden" name="order" class="comic-order-'.$i.'" value="'.(++$i).'">'."\n";
+			$c .= '<input type="hidden" name="comic-order-'.$id.'" class="comic-order-'.$i.'" value="'.(++$i).'">'."\n";
 			$c .= '</fieldset>'."\n";
 			$c .= '</div>'."\n";
 		}
