@@ -143,7 +143,7 @@ class ActionHook extends ArrayHandler {
 		$this->type = $type;
 	}
 
-	public function run($arguments) {
+	public function run($arguments = false) {
 		$this->sort_arr();
 
 		$num = count($this->arr);
@@ -153,7 +153,7 @@ class ActionHook extends ArrayHandler {
 			$returnstring = '';
 			foreach($this->arr as $subarr) {
 				$func = $subarr['function'];
-				if (!$arguments) {
+				if ($arguments === false) {
 					// No arguments, so just run call_user_func
 					$output = call_user_func($func);
 				}

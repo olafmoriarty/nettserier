@@ -50,7 +50,7 @@ elseif ($_POST['edit-ids']) {
 	// Which strips are being edited?
 	$ids = unserialize($_POST['edit-ids']);
 
-	$query = 'SELECT id, imgtype, title, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND id IN ('.$conn->real_escape_string(implode(', ', $ids)).') AND updtype = \'c\' ORDER BY filename';
+	$query = 'SELECT id FROM ns_updates WHERE comic = '.$active_comic_id.' AND id IN ('.$conn->real_escape_string(implode(', ', $ids)).') AND updtype = \'c\' ORDER BY filename';
 	$result = $conn->query($query);
 	$num = $result->num_rows;
 
@@ -58,12 +58,18 @@ elseif ($_POST['edit-ids']) {
 
 		$values = array();
 
-		for ($i = 0; $i < $num; $i++) {
+		$ids_sorted = array();
+		$order_arr = array();
+
+		while ($arr = $result->fetch_assoc()) {
 			
 			// For each row to be edited ...
 
-			$id = $ids[$i];
+			$id = $arr['id'];
 			$values[$id] = array();
+
+			$ids_sorted[] = $id;
+			$order_arr[] = $_POST['comic-order-'.$id];
 
 			// Title
 			$title = $_POST['comic-title-'.$id];
@@ -97,14 +103,55 @@ elseif ($_POST['edit-ids']) {
 			}
 
 		}
+
+
+
+		if ($_POST['schedule'] == 'sametime' && $_POST['save-publish']) {
+			// Set ALL pubtimes to the same time! Breathe. We can do this.
+
+			$unixtime = time();
+			if ($_POST['schedule-sametime'] == 'time' && ($_POST['sametime-datetime-date'] || $_POST['sametime-datetime-time'])) {
+				$pubtime = $_POST['sametime-datetime-date'].' '.$_POST['sametime-datetime-time'];
+				$unixtime = strtotime($pubtime);
+				if ($unixtime === false) {
+					$unixtime = time();
+				} 
+			}
+			$pubtime = date('Y-m-d H:i:s', $unixtime);
+
+			foreach ($ids as $id) {
+				$values[$id]['pubtime'] = mysql_string($pubtime);
+			}
+		}
+
+		// Sort ids by order (in case user pressed "move up" or "move down"
+		array_multisort($order_arr, SORT_NUMERIC, $ids_sorted);
+
+		$action['edit_strips_submit']->run();
+
+		// Phew! We should be ready to put stuff into the database now.
+		foreach ($ids_sorted as $id) {
+			if (count($values[$id])) {
+				$updatestring = '';
+				foreach($values[$id] as $key => $value) {
+					if ($updatestring) {
+						$updatestring .= ', ';
+					}
+					$updatestring .= $key.'='.$value;
+				}
+				$query = 'UPDATE ns_updates SET '.$updatestring.' WHERE id = '.$id;
+				$conn->query($query);
+			}
+		}
+
+
+	
 	}
 
-
-	echo '<pre>';
-	print_r($values);
-	print_r($_POST);
-	echo '</pre>';
+	// Return to edit page
+	header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
 	exit;
+
 }
 
 elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
@@ -177,7 +224,6 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			// What's the title
 			if ($old_values['title']) {
 				$comic_title = htmlspecialchars($old_values['title']);
-				$has_dates = true;
 			}
 			else {
 				$comic_title = __('No title');
@@ -200,11 +246,12 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= '<li><input name="comic-pubradio-'.$id.'" type="radio" value="time"';
 			if ($old_values['pubtime']) {
 				$c .= ' checked="checked"';
+				$has_dates = true;
 			}
 			$c .= '> At the following time:<br>'."\n".input_field(['name' => 'comic-datetime-'.$id, 'type' => 'datetime', 'class' => 'dateandtime', 'value' => $old_values['pubtime']]).'</li></ul></fieldset>'."\n";
 
 			$c .= input_field(['name' => 'comic-desc-'.$id, 'text' => __('Description (optional)'), 'type' => 'textarea', 'class' => 'wysiwyg', 'value' => $old_values['text']]);
-			$c .= '<input type="hidden" name="comic-order-'.$id.'" class="comic-order-'.$i.'" value="'.(++$i).'">'."\n";
+			$c .= '<input type="hidden" name="comic-order-'.$id.'" class="order" value="'.(++$i).'">'."\n";
 			$c .= '</fieldset>'."\n";
 			$c .= '</div>'."\n";
 		}
@@ -218,12 +265,12 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= '<p>'.str_replace('{num}', $num, __('You are editing {num} comic strips or pages. You can select a publication time for each strip/page separately, or you can use one of these bulk options:')).'</p>'."\n";
 			$c .= '<ul>'."\n";
 			$c .= '<li><input type="radio" name="schedule" value="nobulk"';
-			if ($hasdates) {
+			if ($has_dates) {
 				$c .= ' checked="checked"';
 			}
 			$c .= '> '.__('Choose publication time individually for each strip').'</li>';
 			$c .= '<li><input type="radio" name="schedule" value="sametime"';
-			if (!$hasdates) {
+			if (!$has_dates) {
 				$c .= ' checked="checked"';
 			}
 			$c .= '> '.__('Publish all comic strips at the same time');
