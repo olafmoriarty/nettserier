@@ -5,7 +5,7 @@ $comicname = comic_name($active_comic);
 
 // HANDLING BULK CHANGES
 
-if (isset($_POST['bulk']) && $_POST['bulk'] && $_POST['bulk'] != 'edit') {
+if (isset($_POST['bulk']) && $_POST['bulk'] && $_POST['bulk'] != 'edit' && $_POST['bulk'] != 'delete') {
 	// Which checkboxes are checked?
 	$formfields = array_keys($_POST);
 	$checked = array();
@@ -154,6 +154,99 @@ elseif ($_POST['edit-ids']) {
 
 }
 
+elseif ($folder == 'delete' || (isset($_POST['bulk']) && $_POST['bulk'] == 'delete')) {
+	if ($_POST['delete_ids']) {
+		// Which strips are being deleted?
+		$ids = unserialize($_POST['delete_ids']);
+
+		// Check if they exist
+
+		$query = 'SELECT id FROM ns_updates WHERE comic = '.$active_comic_id.' AND id IN ('.$conn->real_escape_string(implode(', ', $ids)).') AND updtype = \'c\'';
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+
+		if ($num) {
+
+			// Run delete strip function for all selected comics ...
+
+			while ($arr = $result->fetch_assoc()) {
+				delete_strip($arr['id']);
+			}
+
+		}
+		// Return to edit page
+		header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
+		exit;
+
+	}
+	else {
+		// The user has clicked "Delete", but not confirmed yet
+
+		$whereclause = false;
+		if ($folder == 'delete') {
+			$strip_id = strtok('/');
+			if ($strip_id && is_numeric($strip_id)) {
+				// A single comic to edit is selected.
+				$whereclause = 'id = '.$strip_id;
+			}
+		}
+		elseif (isset($_POST['bulk']) && $_POST['bulk'] == 'delete') {
+
+			$formfields = array_keys($_POST);
+			$checked = array();
+			$formnum = count($formfields);
+			for ($i = 0; $i < $formnum; $i++) {
+				if (substr($formfields[$i], 0, 6) == 'check-' && is_numeric($this_id = substr($formfields[$i], 6))) {
+					$checked[] = $this_id;
+				}
+			}
+
+			// How many boxes are checked?
+			$checked_num = count($checked);
+
+			if ($checked_num) {
+				$whereclause = 'id IN ('.implode(', ', $checked).')';
+			}
+			
+		}
+		
+		$query = 'SELECT id, imgtype, title, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND '.$whereclause.' AND updtype = \'c\' ORDER BY filename';
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+
+		if ($num) {
+
+			$ns_title = __('Delete comic strips or pages');
+			$c .= '<h2>'.__('Delete comic strips or pages').'</h2>'."\n";
+
+			$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/delete">';
+			$c .= '<p>'.__('Are you sure you want to delete these comic strips?').'</p>';
+			$c .= '<ul>';
+			$ids = array();
+			while ($arr = $result->fetch_assoc()) {
+				$c .= '<li>';
+				if ($arr['title']) {
+					$c .= htmlspecialchars($arr['title']);
+				}
+				else {
+					$c .= __('No title');
+				}
+				$c .= ' - <a href="/_ns/files/'.md5($arr['id'] . $arr['imgtype']).'.'.$arr['imgtype'].'" target="_blank">'.htmlspecialchars($arr['filename']).'</a>';
+				$c .= '</li>';
+				$ids[] = $arr['id'];
+			}
+			$c .= '</ul>';
+			$c .= '<input type="hidden" name="delete_ids" value="'.htmlspecialchars(serialize($ids)).'">';
+			$c .= '<p><input type="submit" value="'.__('Yes, delete them!').'"></p>';
+			$c .= '</form>';
+		}
+		else {
+			header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
+			exit;
+		}
+	}
+}
+
 elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 
 	$whereclause = false;
@@ -184,7 +277,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 		
 	}
 	
-	$query = 'SELECT id, imgtype, title, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND '.$whereclause.' AND updtype = \'c\' ORDER BY filename';
+	$query = 'SELECT id, imgtype, title, text, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND '.$whereclause.' AND updtype = \'c\' ORDER BY filename';
 	$result = $conn->query($query);
 	$num = $result->num_rows;
 
@@ -196,6 +289,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			if ($_GET['uploaded']) {
 				$c .= '<h2>'.str_replace('{comic}', htmlspecialchars($comicname), __('Upload new comic strip or page for "{comic}"')).'</h2>'."\n";
 				$c .= '<h3>'.__('Step two: Edit metadata').'</h3>'."\n";
+				$c .= '<p>'.__('(Psst! Your comic strips are now uploaded and saved as drafts. If for some reason you abort the operation now, you can always come back to this page by clicking "Edit drafts" under "Edit comic strips and pages" in your dashboard.)').'</p>';
 			}
 			else {
 				$c .= '<h2>'.__('Edit drafts').'</h2>'."\n";
@@ -331,6 +425,10 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 		$c .= '<p><input type="submit" name="save-publish" value="'.__('Save and publish').'"></p>'."\n";
 		$c .= '</form>';
 	}
+	else {
+		header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/'.$active_comic.'/edit-strip/');
+		exit;
+	}
 }
 else {
 	// No comic to edit is selected
@@ -338,14 +436,20 @@ else {
 	$ns_title = __('Edit comic strips and pages');
 	$c .= '<h2>'.__('Edit comic strips and pages').'</h2>';
 
-	$c .= '<p>'.__('To edit a single strip/page, click it below. To edit multiple strips/pages, use the checkboxes to select them and then choose "Edit" from "Bulk actions" below.').'</p>';
-
 	$query = 'SELECT id, imgtype, title, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND updtype = \'c\' ORDER BY published ASC, pubtime DESC, id DESC';
 	
 	$result = $conn->query($query);
 	$num = $result->num_rows;
 
 	if ($num){
+		$c .= '<p>'.__('To edit a single strip/page, click it below. To edit multiple strips/pages, use the checkboxes to select them and then choose "Edit" from "Bulk actions" below.').'</p>';
+
+		$query = 'SELECT id FROM ns_updates WHERE comic = '.$active_comic_id.' AND updtype = \'c\' AND published = 0';
+		$drafts_result = $conn->query($query);
+		if ($drafts_result->num_rows) {
+			$c .= '<p><a href="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/drafts/">'.__('Edit all drafts').'</a></p>';
+		}
+
 		$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/">'."\n";
 		$c .= '<table class="strips-to-edit">'."\n";
 		while ($arr = $result->fetch_assoc()) {
@@ -375,12 +479,15 @@ else {
 
 			// Title
 			$c .= '<td class="title-cell">';
-			$c .= '<a href="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/'.$arr['id'].'/">';
+			$c .= '<h3><a href="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/'.$arr['id'].'/">';
 			$c .= $comic_title;
-			$c .= '</a>';
+			$c .= '</a></h3>';
 
 			// Filename
-			$c .= '<br>'."\n".htmlspecialchars($arr['filename']);
+			$c .= '<p>'."\n".htmlspecialchars($arr['filename']).'</p>';
+			$c .= '<nav>';
+			$c .= str_replace(['{id}', '{comic}'], [$arr['id'], $active_comic], $edit_comic_single_menu->return_ul());
+			$c .= '</nav>';
 			$c .= '</td>'."\n";
 
 

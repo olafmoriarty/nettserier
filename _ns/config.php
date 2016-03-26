@@ -53,6 +53,8 @@ $feed_functions = new ArrayHandler;
 $head = new ArrayHandler;
 $body_js = new ArrayHandler;
 
+$edit_comic_single_menu = new ArrayHandler;
+
 $filter = array();
 $filter['html'] = new ActionHook('filter');
 

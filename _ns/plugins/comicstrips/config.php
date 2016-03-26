@@ -77,6 +77,9 @@ function feed_comic_strip($arr) {
 }
 }
 
+// Related to editing comic strips
+$edit_comic_single_menu->add_line(['text' => __('Edit strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/{id}/', 'order' => 10]);
+
 
 // Scheduler - MOVE to separate plugin :-)
 $action['edit_strips_submit']->add_line(['function' => 'strip_scheduler']);
@@ -126,4 +129,26 @@ function strip_scheduler() {
 			$values[$ids_sorted[$i]]['pubtime'] = mysql_string(date('Y-m-d H:i:s', mktime(date('H', $day_one), date('i', $day_one), date('s', $day_one), date('n', $day_one), date('j', $day_one) + $days, date('Y', $day_one))));
 		}
 	}
+}
+
+// Related to deleting comic strips
+$edit_comic_single_menu->add_line(['text' => __('Delete strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/delete/{id}/', 'order' => 90]);
+
+function delete_strip($id, $arr = false) {
+	global $conn;
+	if (!$arr || !$arr['imgtype']) {
+		$query = 'SELECT imgtype FROM ns_updates WHERE id = '.$id;
+		$result = $conn->query($query);
+		$arr = $result->fetch_assoc();
+	}
+	$filename = NS_PATH.'files/'.md5($id . $arr['imgtype']).'.'.$arr['imgtype'];
+
+	// Unlink image file
+	unlink($filename);
+
+	// Delete row from database
+	$query = 'DELETE FROM ns_updates WHERE id = '.$id;
+	$conn->query($query);
+
+	// Add ActionHook later
 }
