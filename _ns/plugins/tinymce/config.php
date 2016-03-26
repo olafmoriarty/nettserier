@@ -16,7 +16,9 @@ $tinymce_init .= '    body_class: \'main\','."\n";
 $tinymce_init .= '    image_list: [{title: \'Pacham Monster\', value: \'http://beta-testing.nettserier.no/_ns/files/d17416eb1c4945215260372ea3653707.png\'}],'."\n";
 $tinymce_init .= '    relative_urls: false,'."\n";
 */
-$tinymce_init .= '    plugins: \'code image imagetools fullscreen\','."\n";
+$tinymce_init .= '    menubar: false,'."\n";
+$tinymce_init .= '    statusbar: false,'."\n";
+$tinymce_init .= '    plugins: \'code image imagetools fullscreen\''."\n";
 
 $tinymce_init .= '  });'."\n".'</script>';
 

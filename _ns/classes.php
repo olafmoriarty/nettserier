@@ -113,7 +113,7 @@ class ArrayHandler {
 		return $ret;
 	}
 
-	private function sort_arr() {
+	protected function sort_arr() {
 		$sorting_arr = $this->arr;
 		if (is_array($sorting_arr) && count($sorting_arr)) {
 		foreach ($sorting_arr as $key => $row) {
@@ -127,6 +127,65 @@ class ArrayHandler {
 		array_multisort($order, $sorting_arr);
 		$this->arr = $sorting_arr;
 		}
+	}
+}
+
+class ActionHook extends ArrayHandler {
+	public $type;
+
+	public function __construct($type = false) {
+		if ($type) {
+			$this->set_type($type);
+		}
+	}
+
+	public function set_type($type) {
+		$this->type = $type;
+	}
+
+	public function run($arguments) {
+		$this->sort_arr();
+
+		$num = count($this->arr);
+
+		if ($num) {
+			$input = $arguments;
+			$returnstring = '';
+			foreach($this->arr as $subarr) {
+				$func = $subarr['function'];
+				if (!$arguments) {
+					// No arguments, so just run call_user_func
+					$output = call_user_func($func);
+				}
+				else {
+					// Only one argument, use call_user_func
+					$output = call_user_func($func, $input);
+				}
+
+				// Figure out what to do in the next step:
+				if ($this->type == 'filter') {
+					$input = $output;
+					$returnstring = $output;
+				}
+				else {
+					if ($returnstring !== false) {
+						$returnstring .= $output;
+					}
+				}
+			}
+
+			return $returnstring;
+		}
+		else {
+			// No functions. If type = filter, return arguments. Otherwise, return nothing.
+			if ($this->type == 'filter') {
+				return $arguments;
+			}
+			else {
+				return false;
+			}
+		}
+		
 	}
 }
 

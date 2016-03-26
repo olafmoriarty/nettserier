@@ -50,7 +50,39 @@ elseif ($_POST['edit-ids']) {
 	// Which strips are being edited?
 	$ids = unserialize($_POST['edit-ids']);
 
-	print_r($ids);
+	$query = 'SELECT id, imgtype, title, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND id IN ('.$conn->real_escape_string(implode(', ', $ids)).') AND updtype = \'c\' ORDER BY filename';
+	$result = $conn->query($query);
+	$num = $result->num_rows;
+
+	if ($num) {
+
+		$values = array();
+
+		for ($i = 0; $i < $num; $i++) {
+			
+			// For each row to be edited ...
+
+			$id = $ids[$i];
+			$values[$id] = array();
+
+			// Title
+			$title = $_POST['comic-title-'.$id];
+			$values[$id]['title'] = mysql_string($title);
+
+			// Description
+			$desc = $_POST['comic-desc-'.$id];
+			$desc = $filter['html']->run($desc);
+			$values[$id]['desc'] = mysql_string($desc);
+
+
+		}
+	}
+
+
+	echo '<pre>';
+	print_r($values);
+	print_r($_POST);
+	echo '</pre>';
 	exit;
 }
 
@@ -84,7 +116,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 		
 	}
 	
-	$query = 'SELECT id, imgtype, title, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND '.$whereclause.' AND updtype = \'c\'';
+	$query = 'SELECT id, imgtype, title, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND '.$whereclause.' AND updtype = \'c\' ORDER BY filename';
 	$result = $conn->query($query);
 	$num = $result->num_rows;
 
