@@ -262,8 +262,6 @@ function input_field($arr) {
 
 
 
-
-
 // ----------
 // Secure login: Functions stolen from / heavily inspired by https://github.com/peredurabefrog/phpSecureLogin/
 
@@ -442,3 +440,4 @@ function esc_url($url) {
         return $url;
     }
 }
+

@@ -78,7 +78,7 @@
       $conn->query($query);
 
 
-	  header('Location: '.NS_DOMAIN.'/n/dashboard/');
+	  header('Location: '.NS_DOMAIN.'/n/dashboard/my-comics/');
       exit;
     
     }
