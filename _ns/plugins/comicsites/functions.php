@@ -21,7 +21,21 @@
 			return $arr['id']; 
 		}
 		return 0;
-		
+	}
+
+	function comic_url($id) {
+		global $conn;
+		if (!is_numeric($id)) {
+			return false;
+		}
+		$query = 'SELECT url FROM ns_comics WHERE id = '.$id;
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+		if ($num) {
+			$arr = $result->fetch_assoc();
+			return $arr['url']; 
+		}
+		return 0;
 	}
 
 	function can_edit_comic($user, $url) {

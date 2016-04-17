@@ -65,6 +65,9 @@ header nav.main-menu ul li {
 header nav.show-menu {
 	float: right;
 	padding: 0.5em;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 header nav.show-menu ul li {
@@ -95,6 +98,40 @@ nav.user-menu ul li {
 	padding: 0.5em 1em;
 	border-bottom: dotted 1px #808080;
 }
+
+/* Header (comic-specific) */
+
+.comicheader {
+	min-height: 100px;
+}
+
+header .titleblock {
+	display: inline-block;
+	padding: 0.5em 1em;
+}
+
+header .titleblock h1 {
+	display: block;
+	font-size: 150%;
+	padding: 0;
+}
+
+header .titleblock h1.page-title a {
+	display: inline;
+	padding-left: 0;
+	line-height: auto;
+	background: none;
+}
+
+header .portal-menu h2 {
+	font-size: 100%;
+}
+
+header .portal-menu ul li {
+	padding: 0.5em 1em;
+	border-bottom: dotted 1px #ffffff;
+}
+
 
 
 /* ------------------------------------------------------------------------ */
@@ -241,6 +278,30 @@ nav.user-menu ul li {
 
 .main .strips-to-edit .date-cell {
 	width: 25%;
+}
+
+/* COMICS */
+
+.main .comicbox {
+	text-align: center;
+}
+
+.main .navigate-strips ul {
+	margin: 0;
+	padding: 0 0 1em;
+}
+.main .navigate-strips li {
+	display: inline-block;
+	width: 25%;
+	text-align: center;
+}
+
+.main .navigate-strips li.next:first-child {
+	margin-left: 50%;
+}
+
+.main .navigate-strips li.prev:last-child {
+	margin-right: 50%;
 }
 
 /* _ns/pages/feed.php */
@@ -397,6 +458,50 @@ footer .copyright {text-align: center;}
 		padding: 0.5em;
 		vertical-align: middle;
 		border: none;
+	}
+
+	header.comicheader {
+		position: relative;
+	}
+	
+	header .titleblock {
+		max-width: 45%;
+	}
+
+	header.comicheader .main-menu {
+		position: absolute;
+		bottom: 0;
+		left: 46%;
+	}
+	
+	header .portal-menu {
+		position: absolute;
+		right: 1em;
+		top: .5em;
+		font-size: 80%;
+	}
+	
+	header .portal-menu h2 {
+		display: inline;
+	}
+	header .portal-menu ul {
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
+	
+	header .portal-menu ul li {
+		padding: 0;
+		display: inline;
+		border-bottom: none;
+	}
+
+	header .portal-menu ul li:before {
+		content: " | ";
+	}
+
+header .portal-menu ul li:first:before {
+		content: "";
 	}
 
 	.main .profile_pic {

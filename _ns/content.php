@@ -38,6 +38,7 @@ else {
 // GENERATE HEADER
 // ---------------------------------------------------------------------------
 
+if (!$is_comic_page) {
 // Define a variable for the header
 $header = '';
 
@@ -58,7 +59,7 @@ if ($logged_in) {
 $header .= '</ul>'."\n";
 $header .= '</nav>';
 
-// Meny
+// Menu
 $header .= '<nav class="main-menu" id="main-menu">'."\n";
 $header .= $n_menu->return_ul();
 $header .= "\n";
@@ -79,7 +80,7 @@ if ($logged_in) {
 
 // Open main section
 $header .= '<section class="main">'."\n";
-
+}
 // ---------------------------------------------------------------------------
 // GENERATE FOOTER
 // ---------------------------------------------------------------------------

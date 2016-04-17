@@ -4,6 +4,7 @@
 
 	$c_urls->add_line(['url' => 'comic', 'script' => $tpf.'show-comics.php']);
 
+	$c_menu->add_line(['text' => __('Comic'), 'link' => '/{comic}/comic/', 'order' => 10]);
 
 	$comicadm_urls->add_line(['url' => 'add-strip', 'script' => $tpf.'add.php']);
 	$comicadm_menu->add_line(['text' => __('Upload new comic strip or page'), 'link' => '/n/dashboard/my-comics/{comic}/add-strip/', 'order' => 10]);

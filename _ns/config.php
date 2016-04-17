@@ -43,6 +43,7 @@ $c_urls = new ArrayHandler;
 $d_urls = new ArrayHandler;
 
 $n_menu = new ArrayHandler;
+$c_menu = new ArrayHandler;
 $d_menu = new ArrayHandler;
 
 $delete_concequences = new ArrayHandler;
