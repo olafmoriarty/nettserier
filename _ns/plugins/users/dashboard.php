@@ -24,6 +24,6 @@ if ($logged_in) {
 	}
 }
 else {
-	header('Location: '.NS_DOMAIN.'/n/log-in/?returnurl=/n/dashboard/new-comic/');
+	header('Location: '.NS_DOMAIN.'/n/log-in/?returnurl='.urlencode(NS_URL));
 	exit;
 }

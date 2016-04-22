@@ -10,7 +10,7 @@ if ($logged_in) {
 else {
 	$error = false;
 	if (isset($_POST['email'], $_POST['password'])) {
-	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+	$email = $_POST['email'];
 	$password = $_POST['password']; // The unhashed password.
 	$remember = false;
 	if (isset($_POST['remember']) && $_POST['remember']) {
@@ -18,7 +18,7 @@ else {
 	}
 
 	if (login($email, $password, $remember) == true) {
-		header("Location: ".NS_DOMAIN);
+		header("Location: ".NS_DOMAIN.$_POST['returnurl']);
 		exit();
 	} else {
 		$error = true;
@@ -30,13 +30,14 @@ $c .= '<form action="/n/log-in/" method="post" name="login_form">'."\n";
 if ($error) {
 	$c .= '<p class="errorbox">'.__('Wrong e-mail or password.').'</p>';
 }
-$c .= '<p>'.__('E-mail:').'<br><input type="text" name="email"></p>'."\n";
+$c .= '<p>'.__('Username or e-mail:').'<br><input type="text" name="email"></p>'."\n";
 $c .= '<p>'.__('Password:').'<input type="password" name="password" id="password"></p>'."\n";
 $c .= '<p><input type="checkbox" name="remember"> '.__('Remember me in this browser').'</p>'."\n";
 
 	// TO DO: Check ns_login_attempts and add some kind of captcha if more than two attempts in the last two hours. Also, disable form if user is blocked ...
 
 	$c .= '<p><input type="submit" value="'.__('Log in').'"></p>'."\n";
+	$c .= '<input name="returnurl" type="hidden" value="'.htmlspecialchars($_GET['returnurl']).'">';
 	$c .= '</form>';
 
 	$c .= '<p><a href="/n/register/">'.__('New user?').'</a> | <a href="/n/password/">'.__('Forgot password?').'</a></p>';
