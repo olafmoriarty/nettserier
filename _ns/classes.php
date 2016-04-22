@@ -2,48 +2,6 @@
 // Nettserier.no Webcomics Portal
 // classes.php: "Global" classes 
 
-// ActionHooks: Class for storing of all actions to be run at certain hooks, allowing functions in plugins to be run at specific times in the script
-class ActionHooks {
-	
-	// Define a two-dimensional array to hold all the hooks, so that $hooks['hook_name'] is an array holding all actions to be run at that hook
-	public $hooks = array();
-	
-	// add_action(): Used by plugins to register new functions to be run at certain hooks. First parameter is the hook name, second parameter is the function to be run.
-	public function add_action($hook, $action) {
-		
-		// If the hook isn't registered in $hooks yet...
-		if (!isset($this->hooks[$hook])) {
-			// ... add it!
-			$this->hooks[$hook] = array();
-		}
-		
-		// Add the action to the correct hook array.
-		$this->hooks[$hook][] = $action;
-	}
-	
-	// get_actions(): Used on hooks to run all actions for that hook. First parameter is the hook name.
-	public function get_actions($hook) {
-		
-		// Run this only if the given hook has no actions set to it.
-		if (isset($this->hooks[$hook])) {
-			
-			// How many actions are there for the current hook?
-			$actioncount = count($this->hooks[$hook]);
-			
-			// For each action:
-			for ($i = 0; $i < $actioncount; $i++) {
-				// Get the action name
-				$fn = $this->hooks[$hook][$i];
-				// Check if the function exists...
-				if (function_exists($fn)) {
-					// ... and if it does, call it!
-					call_user_func($fn);
-				}
-			}
-		}
-	}
-}
-
 class ArrayHandler {
 	public $arr = array();
 
@@ -56,6 +14,11 @@ class ArrayHandler {
 		$this->arr[] = $subarr;
 	}
 
+	public function add_css($subarr) {
+		$subarr['text'] = '<link rel="stylesheet" href="'.$subarr['css'].'">';
+		$this->arr[] = $subarr;
+	}
+	
 	public function return_arr() {
 		return $this->arr;
 	}

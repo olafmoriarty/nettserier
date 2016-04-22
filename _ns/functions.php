@@ -286,8 +286,8 @@ function sec_session_start() {
 function login($email, $password, $remember = false) {
 	global $conn;
     // Using prepared statements means that SQL injection is not possible. 
-    if ($stmt = $conn->prepare('SELECT id, username, password, salt FROM ns_users WHERE email = ? LIMIT 1')) {
-        $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
+    if ($stmt = $conn->prepare('SELECT id, username, password, salt FROM ns_users WHERE (username = ? OR email = ?) LIMIT 1')) {
+        $stmt->bind_param('ss', $email, $email);  // Bind "$email" to parameter.
         $stmt->execute();    // Execute the prepared query.
         $stmt->store_result();
         // get variables from result.
