@@ -12,6 +12,39 @@
 	$comicadm_urls->add_line(['url' => 'edit-strip', 'script' => $tpf.'edit.php']);
 	$comicadm_menu->add_line(['text' => __('Edit uploaded comic strips and pages'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/', 'order' => 11]);
 
+$action['frontpage']->add_line(['function' => 'fp_splash', 'order' => 0]);
+$action['frontpage']->add_line(['function' => 'fp_popular', 'order' => 10]);
+
+function fp_splash() {
+	$c = '<section class="fp-splash">';
+	$cc = new ShowComic;
+	$cc->set_result_type('comic');
+	$cc->set_comic_title(true);
+	$cc->set_text(false);
+	$cc->set_order('RAND()');
+	$cc->set_count(5);
+	$c .= $cc->show();
+	$c .= '</section>';
+	return $c;
+}
+
+function fp_popular() {
+	$c = '<section class="fp-comics-display">';
+	$c .= '<h2>'.__('Trending comics').'</h2>';
+	$cc = new ShowComic;
+	$cc->set_count(6);
+	$cc->set_comic_title(true);
+	$cc->set_text(false);
+	$cc->set_result_type('comic');
+	
+	
+	$c .= '<div class="comics">';
+	$c .= $cc->show();
+	$c .= '</div>';
+	$c .= '</section>';
+	return $c;
+}
+
 // Stuff for user feed
 
 if ($logged_in) {
@@ -138,6 +171,20 @@ function strip_scheduler() {
 // Related to deleting comic strips
 $edit_comic_single_menu->add_line(['text' => __('Delete strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/delete/{id}/', 'order' => 90]);
 
+function delete_all_strips($comic) {
+	global $conn;
+	if (is_numeric($comic)) {
+		$query = 'SELECT id FROM ns_updates WHERE comic = '.$comic;
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+		if ($num) {
+			while ($arr = $result->fetch_assoc()) {
+				delete_strip($arr['id']);
+			}
+		}
+	}
+}
+
 function delete_strip($id, $arr = false) {
 	global $conn;
 	if (!$arr || !$arr['imgtype']) {
@@ -155,4 +202,173 @@ function delete_strip($id, $arr = false) {
 	$conn->query($query);
 
 	// Add ActionHook later
+}
+
+class ShowComic {
+
+	protected $comic = 0;
+	protected $show_comic_title = false;
+	protected $count = 1;
+	protected $order = 'u.pubtime DESC, u.id DESC';
+	protected $result_type = 'update';
+	protected $slug = '';
+	protected $updtype = array('c', 'i');
+	protected $show_text = true;
+	
+  function set_comic($id) {
+    if (is_numeric($id)) {
+      $this->comic = $id;
+    }
+  }
+  
+  function set_comic_title($bin) {
+    $this->show_comic_title = $bin;
+  }
+  
+  function set_count($n) {
+    $this->count = $n;
+  }
+  
+  function set_order($order) {
+    $this->order = $order;
+  }
+
+	function set_result_type($type) {
+		$this->result_type = $type;
+	}
+	
+  function set_slug($slug) {
+    $this->slug = $slug;
+  }
+	
+	function set_text($bin) {
+		$this->show_text = $bin;
+	}
+  
+  function show() {
+    global $conn;
+    if (isset($this->count) && is_numeric($this->count)) {
+      $count = $this->count;
+    }
+    else {
+      $count = 1;
+    }
+
+    if (isset($this->order)) {
+      $order = $this->order;
+    }
+    else {
+      $order = 'u.pubtime DESC, u.id DESC';
+    }
+
+    $c = '';
+
+		// If we want to show only one update for each comic
+		if ($this->result_type == 'comic') {
+			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comicname FROM (SELECT MAX(mi.id) AS id FROM (SELECT comic, MAX(pubtime) AS pubtime FROM ns_updates WHERE published = 1 AND updtype IN (\'c\', \'i\') AND pubtime <= NOW() GROUP BY comic) AS mp LEFT JOIN ns_updates AS mi ON mp.comic = mi.comic AND mp.pubtime = mi.pubtime GROUP BY mp.comic, mp.pubtime) AS mpi LEFT JOIN ns_updates AS u ON mpi.id = u.id ';
+		}
+		else {
+			// If we want to show all updates
+			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comicname FROM ns_updates AS u ';
+		}
+		
+		$query .= 'LEFT JOIN ns_comics AS c ON u.comic = c.id ';
+
+    $query .= 'WHERE ';
+    if ($this->comic && is_numeric($this->comic)) {
+      $query .= 'u.comic = '.$this->comic.' AND ';
+			if ($this->slug) {
+				$query .= 'u.slug = \''.$conn->escape_string($this->slug).'\' AND ';
+			}
+    }
+    $query .= 'u.pubtime <= NOW() AND u.published = 1 AND u.updtype IN (\'c\', \'i\') ORDER BY '.$order.' LIMIT '.$count;
+
+		$result = $conn->query($query);
+    $num = $result->num_rows;
+
+    if ($num) {
+
+      if ($this->comic) {
+        $comic_url = comic_url($this->comic);
+      }
+    
+
+      
+      $nav = '';
+      while ($r_arr = $result->fetch_assoc()) {
+        if ($num == 1 && $this->comic) {
+
+			$nav .= $this->nav_element(__('First comic'), $comic_url, $this->comic, $r_arr['slug'], false, 'first');
+			$nav .= $this->nav_element(__('Previous comic'), $comic_url, $this->comic, $r_arr, true, 'prev');
+			$nav .= $this->nav_element(__('Next comic'), $comic_url, $this->comic, $r_arr, false, 'next');
+			$nav .= $this->nav_element(__('Latest comic'), $comic_url, $this->comic, $r_arr['slug'], true, 'last');
+			if ($nav) {
+				$nav = '<nav class="navigate-strips"><ul>'.$nav.'</ul></nav>';
+			}
+        }
+        $c .= '<section class="comicbox">';
+
+        if ($nav) {
+          $c .= $nav;
+        }
+        
+        if ($this->show_comic_title) {
+					$c .= '<h3>'.htmlspecialchars($r_arr['comicname']).'</h3>';
+				}
+        $c .= '<p class="comic-para"><img src="/_ns/files/'.md5($r_arr['id'] . $r_arr['imgtype']).'.'.$r_arr['imgtype'].'" alt=""></p>';
+        if ($nav) {
+          $c .= $nav;
+        }
+
+				if ($this->show_text) {
+				
+					if ($r_arr['title']) {
+						$c .= '<h4>'.htmlspecialchars($r_arr['title']).'</h4>'."\n";
+					}
+					if ($r_arr['text']) {
+						$c .= $r_arr['text'];
+					}
+					
+				}
+        
+				$c .= '</section>';
+      }
+    }
+    return $c;
+  }
+
+	private function nav_element($label, $comic_url, $comic_id, $r, $desc, $rel) {
+		global $conn;
+		if ($desc) {
+			$order = 'pubtime DESC, id DESC';
+			$op = '<';
+		}
+		else {
+			$order = 'pubtime, id';
+			$op = '>';
+		}
+
+		$query = 'SELECT slug FROM ns_updates WHERE comic = '.$comic_id.' AND published = 1 AND updtype IN (\'c\', \'i\') AND pubtime <= NOW()';
+		if (is_array($r)) {
+			$query .= ' AND (pubtime '.$op.' \''.$r['pubtime'].'\' OR (pubtime = \''.$r['pubtime'].'\' AND id '.$op.' '.$r['id'].'))';
+		}
+		$query .= ' ORDER BY '.$order.' LIMIT 1';
+		$result = $conn->query($query);
+		if ($result->num_rows) {
+			$arr = $result->fetch_assoc();
+			if (is_array($r)) {
+				$current_slug = $r['slug'];
+			}
+			else {
+				$current_slug = $r;
+			}
+			if ($arr['slug'] != $current_slug) {
+				$reltag = '';
+				if (in_array($rel, ['prev', 'next']))
+					$reltag = ' rel="'.$rel.'"';
+				return '<li class="'.$rel.'"'.$reltag.'><a href="/'.$comic_url.'/comic/'.$arr['slug'].'/">'.$label.'</a></li>';
+			}
+		}
+	}
+
 }
