@@ -37,7 +37,9 @@ $c .= '<p><input type="checkbox" name="remember"> '.__('Remember me in this brow
 	// TO DO: Check ns_login_attempts and add some kind of captcha if more than two attempts in the last two hours. Also, disable form if user is blocked ...
 
 	$c .= '<p><input type="submit" value="'.__('Log in').'"></p>'."\n";
-	$c .= '<input name="returnurl" type="hidden" value="'.htmlspecialchars($_GET['returnurl']).'">';
+	if (isset($_GET['returnurl'])) {
+		$c .= '<input name="returnurl" type="hidden" value="'.htmlspecialchars($_GET['returnurl']).'">';
+	}
 	$c .= '</form>';
 
 	$c .= '<p><a href="/n/register/">'.__('New user?').'</a> | <a href="/n/password/">'.__('Forgot password?').'</a></p>';

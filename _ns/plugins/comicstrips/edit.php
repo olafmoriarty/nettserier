@@ -44,7 +44,7 @@ if (isset($_POST['bulk']) && $_POST['bulk'] && $_POST['bulk'] != 'edit' && $_POS
 	}
 }
 
-elseif ($_POST['edit-ids']) {
+elseif (isset($_POST['edit-ids'])) {
 	// An edit form is submitted
 
 	// Which strips are being edited?

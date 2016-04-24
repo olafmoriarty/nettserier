@@ -6,11 +6,11 @@
 	$mysql_host = 'localhost';
 
 // Database
-	$mysql_db = 'Add database name here';
+	$mysql_db = 'nettserier';
 
 // Username
-	$mysql_user = 'Add username here';
+	$mysql_user = 'username';
 
 // Password
-	$mysql_pass = 'Add password here';
+	$mysql_pass = 'password';
 ?>

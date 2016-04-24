@@ -7,7 +7,7 @@
     require_once $tpf.'library/HTMLPurifier.auto.php';
 
 	// Instantiate object
-    $purifier = new HTMLPurifier($config);
+    $purifier = new HTMLPurifier();
 
 	// Purify all textareas!
 	$filter['html']->add_line(['function' => array($purifier, 'purify')]);

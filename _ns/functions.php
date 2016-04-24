@@ -127,7 +127,7 @@ function input_field($arr) {
 	}
 	$c .= '>';
     $c .= '<p>';
-	if ($arr['text']) {
+	if (isset($arr['text'])) {
 		$c .= $arr['text'].'<br>'."\n";
 	}
 
@@ -144,8 +144,9 @@ function input_field($arr) {
 	}
 	$attributes .= '"';
 	
-	
-	$attributes .= ' placeholder="'.htmlspecialchars($arr['text']).'"';
+	if (isset($arr['text'])) {
+		$attributes .= ' placeholder="'.htmlspecialchars($arr['text']).'"';
+	}
 
 	if (isset($arr['class'])) {
 		$attributes .= ' class="'.htmlspecialchars($arr['class']).'"';
@@ -154,20 +155,20 @@ function input_field($arr) {
 		$attributes .= ' '.$arr['extra-attributes'];
 	}
 
-	if (isset($_POST[$arr['name']]) && $arr['type'] != 'file') {
+	if (isset($_POST[$arr['name']]) && (!isset($arr['type']) || $arr['type'] != 'file')) {
 		$value = htmlspecialchars($_POST[$arr['name']]);
 	}
-	elseif ($arr['value']) {
+	elseif (isset($arr['value'])) {
 		$value = htmlspecialchars($arr['value']);
 	}
 	else {
 		$value = false;
 	}
 
-	if ($arr['type'] == 'textarea') {
+	if (isset($arr['type']) && $arr['type'] == 'textarea') {
 		$c .= '<textarea'.$attributes.'>'.$value.'</textarea>';
 	}
-	elseif ($arr['type'] == 'datetime') {
+	elseif (isset($arr['type']) && $arr['type'] == 'datetime') {
 		$c .= '<input type="date" ';
 
 		$c .= ' name="'.$arr['name'].'-date" id="';
@@ -193,7 +194,7 @@ function input_field($arr) {
 		if (isset($_POST[$arr['name'].'-date'])) {
 			$c .= ' value="'.htmlspecialchars($_POST[$arr['name'].'-date']).'"';
 		}
-		elseif ($arr['value']) {
+		elseif (isset($arr['value'])) {
 			$old_value_explode = explode(' ', $arr['value']);
 			$c .= ' value="'.htmlspecialchars($old_value_explode[0]).'"';
 		}
@@ -223,7 +224,7 @@ function input_field($arr) {
 		if (isset($_POST[$arr['name'].'-date'])) {
 			$c .= ' value="'.htmlspecialchars($_POST[$arr['name'].'-time']).'"';
 		}
-		elseif ($arr['value']) {
+		elseif (isset($arr['value'])) {
 			$c .= ' value="'.htmlspecialchars($old_value_explode[1]).'"';
 		}
 		$c .= ' step="1"';

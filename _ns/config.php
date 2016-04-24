@@ -36,6 +36,8 @@ $c = '';
 define('NS_URL', strtok($_SERVER['REQUEST_URI'], '?'));
 define('NS_DOMAIN', 'http://'.$_SERVER['HTTP_HOST']);
 
+$is_comic_page = false;
+
 // TO DO: Make a function run plugin setup files (pre-config) and move all ArrayHandlers THERE!
 
 $n_urls = new ArrayHandler;

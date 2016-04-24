@@ -46,3 +46,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 _ns/mysql_conn.php
+_ns/files/*.png
+_ns/plugins/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer/HTML/*.ser
