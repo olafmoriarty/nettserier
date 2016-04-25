@@ -13,7 +13,7 @@
 // user_name. What's the username of user?
 // other. Any other values it could be useful to store - something that values grossly from type to type (image type, parent id, price...)
 
-$query = 'SELECT t1.type, t1.id, c.url AS comic_url, c.name AS comic_name, GROUP_CONCAT(IF(cr.realname = \'\', cr.username, cr.realname) SEPARATOR \', \') AS comic_creator, t1.pubtime, t1.title, t1.text, t1.user, usr.username, t1.other FROM (';
+$query = 'SELECT t1.type, t1.id, c.url AS comic_url, c.name AS comic_name, GROUP_CONCAT(IF(cr.realname = \'\', cr.username, cr.realname) SEPARATOR \', \') AS comic_creator, t1.pubtime, t1.title, t1.text, t1.slug, t1.user, usr.username, t1.other FROM (';
 
 
 $tables = $feed_queries->return_text('array');
@@ -26,12 +26,21 @@ $num = $result->num_rows;
 $c .= '<section class="feed">'."\n";
 $c .= '<h2>'.__('User feed').'</h2>';
 if ($num) {
-  while ($arr = $result->fetch_assoc()) {
+	while ($arr = $result->fetch_assoc()) {
+		$other_fields = explode(chr(30), $arr['other']);
+		$num = count($other_fields);
+		for ($i = 0; $i < $num; $i++) {
+			$tmp_array = explode(chr(31), $other_fields[$i]);
+			if ($tmp_array[0]) {
+				$arr[$tmp_array[0]] = $tmp_array[1];
+			}
+		}
+
+
     $func = $feed_functions->find('type', $arr['type'], 'func');
     if (function_exists($func)) {
       $c .= '<section class="feed-box">';
       $c .= call_user_func($func, $arr);
-      $c .= '<p class="feed-pubtime">'.$arr['pubtime'].'</p>';
       $c .= '</section>';
     }
   }

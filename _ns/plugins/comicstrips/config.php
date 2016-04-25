@@ -2,6 +2,9 @@
   // Path to this folder
 	$tpf = NS_PATH.'plugins/'.basename(dirname(__FILE__)).'/';
 
+	include($tpf.'functions.php');
+	include($tpf.'classes.php');
+
 	$c_urls->add_line(['url' => 'comic', 'script' => $tpf.'show-comics.php']);
 
 	$c_menu->add_line(['text' => __('Comic'), 'link' => '/{comic}/comic/', 'order' => 10]);
@@ -14,36 +17,6 @@
 
 $action['frontpage']->add_line(['function' => 'fp_splash', 'order' => 0]);
 $action['frontpage']->add_line(['function' => 'fp_popular', 'order' => 10]);
-
-function fp_splash() {
-	$c = '<section class="fp-splash">';
-	$cc = new ShowComic;
-	$cc->set_result_type('comic');
-	$cc->set_comic_title(true);
-	$cc->set_text(false);
-	$cc->set_order('RAND()');
-	$cc->set_count(5);
-	$c .= $cc->show();
-	$c .= '</section>';
-	return $c;
-}
-
-function fp_popular() {
-	$c = '<section class="fp-comics-display">';
-	$c .= '<h2>'.__('Trending comics').'</h2>';
-	$cc = new ShowComic;
-	$cc->set_count(6);
-	$cc->set_comic_title(true);
-	$cc->set_text(false);
-	$cc->set_result_type('comic');
-	
-	
-	$c .= '<div class="comics">';
-	$c .= $cc->show();
-	$c .= '</div>';
-	$c .= '</section>';
-	return $c;
-}
 
 // Stuff for user feed
 
@@ -65,7 +38,7 @@ $feed_settings['blogs_i_follow'] = true;
 $feed_settings['blogs_other'] = false;
 
 if ($feed_settings['comics_mine'] || $feed_settings['comics_i_follow'] || $feed_settings['comics_other']) {
-  $select_updates = 'SELECT comupd.updtype AS type, comupd.id, comupd.comic, comupd.pubtime, comupd.title, comupd.text, comupd.slug, comupd.user, comupd.imgtype AS other FROM ns_updates AS comupd';
+  $select_updates = 'SELECT comupd.updtype AS type, comupd.id, comupd.comic, comupd.pubtime, comupd.title, comupd.text, comupd.slug, comupd.user, CONCAT(\'imgtype\', 0x1F, comupd.imgtype) AS other FROM ns_updates AS comupd';
   if (!$feed_settings['comics_other']) {
     // Don't show all comics, only selection. So find the selection ...
     $select_updates .= ' LEFT JOIN ns_user_comic_rel AS comupdr ON comupd.comic = comupdr.comic';
@@ -90,28 +63,6 @@ if ($feed_settings['comics_mine'] || $feed_settings['comics_i_follow'] || $feed_
 
 	$feed_functions->add_line(['type' => 'c', 'func' => 'feed_comic_strip']);
 
-function feed_comic_strip($arr) {
-	$comic_linked = '<a href="/'.$arr['comic_url'].'/comic/'.$arr['slug'].'/">'.htmlspecialchars($arr['comic_name']).'</a>';
-	
-	$alt = str_replace('{comic}', htmlspecialchars($arr['comic_name']), __('{comic} comic strip (no title)'));
-	if ($arr['title']) {
-		$alt .= htmlspecialchars($arr['title']);
-	}
-	
-	$c = '';
-	
-	$c .= '<h3>'.str_replace(array('{comic}', '{creator}'), array($comic_linked, htmlspecialchars($arr['comic_creator'])), __('{comic} by {creator}')).'</h3>';
-	$c .= '<p class="comic-para"><img src="/_ns/files/'.md5($arr['id'] . $arr['other']).'.'.$arr['other'].'" alt="'.$alt.'"></p>';
-
-	if ($arr['title']) {
-		$c .= '<h4>'.htmlspecialchars($arr['title']).'</h4>'."\n";
-	}
-	if ($arr['text']) {
-		$c .= $arr['text'];
-	}
-	
-	return $c;
-}
 }
 
 // Related to editing comic strips
@@ -121,254 +72,6 @@ $edit_comic_single_menu->add_line(['text' => __('Edit strip'), 'link' => '/n/das
 // Scheduler - MOVE to separate plugin :-)
 $action['edit_strips_submit']->add_line(['function' => 'strip_scheduler']);
 
-function strip_scheduler() {
-	global $values, $ids_sorted;
-
-	if ($_POST['schedule'] == 'schedule') {
-
-		// First day:
-		$day_one = time();
-		if ($_POST['schedule-schedule-first'] == 'time' && $_POST['schedule-first-datetime-date'] && $_POST['schedule-first-datetime-time']) {
-			$pubtime = $_POST['schedule-first-datetime-date'].' '.$_POST['schedule-first-datetime-time'];
-			$day_one = strtotime($pubtime);
-			if ($day_one === false) {
-				$day_one = time();
-			} 
-		}
-		$values[$ids_sorted[0]]['pubtime'] = mysql_string(date('Y-m-d H:i:s', $day_one));
-
-		// Which weekdays are selected?
-		$active_days = array();
-		for ($i = 1; $i <= 7; $i++) {
-			if ($_POST['schedule-weekday-'.$i]) {
-				$active_days[] = $i;
-			}
-		}
-
-		// If none are selected, ALL are selected.
-		if (!count($active_days)) {
-			$active_days = [1, 2, 3, 4, 5, 6, 7];
-		}
-
-		// Weekday of first day
-		$wd_one = date('N', $day_one);
-		$days = 0;
-
-		$num = count($ids_sorted);
-
-		for ($i = 1; $i < $num; $i++) {
-			// Increase days by one
-			$days++;
-
-			while (!in_array((($days + $wd_one - 1) % 7) + 1, $active_days)) {
-				$days++;
-			}
-			$values[$ids_sorted[$i]]['pubtime'] = mysql_string(date('Y-m-d H:i:s', mktime(date('H', $day_one), date('i', $day_one), date('s', $day_one), date('n', $day_one), date('j', $day_one) + $days, date('Y', $day_one))));
-		}
-	}
-}
-
 // Related to deleting comic strips
 $edit_comic_single_menu->add_line(['text' => __('Delete strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/delete/{id}/', 'order' => 90]);
 
-function delete_all_strips($comic) {
-	global $conn;
-	if (is_numeric($comic)) {
-		$query = 'SELECT id FROM ns_updates WHERE comic = '.$comic;
-		$result = $conn->query($query);
-		$num = $result->num_rows;
-		if ($num) {
-			while ($arr = $result->fetch_assoc()) {
-				delete_strip($arr['id']);
-			}
-		}
-	}
-}
-
-function delete_strip($id, $arr = false) {
-	global $conn;
-	if (!$arr || !$arr['imgtype']) {
-		$query = 'SELECT imgtype FROM ns_updates WHERE id = '.$id;
-		$result = $conn->query($query);
-		$arr = $result->fetch_assoc();
-	}
-	$filename = NS_PATH.'files/'.md5($id . $arr['imgtype']).'.'.$arr['imgtype'];
-
-	// Unlink image file
-	unlink($filename);
-
-	// Delete row from database
-	$query = 'DELETE FROM ns_updates WHERE id = '.$id;
-	$conn->query($query);
-
-	// Add ActionHook later
-}
-
-class ShowComic {
-
-	protected $comic = 0;
-	protected $show_comic_title = false;
-	protected $count = 1;
-	protected $order = 'u.pubtime DESC, u.id DESC';
-	protected $result_type = 'update';
-	protected $slug = '';
-	protected $updtype = array('c', 'i');
-	protected $show_text = true;
-	
-  function set_comic($id) {
-    if (is_numeric($id)) {
-      $this->comic = $id;
-    }
-  }
-  
-  function set_comic_title($bin) {
-    $this->show_comic_title = $bin;
-  }
-  
-  function set_count($n) {
-    $this->count = $n;
-  }
-  
-  function set_order($order) {
-    $this->order = $order;
-  }
-
-	function set_result_type($type) {
-		$this->result_type = $type;
-	}
-	
-  function set_slug($slug) {
-    $this->slug = $slug;
-  }
-	
-	function set_text($bin) {
-		$this->show_text = $bin;
-	}
-  
-  function show() {
-    global $conn;
-    if (isset($this->count) && is_numeric($this->count)) {
-      $count = $this->count;
-    }
-    else {
-      $count = 1;
-    }
-
-    if (isset($this->order)) {
-      $order = $this->order;
-    }
-    else {
-      $order = 'u.pubtime DESC, u.id DESC';
-    }
-
-    $c = '';
-
-		// If we want to show only one update for each comic
-		if ($this->result_type == 'comic') {
-			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comicname FROM (SELECT MAX(mi.id) AS id FROM (SELECT comic, MAX(pubtime) AS pubtime FROM ns_updates WHERE published = 1 AND updtype IN (\'c\', \'i\') AND pubtime <= NOW() GROUP BY comic) AS mp LEFT JOIN ns_updates AS mi ON mp.comic = mi.comic AND mp.pubtime = mi.pubtime GROUP BY mp.comic, mp.pubtime) AS mpi LEFT JOIN ns_updates AS u ON mpi.id = u.id ';
-		}
-		else {
-			// If we want to show all updates
-			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comicname FROM ns_updates AS u ';
-		}
-		
-		$query .= 'LEFT JOIN ns_comics AS c ON u.comic = c.id ';
-
-    $query .= 'WHERE ';
-    if ($this->comic && is_numeric($this->comic)) {
-      $query .= 'u.comic = '.$this->comic.' AND ';
-			if ($this->slug) {
-				$query .= 'u.slug = \''.$conn->escape_string($this->slug).'\' AND ';
-			}
-    }
-    $query .= 'u.pubtime <= NOW() AND u.published = 1 AND u.updtype IN (\'c\', \'i\') ORDER BY '.$order.' LIMIT '.$count;
-
-		$result = $conn->query($query);
-    $num = $result->num_rows;
-
-    if ($num) {
-
-      if ($this->comic) {
-        $comic_url = comic_url($this->comic);
-      }
-    
-
-      
-      $nav = '';
-      while ($r_arr = $result->fetch_assoc()) {
-        if ($num == 1 && $this->comic) {
-
-			$nav .= $this->nav_element(__('First comic'), $comic_url, $this->comic, $r_arr['slug'], false, 'first');
-			$nav .= $this->nav_element(__('Previous comic'), $comic_url, $this->comic, $r_arr, true, 'prev');
-			$nav .= $this->nav_element(__('Next comic'), $comic_url, $this->comic, $r_arr, false, 'next');
-			$nav .= $this->nav_element(__('Latest comic'), $comic_url, $this->comic, $r_arr['slug'], true, 'last');
-			if ($nav) {
-				$nav = '<nav class="navigate-strips"><ul>'.$nav.'</ul></nav>';
-			}
-        }
-        $c .= '<section class="comicbox">';
-
-        if ($nav) {
-          $c .= $nav;
-        }
-        
-        if ($this->show_comic_title) {
-					$c .= '<h3>'.htmlspecialchars($r_arr['comicname']).'</h3>';
-				}
-        $c .= '<p class="comic-para"><img src="/_ns/files/'.md5($r_arr['id'] . $r_arr['imgtype']).'.'.$r_arr['imgtype'].'" alt=""></p>';
-        if ($nav) {
-          $c .= $nav;
-        }
-
-				if ($this->show_text) {
-				
-					if ($r_arr['title']) {
-						$c .= '<h4>'.htmlspecialchars($r_arr['title']).'</h4>'."\n";
-					}
-					if ($r_arr['text']) {
-						$c .= $r_arr['text'];
-					}
-					
-				}
-        
-				$c .= '</section>';
-      }
-    }
-    return $c;
-  }
-
-	private function nav_element($label, $comic_url, $comic_id, $r, $desc, $rel) {
-		global $conn;
-		if ($desc) {
-			$order = 'pubtime DESC, id DESC';
-			$op = '<';
-		}
-		else {
-			$order = 'pubtime, id';
-			$op = '>';
-		}
-
-		$query = 'SELECT slug FROM ns_updates WHERE comic = '.$comic_id.' AND published = 1 AND updtype IN (\'c\', \'i\') AND pubtime <= NOW()';
-		if (is_array($r)) {
-			$query .= ' AND (pubtime '.$op.' \''.$r['pubtime'].'\' OR (pubtime = \''.$r['pubtime'].'\' AND id '.$op.' '.$r['id'].'))';
-		}
-		$query .= ' ORDER BY '.$order.' LIMIT 1';
-		$result = $conn->query($query);
-		if ($result->num_rows) {
-			$arr = $result->fetch_assoc();
-			if (is_array($r)) {
-				$current_slug = $r['slug'];
-			}
-			else {
-				$current_slug = $r;
-			}
-			if ($arr['slug'] != $current_slug) {
-				$reltag = '';
-				if (in_array($rel, ['prev', 'next']))
-					$reltag = ' rel="'.$rel.'"';
-				return '<li class="'.$rel.'"'.$reltag.'><a href="/'.$comic_url.'/comic/'.$arr['slug'].'/">'.$label.'</a></li>';
-			}
-		}
-	}
-
-}
