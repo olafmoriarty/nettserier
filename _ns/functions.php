@@ -7,6 +7,17 @@ function __($str) {
 } // __()
 
 
+// Slug creation
+// (function stolen from http://cubiq.org/the-perfect-php-clean-url-generator )
+
+function slugify($str, $delimiter = '-') {
+	$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+	$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+	$clean = strtolower(trim($clean, '-'));
+	$clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+
+	return $clean;
+}
 // ===================================================================
 
 function mysql_install_table($tabname, $cols) {

@@ -75,6 +75,14 @@ elseif (isset($_POST['edit-ids'])) {
 			$title = $_POST['comic-title-'.$id];
 			$values[$id]['title'] = mysql_string($title);
 
+			// Slug
+			if ($title) {
+				$values[$id]['slug'] = mysql_string(slugify($title).'-'.$id);
+			}
+			else {
+				$values[$id]['slug'] = mysql_string($id);
+			}
+
 			// Description
 			$desc = $_POST['comic-desc-'.$id];
 			$desc = $filter['html']->run($desc);
@@ -85,6 +93,7 @@ elseif (isset($_POST['edit-ids'])) {
 			if ($_POST['save-publish']) {
 				$values[$id]['published'] = 1;
 			}
+
 
 			// Time
 			$unixtime = time();

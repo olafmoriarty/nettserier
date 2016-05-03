@@ -5,6 +5,7 @@ class ShowComic {
 	protected $comic = 0;
 	protected $show_comic_title = false;
 	protected $count = 1;
+	protected $link_to_strip = false;
 	protected $order = 'u.pubtime DESC, u.id DESC';
 	protected $result_type = 'update';
 	protected $slug = '';
@@ -25,6 +26,9 @@ class ShowComic {
     $this->count = $n;
   }
   
+	function set_linking($bin) {
+		$this->link_to_strip = $bin;
+	}
   function set_order($order) {
     $this->order = $order;
   }
@@ -92,9 +96,8 @@ class ShowComic {
 	}
 
 	public function show_comic($arr, $num = 1) {
-      if ($this->comic) {
-        $comic_url = comic_url($this->comic);
-      }
+        $comic_url = comic_url($arr['comic']);
+	  
     
 
       
@@ -118,7 +121,15 @@ class ShowComic {
 		if ($this->show_comic_title) {
 			$c .= '<h3>'.htmlspecialchars($arr['comic_name']).'</h3>';
 		}
-		$c .= '<p class="comic-para"><img src="/_ns/files/'.md5($arr['id'] . $arr['imgtype']).'.'.$arr['imgtype'].'" alt=""></p>';
+		$c .= '<p class="comic-para">';
+		if ($this->link_to_strip) {
+			$c .= '<a href="/'.$comic_url.'/comic/'.$arr['slug'].'/">';
+		}
+		$c .= '<img src="/_ns/files/'.md5($arr['id'] . $arr['imgtype']).'.'.$arr['imgtype'].'" alt="">';
+		if ($this->link_to_strip) {
+			$c .= '</a>';
+		}
+		$c .= '</p>';
 		if ($nav) {
 			$c .= $nav;
 		}

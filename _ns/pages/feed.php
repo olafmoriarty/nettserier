@@ -13,7 +13,7 @@
 // user_name. What's the username of user?
 // other. Any other values it could be useful to store - something that values grossly from type to type (image type, parent id, price...)
 
-$query = 'SELECT t1.type, t1.id, c.url AS comic_url, c.name AS comic_name, GROUP_CONCAT(IF(cr.realname = \'\', cr.username, cr.realname) SEPARATOR \', \') AS comic_creator, t1.pubtime, t1.title, t1.text, t1.slug, t1.user, usr.username, t1.other FROM (';
+$query = 'SELECT t1.type, t1.comic, t1.id, c.url AS comic_url, c.name AS comic_name, GROUP_CONCAT(IF(cr.realname = \'\', cr.username, cr.realname) SEPARATOR \', \') AS comic_creator, t1.pubtime, t1.title, t1.text, t1.slug, t1.user, usr.username, t1.other FROM (';
 
 
 $tables = $feed_queries->return_text('array');

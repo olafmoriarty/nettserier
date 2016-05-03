@@ -8,6 +8,7 @@ function fp_splash() {
 	$cc->set_result_type('comic');
 	$cc->set_comic_title(true);
 	$cc->set_text(false);
+	$cc->set_linking(true);
 	$cc->set_order('RAND()');
 	$cc->set_count(5);
 	$c .= $cc->show();
@@ -22,6 +23,7 @@ function fp_popular() {
 	$cc->set_count(6);
 	$cc->set_comic_title(true);
 	$cc->set_text(false);
+	$cc->set_linking(true);
 	$cc->set_result_type('comic');
 	
 	
