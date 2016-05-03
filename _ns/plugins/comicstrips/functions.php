@@ -39,6 +39,7 @@ function fp_popular() {
 function feed_comic_strip($arr) {
 	$cc = new ShowComic;
 	$cc->set_comic_title(true);
+	$cc->set_linking(true);
 	$c = $cc->show_comic($arr);
 	return $c;
 }

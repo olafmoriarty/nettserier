@@ -119,7 +119,15 @@ class ShowComic {
 		}
 			
 		if ($this->show_comic_title) {
-			$c .= '<h3>'.htmlspecialchars($arr['comic_name']).'</h3>';
+			$c .= '<h3>';
+			if ($this->link_to_strip) {
+				$c .= '<a href="/'.$comic_url.'/comic/'.$arr['slug'].'/">';
+			}
+			$c .= htmlspecialchars($arr['comic_name']);
+			if ($this->link_to_strip) {
+				$c .= '</a>';
+			}
+			$c .= '</h3>';
 		}
 		$c .= '<p class="comic-para">';
 		if ($this->link_to_strip) {
