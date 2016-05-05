@@ -298,14 +298,15 @@ function sec_session_start() {
 function login($email, $password, $remember = false) {
 	global $conn;
     // Using prepared statements means that SQL injection is not possible. 
-    if ($stmt = $conn->prepare('SELECT id, username, password, salt FROM ns_users WHERE (username = ? OR email = ?) LIMIT 1')) {
+    if ($stmt = $conn->prepare('SELECT id, username, password, oldpass, salt FROM ns_users WHERE (username = ? OR email = ?) LIMIT 1')) {
         $stmt->bind_param('ss', $email, $email);  // Bind "$email" to parameter.
         $stmt->execute();    // Execute the prepared query.
         $stmt->store_result();
         // get variables from result.
-        $stmt->bind_result($user_id, $username, $db_password, $salt);
+        $stmt->bind_result($user_id, $username, $db_password, $md5_password, $salt);
         $stmt->fetch();
         // hash the password with the unique salt.
+			$passwordinput = $password;
         $password = hash('sha512', $password . $salt);
         if ($stmt->num_rows == 1) {
             // If the user exists we check if the account is locked
@@ -317,8 +318,27 @@ function login($email, $password, $remember = false) {
             } else {
                 // Check if the password in the database matches 
                 // the password the user submitted.
+							
+							$success = false;
                 if ($db_password == $password) {
-                    // Password is correct!
+									$success = true;
+                }
+							elseif ($md5_password && md5($passwordinput) == $md5_password) {
+								$query = 'UPDATE ns_users SET password=\''.$password.'\',oldpass=\'\' WHERE id = '.$user_id;
+								$conn->query($query);
+								$success = true;
+							}
+							else {
+                    // Password is not correct 
+                    // We record this attempt in the database 
+                    $now = time();
+                    if (!$conn->query("INSERT INTO ns_login_attempts(user_id, time) VALUES ('$user_id', '$now')")) {
+                        exit();
+                    }
+                    return false;
+                }
+							if ($success) {
+									// Password is correct!
                     // Get the user-agent string of the user.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
                     // XSS protection as we might print this value
@@ -337,15 +357,7 @@ function login($email, $password, $remember = false) {
 					}
 
 					return true;
-                } else {
-                    // Password is not correct 
-                    // We record this attempt in the database 
-                    $now = time();
-                    if (!$conn->query("INSERT INTO ns_login_attempts(user_id, time) VALUES ('$user_id', '$now')")) {
-                        exit();
-                    }
-                    return false;
-                }
+							}
             }
         } else {
             // No user exists. 
