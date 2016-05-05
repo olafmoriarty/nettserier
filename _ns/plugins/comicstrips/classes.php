@@ -11,6 +11,12 @@ class ShowComic {
 	protected $slug = '';
 	protected $updtype = array('c', 'i');
 	protected $show_text = true;
+	protected $mintime = 0;
+	protected $maxtime = 0;
+
+	function __construct() {
+		$this->maxtime = time();
+	}
 	
   function set_comic($id) {
     if (is_numeric($id)) {
@@ -44,7 +50,15 @@ class ShowComic {
 	function set_text($bin) {
 		$this->show_text = $bin;
 	}
-  
+
+	function set_min_time($time) {
+		$this->mintime = $time;
+	}
+
+  	function set_max_time($time) {
+		$this->maxtime = $time;
+	}
+
   function show() {
     global $conn;
     if (isset($this->count) && is_numeric($this->count)) {
@@ -65,7 +79,16 @@ class ShowComic {
 
 		// If we want to show only one update for each comic
 		if ($this->result_type == 'comic') {
-			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comic_name FROM (SELECT MAX(mi.id) AS id FROM (SELECT comic, MAX(pubtime) AS pubtime FROM ns_updates WHERE published = 1 AND updtype IN (\'c\', \'i\') AND pubtime <= NOW() GROUP BY comic) AS mp LEFT JOIN ns_updates AS mi ON mp.comic = mi.comic AND mp.pubtime = mi.pubtime GROUP BY mp.comic, mp.pubtime) AS mpi LEFT JOIN ns_updates AS u ON mpi.id = u.id ';
+			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comic_name FROM (SELECT MAX(mi.id) AS id FROM (SELECT comic, MAX(pubtime) AS pubtime FROM ns_updates WHERE published = 1 AND updtype IN (\'c\', \'i\') AND ';
+
+			if ($this->mintime) {
+				$query .= ' pubtime >= FROM_UNIXTIME('.$this->mintime.') AND ';
+			}
+			if ($this->maxtime != time()) {
+				$query .= ' pubtime <= FROM_UNIXTIME('.$this->maxtime.') AND ';
+			}
+
+			$query .= 'pubtime <= NOW() GROUP BY comic) AS mp LEFT JOIN ns_updates AS mi ON mp.comic = mi.comic AND mp.pubtime = mi.pubtime GROUP BY mp.comic, mp.pubtime) AS mpi LEFT JOIN ns_updates AS u ON mpi.id = u.id ';
 		}
 		else {
 			// If we want to show all updates
@@ -81,7 +104,16 @@ class ShowComic {
 				$query .= 'u.slug = \''.$conn->escape_string($this->slug).'\' AND ';
 			}
     }
-    $query .= 'u.pubtime <= NOW() AND u.published = 1 AND u.updtype IN (\'c\', \'i\') ORDER BY '.$order.' LIMIT '.$count;
+	if ($this->mintime) {
+		$query .= 'u.pubtime >= FROM_UNIXTIME('.$this->mintime.') AND ';
+	}
+	if ($this->maxtime != time()) {
+		$query .= 'u.pubtime <= FROM_UNIXTIME('.$this->maxtime.') AND ';
+	}
+	$query .= 'u.pubtime <= NOW() AND u.published = 1 AND u.updtype IN (\'c\', \'i\') ORDER BY '.$order.' LIMIT '.$count;
+
+//	echo $query;
+//	exit;
 
 		$result = $conn->query($query);
     $num = $result->num_rows;

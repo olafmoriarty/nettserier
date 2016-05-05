@@ -11,6 +11,7 @@ function fp_splash() {
 	$cc->set_linking(true);
 	$cc->set_order('RAND()');
 	$cc->set_count(5);
+	$cc->set_min_time(time() - (60 * 60 * 24 * 7));
 	$c .= $cc->show();
 	$c .= '</section>';
 	return $c;
@@ -24,6 +25,7 @@ function fp_popular() {
 	$cc->set_comic_title(true);
 	$cc->set_text(false);
 	$cc->set_linking(true);
+	$cc->set_min_time(time() - (60 * 60 * 24 * 30));
 	$cc->set_result_type('comic');
 	
 	
