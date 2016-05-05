@@ -219,6 +219,11 @@ header .portal-menu ul li {
 	display: inline;
 }
 
+.main .fp-comics-display .comicbox {
+	max-height: 200px;
+	overflow: hidden;
+}
+
 /* Form errors */
 
 .errorbox {
