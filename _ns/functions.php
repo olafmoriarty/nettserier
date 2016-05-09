@@ -20,6 +20,23 @@ function slugify($str, $delimiter = '-') {
 }
 // ===================================================================
 
+// Create LIMIT string for MySQL query based on $_GET['page']
+function limitstring($rows_per_page, $getvar = 'page') {
+	// Find offset based on $_GET['page'] - this should probably be moved into a function later.
+
+	if (isset($_GET[$getvar]) && is_numeric($_GET[$getvar])) {
+	  $page = $_GET[$getvar];
+	}
+	else {
+	  $page = 1;
+	}
+
+	$offset = ($page - 1) * $rows_per_page;
+	$limitstring = 'LIMIT '.$offset.', '.$rows_per_page;
+	return $limitstring;
+
+}
+
 function mysql_install_table($tabname, $cols) {
 	// Get MySQL connection
 	global $conn;

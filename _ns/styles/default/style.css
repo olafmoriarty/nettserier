@@ -146,6 +146,10 @@ header .portal-menu ul li {
 	max-width: 100%;
 }
 
+.main a {
+	color: #666666;
+}
+
 .main p {
 	margin: 0 0 1em;
 }
@@ -221,8 +225,21 @@ header .portal-menu ul li {
 
 .main .fp-comics-display .comicbox {
 	max-height: 200px;
+	position: relative;
 	overflow: hidden;
 }
+
+.main .fp-comics-display .comicbox:after {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 175px;
+	height: 25px;
+	width: 100%;
+	background-image: linear-gradient(transparent, #ffffff);
+}
+
 
 /* Form errors */
 

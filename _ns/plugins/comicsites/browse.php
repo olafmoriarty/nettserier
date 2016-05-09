@@ -1,18 +1,5 @@
 <?php
 
-// Find offset based on $_GET['page'] - this should probably be moved into a function later.
-
-$rows_per_page = 50;
-if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-  $page = $_GET['page'];
-}
-else {
-  $page = 1;
-}
-
-$offset = ($page - 1) * $rows_per_page;
-$limitstring = 'LIMIT '.$offset.', '.$rows_per_page;
-
 // How many pages are there?
 
 // ----------
@@ -20,7 +7,7 @@ $limitstring = 'LIMIT '.$offset.', '.$rows_per_page;
 $ns_title = __('Browse comics');
 $c .= '<h2>'.__('Browse comics').'</h2>';
 
-$query = 'SELECT t1.url, t1.name, GROUP_CONCAT(IF(usr.realname = \'\', usr.username, usr.realname) SEPARATOR \', \') AS creator, t1.last_update FROM (SELECT c.id, c.url, c.name, MAX(u.pubtime) AS last_update FROM ns_updates AS u LEFT JOIN ns_comics AS c ON u.comic = c.id WHERE u.published = 1 AND u.pubtime < NOW() GROUP BY c.id) AS t1 LEFT JOIN ns_user_comic_rel AS r ON t1.id = r.comic LEFT JOIN ns_users AS usr ON r.user = usr.id WHERE r.reltype = \'c\' GROUP BY t1.id '.$limitstring;
+$query = 'SELECT t1.url, t1.name, GROUP_CONCAT(IF(usr.realname = \'\', usr.username, usr.realname) SEPARATOR \', \') AS creator, t1.last_update FROM (SELECT c.id, c.url, c.name, MAX(u.pubtime) AS last_update FROM ns_updates AS u LEFT JOIN ns_comics AS c ON u.comic = c.id WHERE u.published = 1 AND u.pubtime < NOW() GROUP BY c.id) AS t1 LEFT JOIN ns_user_comic_rel AS r ON t1.id = r.comic LEFT JOIN ns_users AS usr ON r.user = usr.id WHERE r.reltype = \'c\' GROUP BY t1.id ORDER BY t1.last_update DESC '.limitstring(50);
 $result = $conn->query($query);
 
 $num = $result->num_rows;
