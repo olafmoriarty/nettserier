@@ -23,3 +23,5 @@ mysql_install_table('ns_updates', ['updtype VARCHAR(3) NOT NULL', 'comic INT(10)
 mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'comics_mine INT(1) NOT NULL DEFAULT 1', 'comics_i_follow INT(1) NOT NULL DEFAULT 1', 'comics_other INT(1) NOT NULL DEFAULT 0']);
 mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'blogs_mine INT(1) NOT NULL DEFAULT 1', 'blogs_i_follow INT(1) NOT NULL DEFAULT 1', 'blogs_other INT(1) NOT NULL DEFAULT 0']);
 mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'albums_mine INT(1) NOT NULL DEFAULT 1', 'albums_i_follow INT(1) NOT NULL DEFAULT 1', 'albums_other INT(1) NOT NULL DEFAULT 0']);
+
+mysql_install_table('ns_comments', ['parent INT(10) NOT NULL', 'user INT(10) NOT NULL', 'text TEXT NOT NULL', 'ip VARCHAR(45) NOT NULL', 'pubtime TIMESTAMP NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP']);

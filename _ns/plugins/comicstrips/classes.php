@@ -13,11 +13,15 @@ class ShowComic {
 	protected $show_text = true;
 	protected $mintime = 0;
 	protected $maxtime = 0;
+	protected $is_the_page = false;
 
 	function __construct() {
 		$this->maxtime = time();
 	}
 	
+	function is_page($bin) {
+		$this->is_the_page = $bin;
+	}
   function set_comic($id) {
     if (is_numeric($id)) {
       $this->comic = $id;
@@ -79,7 +83,7 @@ class ShowComic {
 
 		// If we want to show only one update for each comic
 		if ($this->result_type == 'comic') {
-			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comic_name FROM (SELECT MAX(mi.id) AS id FROM (SELECT comic, MAX(pubtime) AS pubtime FROM ns_updates WHERE published = 1 AND updtype IN (\'c\', \'i\') AND ';
+			$query = 'SELECT u.id, u.updtype, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comic_name FROM (SELECT MAX(mi.id) AS id FROM (SELECT comic, MAX(pubtime) AS pubtime FROM ns_updates WHERE published = 1 AND updtype IN (\'c\', \'i\') AND ';
 
 			if ($this->mintime) {
 				$query .= ' pubtime >= FROM_UNIXTIME('.$this->mintime.') AND ';
@@ -92,7 +96,7 @@ class ShowComic {
 		}
 		else {
 			// If we want to show all updates
-			$query = 'SELECT u.id, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comic_name FROM ns_updates AS u ';
+			$query = 'SELECT u.id, u.updtype, u.comic, u.imgtype, u.pubtime, u.title, u.text, u.slug, c.name AS comic_name FROM ns_updates AS u ';
 		}
 		
 		$query .= 'LEFT JOIN ns_comics AS c ON u.comic = c.id ';
@@ -128,12 +132,9 @@ class ShowComic {
 	}
 
 	public function show_comic($arr, $num = 1) {
-        $comic_url = comic_url($arr['comic']);
-	  
-    
-
-      
-      $nav = '';
+		global $action;
+		$comic_url = comic_url($arr['comic']);
+		$nav = '';
 		if ($num == 1 && $this->comic) {
 
 			$nav .= $this->nav_element(__('First comic'), $comic_url, $this->comic, $arr['slug'], false, 'first');
@@ -175,14 +176,24 @@ class ShowComic {
 		}
 
 		if ($this->show_text) {
+			$c .= '<div class="comic-text">'."\n";
 			if ($arr['title']) {
 				$c .= '<h4>'.htmlspecialchars($arr['title']).'</h4>'."\n";
 			}
 			if ($arr['text']) {
 				$c .= $arr['text'];
 			}
+			
+			$c .= '<p class="comic-pubtime">'.str_replace('{time}', $arr['pubtime'], __('Published {time}')).'</p>';
+			$c .= $action['showcomic_text_after']->run($arr);
+			$c .= '</div>'."\n";
 		}
-		$c .= '</section>';
+		$c .= '</section>'."\n";
+
+		if ($this->is_the_page) {
+			$c .= $action['showcomic_on_page_after']->run($arr);
+		}
+
 		return $c;
 	}
 

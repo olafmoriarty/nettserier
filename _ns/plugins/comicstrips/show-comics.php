@@ -2,6 +2,7 @@
 
 $cc = new ShowComic;
 $cc->set_comic($comic_id);
+$cc->is_page(true);
 
 $folder = strtok('/');
 
