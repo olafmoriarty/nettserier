@@ -67,6 +67,11 @@ $action['edit_strips_submit'] = new ActionHook();
 $action['frontpage'] = new ActionHook();
 $action['delete_comic'] = new ActionHook();
 
+$action['showcomic_text_after'] = new ActionHook();
+$action['showcomic_on_page_after'] = new ActionHook();
+
+$action['after_footer'] = new ActionHook();
+
 // Add javascript for Adaptive Images
 $head->add_line(['text' => '<script>document.cookie=\'resolution=\'+Math.max(screen.width,screen.height)+\'; path=/\';</script>']);
 
