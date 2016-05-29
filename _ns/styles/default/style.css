@@ -2,7 +2,7 @@
 /* IMPORT FONTS FROM GOOGLE FONTS                                           */
 /* ------------------------------------------------------------------------ */
 
-@import url(https://fonts.googleapis.com/css?family=Exo:400,700,400italic,700italic&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Catamaran:400,700&subset=latin,latin-ext);
 
 /* ------------------------------------------------------------------------ */
 /* GENERAL SETTINGS FOR PAGE                                                */
@@ -14,7 +14,9 @@
 }
 
 body {
-	font-family: Exo, sans-serif;
+	font-family: Catamaran, sans-serif;
+	overflow-x: hidden;
+	background: #fcfcfc;
 }
 
 a img {border: none;}
@@ -44,9 +46,35 @@ header a {
 
 header h1.page-title a {
 	display: block;
-	padding-left: 32px;
+	position: relative;
+	padding-left: calc(32px + 2em);
 	line-height: 24px;
-	background: url(nettserierboble.png) no-repeat;
+/*	background: url(nettserierboble.png) no-repeat; */
+}
+
+header h1.page-title a:before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: calc(-0.5em - 4px);
+	width: calc(32px + 1em);
+	height: calc(32px + 1em);
+	background: url(nettserierboble.png) #000000 no-repeat;
+	background-position: calc(.5em + 2px) calc(.5em + 4px);
+	border: solid 2px #fcfcfc;
+	border-radius: 34px;
+	z-index: 120;
+}
+
+header h1.page-title:hover a:before {
+	background-color: #3d004d;
+	border-color: #fdcb02;
+}
+
+header a:hover {
+	color: #fdcb02;
+	text-decoration: underline;
 }
 
 header h1 a {
@@ -147,7 +175,7 @@ header .portal-menu ul li {
 }
 
 .main a {
-	color: #666666;
+	color: #3d004d;
 }
 
 .main p {
@@ -184,28 +212,32 @@ header .portal-menu ul li {
 }
 
 .main .fp-splash {
-	width: 100%;
 	position: relative;
-	margin: 0 auto 2em; 
+	margin: -1em -1em 2em; 
 }
 
 .main .fp-splash .comicbox {
 	position: relative;
 	width: 100%;
 	text-align: center;
-	max-height: 400px;
+	height: 300px;
 	overflow: hidden;
 }
 .main .fp-splash h3 {
 	position: absolute;
-	top: 0;
+	bottom: 0;
 	left: 0;
-	padding: .5em;
+	padding: 0 .5em;
+	z-index: 120;
 	text-shadow:
-   -1px -1px 0 #ffffff,
-    1px -1px 0 #ffffff,
-   -1px  1px 0 #ffffff,
-    1px  1px 0 #ffffff;
+   -1px -1px 0 #fcfcfc,
+    1px -1px 0 #fcfcfc,
+   -1px  1px 0 #fcfcfc,
+    1px  1px 0 #fcfcfc;
+}
+
+.main .fp-splash .comicbox img {
+	width: 100%;
 }
 
 .main .fp-splash .comicbox:after {
@@ -213,22 +245,72 @@ header .portal-menu ul li {
 	display: block;
 	position: absolute;
 	left: 0;
-	top: 350px;
+	top: 250px;
 	height: 50px;
 	width: 100%;
-	background-image: linear-gradient(transparent, #ffffff);
+	background-image: linear-gradient(transparent, #000000);
 }
 
 .main .fp-splash .comic-para img {
 	display: inline;
 }
 
-.main .fp-comics-display .comicbox {
-	max-height: 200px;
-	position: relative;
-	overflow: hidden;
+.main .fp-comics-display h2 {
+	color: #3d004d;
 }
 
+.main .fp-comics-display .comicbox {
+	max-height: 200px;
+	max-width: 200px;
+	position: relative;
+	overflow: hidden;
+	line-height: 200px;
+	border-radius: 104px;
+	background: #dddddd;
+	border: solid 4px #aaaaaa;
+	margin: 0 auto 2em;
+}
+
+.main .fp-comics-display .comicbox img {
+	vertical-align: middle;
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+.main .fp-comics-display .comicbox h3 {
+	font-size: 100%;
+	line-height: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 200px;
+	color: #3d004d;
+	text-shadow:
+	   -1px -1px 0 #ffffff,
+		1px -1px 0 #ffffff,
+	   -1px  1px 0 #ffffff,
+		1px  1px 0 #ffffff;
+}
+.main .fp-comics-display .comicbox h3 a {
+	color: #3d004d;
+	text-decoration: none;
+}
+
+.main .fp-comics-display .comicbox:hover {
+	background: #e8e8e8;
+}
+
+.main .fp-comics-display .comicbox:hover img {
+	-webkit-filter: none;
+	filter: none;
+}
+
+.main .fp-comics-display .comicbox:hover .comic-para {
+	z-index: 120;
+	position: relative;
+}
+
+/*
 .main .fp-comics-display .comicbox:after {
 	content: "";
 	display: block;
@@ -239,6 +321,7 @@ header .portal-menu ul li {
 	width: 100%;
 	background-image: linear-gradient(transparent, #ffffff);
 }
+*/
 
 
 /* Form errors */
@@ -486,6 +569,17 @@ footer nav ul {
 
 footer .copyright {text-align: center;}
 
+/* Fix height of comic box on cellphones */
+
+@media screen and (max-width: 500px) {
+	.main .fp-splash .comicbox {
+		height: 200px;
+	}
+	.main .fp-splash .comicbox:after {
+		top: 150px;
+	}
+	
+}
 
 /* ------------------------------------------------------------------------ */
 /* DESKTOP EDITION                                                          */
@@ -612,16 +706,22 @@ header .portal-menu ul li:first:before {
 		max-height: 500px;
 	}
 
+	.main .fp-comics-display {
+		width: calc(624px + 4em);
+		margin: 0 auto;
+	}
+
 	.main .fp-comics-display:after {
 		clear: both;
 		content: "";
 		display: block;
 	}
 	.main .fp-comics-display .comicbox {
-		width: calc((100% - 4em) / 3);
+/*		width: calc((100% - 4em) / 3); */
+		width: 200px;
 		float: left;
 		margin-right: 2em;
-		margin-bottom: 1em;
+		margin-bottom: 2em;
 	}
 	
 	.main .fp-comics-display .comicbox:nth-child(3n) {
