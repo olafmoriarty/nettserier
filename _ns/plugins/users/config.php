@@ -32,3 +32,19 @@
 			delete_user_comics($id);
 		}
 	}
+
+	function avatar($id, $size = 100) {
+		global $conn;
+		if (!is_numeric($id))
+			return false;
+		$query = 'SELECT username, email FROM ns_users WHERE id = '.$id;
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+
+		if (!$num)
+			return false;
+
+		$arr = $result->fetch_assoc();
+
+		return '<img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($arr['email']))).'?s='.$size.'&amp;d=mm" alt="'.htmlspecialchars($arr['username']).'">';
+	}

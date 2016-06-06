@@ -1,31 +1,100 @@
 <?php
 
 	function show_comments($arr) {
-		global $conn, $logged_in;
-		$c = '<section class="comment_section">';
-		$query = 'SELECT text FROM ns_comments WHERE parent = '.$arr['id'];
+		global $conn, $logged_in, $filter, $user_info;
+		$submitted = false;
+		$errors = false;
+		$error_array = array();
+		$target_url = '/'.comic_url($arr['comic']).'/comic/'.$arr['slug'].'/';
+		if (isset($_POST['comment_text']) && $_POST['comment_text']) {
+			$submitted = true;
+			if ($logged_in) {
+				// Comment has been submitted, all functions for sanitizing will be added here
+			}
+			else {
+				$errors = true;	
+			}
+
+			if (!$errors) {
+
+				// No errors, let's do this
+				$table = 'ns_comments';
+				$fields = array();
+				$values = array();
+
+				$fields[] = 'parent';
+				$values[] = $arr['id'];
+
+				$fields[] = 'user';
+				$values[] = $user_info['id'];
+
+				$fields[] = 'text';
+				$values[] = mysql_string($filter['html']->run($_POST['comment_text']));
+
+				$fields[] = 'ip';
+				$values[] = mysql_string($_SERVER['REMOTE_ADDR']);
+
+				$fields[] = 'regtime';
+				$values[] = 'NOW()';
+
+				$query = 'INSERT INTO '.$table.' ('.implode(', ', $fields).') VALUES ('.implode(', ', $values).')';
+				$conn->query($query);
+				
+				header('Location: '.NS_DOMAIN.$target_url);
+				exit;
+
+			}
+		}
+
+
+		$c = '<section class="comment-section">';
+		$query = 'SELECT c.id, c.user, u.username, c.text, c.regtime FROM ns_comments AS c LEFT JOIN ns_users AS u on c.user = u.id WHERE c.parent = '.$arr['id'];
 		$result = $conn->query($query);
 		$num = $result->num_rows;
-		$c .= '<h4>'.str_replace('{n}', $num, __('{n} comments')).'</h4>';
-		
+
 		if ($num) {
+			$c .= '<h4>'.str_replace('{n}', $num, __('{n} comments')).'</h4>';
+
+			// Print comments
+			while ($r_arr = $result->fetch_assoc()) {
+				$c .= '<article class="comment">';
+				$c .= '<div class="comment-header">';
+				$c .= '<p class="comment_author"><a href="/n/users/'.$r_arr['user'].'/">'.htmlspecialchars($r_arr['username']).'</a></p>';
+				$c .= '<p class="comment_time">'.$r_arr['regtime'].'</p>';
+				$c .= '<p class="comment_avatar">'.avatar($r_arr['user'], 100).'</p>';
+				$c .= '</div>';
+				$c .= $r_arr['text'];
+				$c .= '<nav class="comment-meta">';
+				$c .= '<ul><li><a href="">Edit</a></li><li><a href="">Delete</a></li><li><a href="">Report</a></li><li><a href="">Block</a></li></ul>';
+				$c .= '</nav>';
+				$c .= '</article>';
+			}
+
 			
-		}
 			$c .= '<h4>'.__('Join the discussion!').'</h4>'."\n";
+		}
+		else {
+			$c .= '<h4>'.__('Write a comment!').'</h4>'."\n";
+		}
+
 		if ($logged_in) {
 
 			if (!$submitted || $errors) {
-				$c .= '<form method="post" name="comment_form" action="/'.comic_url($arr['comic']).'/comic/'.$arr['slug'].'/">'."\n";
+				$c .= '<section class="comment-add">';
+				$c .= '<form method="post" name="comment_form" action="'.$target_url.'">'."\n";
 				$c .= input_field(['name' => 'comment_text', 'text' => __('Your comment:'), 'type' => 'textarea']);
 				$c .= '<p><input type="submit" name="add_comment_submit" id="add_comment_submit" value="'.__('Add your comment!').'"></p>';
 				$c .= '</form>'."\n";
+				$c .= '</section>';
 
 			}
 			
 			
 		}
 		else {
+			$c .= '<section class="comment-add">';
 			$c .= '<p><a href="/n/log-in/?returnurl='.urlencode('/'.comic_url($arr['comic']).'/comic/'.$arr['slug'].'/').'">'.__('Log in to add your comment!').'</a></p>'."\n";
+			$c .= '</section>';
 		}
 		$c .= '</section>'."\n";
 		return $c;

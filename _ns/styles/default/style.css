@@ -236,6 +236,9 @@ header .portal-menu ul li {
     1px  1px 0 #fcfcfc;
 }
 
+.main .fp-splash h3 a {
+	text-decoration: none;
+}
 .main .fp-splash .comicbox img {
 	width: 100%;
 }
@@ -348,13 +351,17 @@ header .portal-menu ul li {
 	border-radius: .5em;
 }
 
-.main input, .main select {
+.main input, .main select, .main textarea {
   width: 100%;
   border: solid 1px #808080;
   padding: .5em;
   border-radius: .5em;
   box-sizing: border-box;
   }
+
+.main textarea {
+	height: 10em;
+}
 
 .main input[type="checkbox"], .main input[type="radio"] {
 	width: auto;
@@ -541,6 +548,86 @@ header .portal-menu ul li {
 	width: 40%;
 }
 
+.main .comment-section h4 {
+	font-size: 120%;
+	margin-bottom: .5em;
+}
+
+.main .comment-section .comment {
+	position: relative;
+	margin-bottom: 2em;
+	padding: 1em 1em 1em calc(104px + 2em);
+	background: #ffffff;
+	border-radius: 2em;
+	border: solid 2px #e8e8e8;
+	min-height: 104px;
+	overflow: hidden;
+}
+
+.main .comment-section .comment .comment-header {
+	background: #e8e8e8;
+	margin: -1em -1em 1em calc(-104px - 2em);
+	padding: .5em 1em .5em calc(104px + 2em);
+	position: relative;
+}
+
+.main .comment-section .comment .comment-header p {
+	margin: 0;
+}
+
+
+.main .comment-section .comment .comment_author {
+	font-weight: bold;
+	font-size: 110%;
+	display: inline-block;
+}
+.main .comment-section .comment .comment_time {
+	font-style: italic;
+	display: inline-block;
+	float: right;
+}
+
+.main .comment-section .comment .comment_avatar {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	border: solid 2px #e8e8e8;
+	border-radius: 52px;
+	overflow: hidden;
+	width: 100px;
+	height: 100px;
+}
+
+.main .comment-section .comment .comment-meta {
+	position: absolute;
+	right: 2em;
+	bottom: 0;
+	font-size: 90%;
+}
+
+.main .comment-section .comment .comment-meta ul {
+	margin: 0;
+	padding: 0;
+}
+
+.main .comment-section .comment .comment-meta ul li {
+	display: inline;
+}
+
+.main .comment-section .comment .comment-meta ul li:before {
+		content: " | ";
+}
+
+.main .comment-section .comment .comment-meta ul li:first-child:before {
+		content: "";
+}
+
+.main .comment-section .comment-add {
+	margin-left: calc(106px + 2em);
+
+}
+
+
 /* ------------------------------------------------------------------------ */
 /* FOOTER                                                                   */
 /* ------------------------------------------------------------------------ */
@@ -662,10 +749,6 @@ footer .copyright {text-align: center;}
 		content: " | ";
 	}
 
-header .portal-menu ul li:first:before {
-		content: "";
-	}
-
 	.main .profile_pic {
 		float: right;
 	}
@@ -731,7 +814,11 @@ header .portal-menu ul li:first:before {
 		clear: left;
 	}
 
-
+	.main .comment-section {
+		width: 80%;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
 
 }
 
