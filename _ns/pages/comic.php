@@ -26,7 +26,7 @@ $header .= '<p>'.str_replace('{creator}', htmlspecialchars($comic_info['creator'
 $header .= '</div>';
 
 // For small screens: Links to show/hide menu and search
-$header .= '<nav class="invisible" id="show-menu">'."\n";
+$header .= '<nav class="show-menu" id="show-menu">'."\n";
 $header .= '<ul>';
 $header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'.__('Menu').'</a></li>';
 $header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'.__('Search').'</a></li>';

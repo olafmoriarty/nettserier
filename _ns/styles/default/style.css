@@ -96,6 +96,7 @@ header nav.show-menu {
 	position: absolute;
 	top: 0;
 	right: 0;
+	display: none;
 }
 
 header nav.show-menu ul li {
@@ -153,6 +154,10 @@ header .titleblock h1.page-title a {
 
 header .portal-menu h2 {
 	font-size: 100%;
+	padding: 0.5em 1em;
+	border-bottom: dotted 1px #ffffff;
+	border-top: solid 4px #e8e8e8;
+	background: #3d004d;
 }
 
 header .portal-menu ul li {
@@ -634,7 +639,7 @@ header .portal-menu ul li {
 }
 
 .main .browse-table {
-	width: 80%;
+	width: 100%;
 	margin: 0 auto 1em;
 }
 
@@ -735,6 +740,12 @@ footer .copyright {text-align: center;}
 		padding: 0.5em;
 		vertical-align: middle;
 		border: none;
+	}
+
+	nav.portal-menu h2 {
+		border: none;
+		padding: 0;
+		background: transparent;
 	}
 
 	header.comicheader {
@@ -846,6 +857,10 @@ footer .copyright {text-align: center;}
 		width: 80%;
 		max-width: 1000px;
 		margin: 0 auto;
+	}
+
+	.main .browse-table {
+		width: 80%;
 	}
 
 	.main .browse-table td {

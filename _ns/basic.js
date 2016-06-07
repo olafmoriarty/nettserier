@@ -1,18 +1,13 @@
 $( document ).ready(function() {
 
-	var menySynlig = true;
-	var menyStor = true;
-
-	// For small changes:
+	// For small screens:
 	
 	if ($(window).width() < 800) {
 		// Hide menus, add buttons to make menus visible
-		$("#main-menu").removeClass("main-menu").addClass("invisible");
-		$("#show-menu").removeClass("invisible").addClass("show-menu");
-		$("#user-menu").addClass("invisible");
-		menySynlig = false;
-		menyStor = false;
-		userMenuVisible = false;
+		$("#show-menu").show();
+		$("#main-menu").hide();
+		$("#user-menu").hide();
+		$("#portal-menu").hide();
 
 		// Hide expandable text
 		$('.expand').wrapInner('<a href="" class="toggle-text"></a>');
@@ -21,14 +16,8 @@ $( document ).ready(function() {
 
 	// Link som viser menyen dersom den er skjult
 	$("#show-menu-link").click(function(event) {
-		if (!menySynlig) {
-			$("#main-menu").removeClass("invisible").addClass("main-menu");
-			menySynlig = true;
-		}
-		else {
-			$("#main-menu").removeClass("main-menu").addClass("invisible");
-			menySynlig = false;
-		}
+		$("#main-menu").toggle();
+		$("#portal-menu").toggle();
 
 		event.preventDefault();
 	});
@@ -42,30 +31,32 @@ $( document ).ready(function() {
 
 	// Link som viser brukarmenyen dersom den er skjult
 	$("#show-user-menu-link").click(function(event) {
-		if (!userMenuVisible) {
-			$("#user-menu").removeClass("invisible");
-			userMenuVisible = true;
-		}
-		else {
-			$("#user-menu").addClass("invisible");
-			userMenuVisible = false;
-		}
-
+		$("#user-menu").toggle();
 		event.preventDefault();
 	});
 
 	// Ved resizing av vinduet må vi sjekke om vi passerer stor-liten-grensa
 	// og fikse menyen...
 	$(window).resize(function(event) {
-		if (menyStor && $(window).width() < 800) {
-			$("#main-menu").removeClass("main-menu").addClass("invisible");
-			$("#show-menu").removeClass("invisible").addClass("show-menu");
-			menyStor = false;
+		if ($(window).width() < 800) {
+			$("#main-menu").hide();
+			$("#show-menu").show();
+			$("#user-menu").hide();
+			$("#portal-menu").hide();
+
+			// Hide expandable text
+			$('.expand').wrapInner('<a href="" class="toggle-text"></a>');
+			$('.expand').nextUntil('.expand').hide();
 		}
-		else if (!menyStor && $(window).width() >= 800) {
-			$("#main-menu").removeClass("invisible").addClass("main-menu");
-			$("#show-menu").removeClass("show-menu").addClass("invisible");
-			menyStor = true;
+		else if ($(window).width() >= 800) {
+			$("#main-menu").show();
+			$("#show-menu").hide();
+			$("#user-menu").show();
+			$("#portal-menu").show();
+
+			// Hide expandable text
+			$('.expand > .toggle-text').contents().unwrap();
+			$('.expand').nextUntil('.expand').show();
 		}
 	});
 

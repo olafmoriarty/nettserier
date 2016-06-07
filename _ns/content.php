@@ -49,7 +49,7 @@ $header .= '<header>'."\n";
 $header .= '<h1 class="page-title"><a href="/">'.__(PAGE_TITLE).'</a></h1>'."\n";
 
 // For small screens: Links to show/hide menu and search
-$header .= '<nav class="invisible" id="show-menu">'."\n";
+$header .= '<nav class="show-menu" id="show-menu">'."\n";
 $header .= '<ul>';
 $header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'.__('Menu').'</a></li>';
 $header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'.__('Search').'</a></li>';
