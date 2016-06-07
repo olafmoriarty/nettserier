@@ -142,7 +142,7 @@ class ShowComic {
 			$nav .= $this->nav_element(__('Next comic'), $comic_url, $this->comic, $arr, false, 'next');
 			$nav .= $this->nav_element(__('Latest comic'), $comic_url, $this->comic, $arr['slug'], true, 'last');
 			if ($nav) {
-				$nav = '<nav class="navigate-strips"><ul>'.$nav.'</ul></nav>';
+				$nav = '<nav class="navigate-pages"><ul>'.$nav.'</ul></nav>';
 			}
 		}
 		$c = '<section class="comicbox">';

@@ -33,8 +33,52 @@ function limitstring($rows_per_page, $getvar = 'page') {
 
 	$offset = ($page - 1) * $rows_per_page;
 	$limitstring = 'LIMIT '.$offset.', '.$rows_per_page;
-	return $limitstring;
 
+	return $limitstring;
+}
+
+function limitstring_nav($pagecount, $getvar = 'page') {
+	if (isset($_GET[$getvar]) && is_numeric($_GET[$getvar])) {
+	  $page = $_GET[$getvar];
+	}
+	else {
+	  $page = 1;
+	}
+
+	if ($page == 1 && $pagecount == 1) {
+		return;
+	}
+
+	// Additional $_GET variables:¨
+	$getcount = count($_GET);
+	$getstring = '';
+	if ($getcount) {
+		foreach ($_GET as $key => $value) {
+			if ($key != $getvar) {
+				$getstring .= '&amp;' . $key . '=' . urlencode($value);
+			}
+		}
+	}
+
+
+	$c = '<nav class="navigate-pages">'."\n";
+	$c .= '<ul>';
+	// Previous page
+	if ($page > 1) {
+		$c .= '<li class="first"><a href="'.NS_URL;
+		if ($getstring)
+			$c .= '?'.substr($getstring, 5);
+		$c .= '">'.__('First page').'</a></li>';
+		$c .= '<li class="prev"><a href="'.NS_URL.'?page='.($page - 1).$getstring.'" rel="prev">'.__('Previous page').'</a></li>';
+	}
+	// Next page
+	if ($page < $pagecount) {
+		$c .= '<li class="next"><a href="'.NS_URL.'?page='.($page + 1).$getstring.'" rel="next">'.__('Next page').'</a></li>';
+		$c .= '<li class="last"><a href="'.NS_URL.'?page='.$pagecount.$getstring.'">'.__('Last page').'</a></li>';
+	}
+	$c .= '</ul>'."\n";
+	$c .= '</nav>'."\n";
+	return $c;
 }
 
 function mysql_install_table($tabname, $cols) {
