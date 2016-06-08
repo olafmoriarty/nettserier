@@ -16,7 +16,7 @@
 	$comicadm_menu->add_line(['text' => __('Edit uploaded comic strips and pages'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/', 'order' => 11]);
 
 $action['frontpage']->add_line(['function' => 'fp_splash', 'order' => 0]);
-$action['frontpage']->add_line(['function' => 'fp_popular', 'order' => 10]);
+$action['frontpage']->add_line(['function' => 'fp_recent', 'order' => 10]);
 
 // Stuff for user feed
 

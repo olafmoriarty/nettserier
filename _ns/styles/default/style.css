@@ -32,6 +32,7 @@ a img {border: none;}
 header {
 	color: #ffffff;
 	background: #000000;
+	position: relative;
 }
 
 header h1 {
@@ -81,6 +82,11 @@ header h1 a {
 	text-decoration: none;
 }
 
+header nav.main-menu {
+	z-index: 100;
+	position: relative;
+}
+
 header nav.main-menu ul {
 	border-top: dotted 1px #ffffff;
 }
@@ -125,13 +131,12 @@ header nav.show-menu ul li a.show-search-link {
 
 nav.user-menu ul li {
 	padding: 0.5em 1em;
-	border-bottom: dotted 1px #808080;
 }
 
 /* Header (comic-specific) */
 
 .comicheader {
-	min-height: 100px;
+	min-height: 150px;
 }
 
 header .titleblock {
@@ -152,11 +157,16 @@ header .titleblock h1.page-title a {
 	background: none;
 }
 
+header .portal-menu {
+	position: relative;
+	z-index: 100;
+}
 header .portal-menu h2 {
 	font-size: 100%;
+	margin-top: 1em;
 	padding: 0.5em 1em;
 	border-bottom: dotted 1px #ffffff;
-	border-top: solid 4px #e8e8e8;
+	border-top: solid 1px #e8e8e8;
 	background: #3d004d;
 }
 
@@ -165,7 +175,34 @@ header .portal-menu ul li {
 	border-bottom: dotted 1px #ffffff;
 }
 
+header .header-buttons {
+	float: right;
+	position: absolute;
+	bottom: .5em;
+	right: .5em;
+}
+header .header-buttons a {
+	display: block;
+	padding: 0 1em;
+	font-weight: bold;
+	border: solid 1px #e8e8e8;
+	border-radius: 1em;
+	box-sizing: content-box;
+	background: #3d004d;
+	line-height: 2em;
+}
 
+header .header-buttons a.following {
+	color: #000000;
+	border: solid 1px #000000;
+	background: #fdcb02;
+}
+
+header .header-buttons a.following:hover {
+	color: #ffffff;
+	border: solid 1px #e8e8e8;
+	background: #aa0000;
+}
 
 /* ------------------------------------------------------------------------ */
 /* MAIN SECTION                                                             */
@@ -759,7 +796,13 @@ footer .copyright {text-align: center;}
 	header.comicheader .main-menu {
 		position: absolute;
 		bottom: 0;
-		left: 46%;
+		left: 0;
+		font-size: 90%;
+		border-top: solid 1px #ffffff;
+	}
+
+	header.comicheader .main-menu ul {
+		border-left: none;
 	}
 	
 	header .portal-menu {

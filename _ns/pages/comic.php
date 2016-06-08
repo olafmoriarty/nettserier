@@ -42,12 +42,21 @@ $header .= str_replace('{comic}', $comic_url, $c_menu->return_ul());
 $header .= "\n";
 $header .= '</nav>'."\n";
 
-// Meny
+// Nettserier.no menu
 $header .= '<nav class="portal-menu" id="portal-menu">'."\n";
 $header .= '<h2><a href="/">'.__(PAGE_TITLE).'</a></h2>';
 $header .= $n_menu->return_ul();
 $header .= "\n";
 $header .= '</nav>'."\n";
+
+// Follow button etc.
+// ArrayHandler Action:
+$header .= '<nav class="header-buttons" id="header-buttons">'."\n";
+$header .= $action['comic_header_buttons']->run($comic_id);
+$header .= '</nav>'."\n";
+
+
+
 
 // Close <header>
 $header .= '</header>'."\n";
@@ -65,6 +74,8 @@ if ($logged_in) {
 // Open main section
 $header .= '<section class="main">'."\n";
 
+// ArrayHandler Action:
+$header .= $action['comic_below_header']->run($comic_id);
 
 // We also need to show the right content.
 
@@ -94,3 +105,4 @@ if (file_exists($content_file)) {
 else {
 	include(NS_PATH.'pages/404.php');
 }
+

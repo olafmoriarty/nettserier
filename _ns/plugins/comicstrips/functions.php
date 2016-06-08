@@ -17,9 +17,9 @@ function fp_splash() {
 	return $c;
 }
 
-function fp_popular() {
+function fp_recent() {
 	$c = '<section class="fp-comics-display">';
-	$c .= '<h2>'.__('Trending comics').'</h2>';
+	$c .= '<h2>'.__('Recent updates').'</h2>';
 	$cc = new ShowComic;
 	$cc->set_count(6);
 	$cc->set_comic_title(true);
