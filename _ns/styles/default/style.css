@@ -180,6 +180,8 @@ header .header-buttons {
 	position: absolute;
 	bottom: .5em;
 	right: .5em;
+	font-size: 120%;
+	z-index: 100;
 }
 header .header-buttons a {
 	display: block;
@@ -283,6 +285,7 @@ header .header-buttons a.following:hover {
 }
 .main .fp-splash .comicbox img {
 	width: 100%;
+	vertical-align: middle;
 }
 
 .main .fp-splash .comicbox:after {
@@ -296,8 +299,15 @@ header .header-buttons a.following:hover {
 	background-image: linear-gradient(transparent, #000000);
 }
 
+.main .fp-splash .comic-para {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 .main .fp-splash .comic-para img {
 	display: inline;
+	vertical-align: middle;
 }
 
 .main .fp-comics-display h2 {
@@ -797,8 +807,10 @@ footer .copyright {text-align: center;}
 		position: absolute;
 		bottom: 0;
 		left: 0;
+		display: block;
 		font-size: 90%;
-		border-top: solid 1px #ffffff;
+		width: 100%;
+		border-top: dotted 1px #e8e8e8;
 	}
 
 	header.comicheader .main-menu ul {

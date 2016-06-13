@@ -5,7 +5,8 @@
 		$submitted = false;
 		$errors = false;
 		$error_array = array();
-		$target_url = '/'.comic_url($arr['comic']).'/comic/'.$arr['slug'].'/';
+		$active_comic = comic_url($arr['comic']);
+		$target_url = '/'.$active_comic.'/comic/'.$arr['slug'].'/';
 		if (isset($_POST['comment_text']) && $_POST['comment_text']) {
 			$submitted = true;
 			if ($logged_in) {
@@ -65,7 +66,12 @@
 				$c .= '</div>';
 				$c .= $r_arr['text'];
 				$c .= '<nav class="comment-meta">';
-				$c .= '<ul><li><a href="">Edit</a></li><li><a href="">Delete</a></li><li><a href="">Report</a></li><li><a href="">Block</a></li></ul>';
+				$comment_menu = new ArrayHandler;
+				if ($logged_in && can_edit_comment($user_info['id'], $r_arr['id'])) {
+					$comment_menu->add_line(['text' => __('Edit'), 'link' => '/'.$active_comic.'/comments/edit/'.$r_arr['id'].'/']);
+					$comment_menu->add_line(['text' => __('Delete'), 'link' => '/'.$active_comic.'/comments/delete/'.$r_arr['id'].'/']);
+				}
+				$c .= $comment_menu->return_ul();
 				$c .= '</nav>';
 				$c .= '</article>';
 			}
@@ -82,7 +88,7 @@
 			if (!$submitted || $errors) {
 				$c .= '<section class="comment-add">';
 				$c .= '<form method="post" name="comment_form" action="'.$target_url.'">'."\n";
-				$c .= input_field(['name' => 'comment_text', 'text' => __('Your comment:'), 'type' => 'textarea']);
+				$c .= input_field(['name' => 'comment_text', 'text' => __('Your comment'), 'type' => 'textarea']);
 				$c .= '<p><input type="submit" name="add_comment_submit" id="add_comment_submit" value="'.__('Add your comment!').'"></p>';
 				$c .= '</form>'."\n";
 				$c .= '</section>';
@@ -98,4 +104,25 @@
 		}
 		$c .= '</section>'."\n";
 		return $c;
+	}
+
+	function can_edit_comment($user, $id) {
+		global $conn;
+		if (!is_numeric($id) || !is_numeric($user)) {
+			return false;
+		}
+
+		$query = 'SELECT c.user, u.comic FROM ns_comments AS c LEFT JOIN ns_updates AS u ON c.parent = u.id WHERE c.id = '.$id.' LIMIT 1';
+		$result = $conn->query($query);
+		$num = $result->num_rows;
+		if ($num) {
+			$arr = $result->fetch_assoc();
+			if ($user == $arr['user']) {
+				return true;
+			}
+			elseif (can_edit_comic($user, comic_url($arr['comic']))) {
+				return true;
+			}
+		}
+		return false;
 	}
