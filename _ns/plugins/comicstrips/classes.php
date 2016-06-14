@@ -114,7 +114,11 @@ class ShowComic {
 	if ($this->maxtime != time()) {
 		$query .= 'u.pubtime <= FROM_UNIXTIME('.$this->maxtime.') AND ';
 	}
-	$query .= 'u.pubtime <= NOW() AND u.published = 1 AND u.updtype IN (\'c\', \'i\') ORDER BY '.$order.' LIMIT '.$count;
+	$query .= 'u.pubtime <= NOW() AND u.published = 1 AND u.updtype IN (\'c\', \'i\') ORDER BY '.$order;
+	
+		if ($count) {
+			$query .= ' LIMIT '.$count;
+		}
 
 //	echo $query;
 //	exit;
