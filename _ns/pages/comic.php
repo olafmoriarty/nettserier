@@ -22,14 +22,14 @@ $header .= '<header class="comicheader">'."\n";
 // Title and creator(s)
 $header .= '<div class="titleblock">';
 $header .= '<h1 class="comic-title"><a href="/'.$comic_url.'/">'.htmlspecialchars($comic_info['name']).'</a></h1>'."\n";
-$header .= '<p>'.str_replace('{creator}', htmlspecialchars($comic_info['creator']), __('by {creator}')).'</p>';
+$header .= '<p>'.str_replace('{creator}', htmlspecialchars($comic_info['creator']), _('by {creator}')).'</p>';
 $header .= '</div>';
 
 // For small screens: Links to show/hide menu and search
 $header .= '<nav class="show-menu" id="show-menu">'."\n";
 $header .= '<ul>';
-$header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'.__('Menu').'</a></li>';
-$header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'.__('Search').'</a></li>';
+$header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'._('Menu').'</a></li>';
+$header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'._('Search').'</a></li>';
 if ($logged_in) {
 	$header .= '<li><a href="" id="show-user-menu-link"><img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($user_info['email']))).'?s=24&amp;d=mm" alt="'.htmlspecialchars($user_info['username']).'"></a></li>';
 }
@@ -44,7 +44,7 @@ $header .= '</nav>'."\n";
 
 // Nettserier.no menu
 $header .= '<nav class="portal-menu" id="portal-menu">'."\n";
-$header .= '<h2><a href="/">'.__(PAGE_TITLE).'</a></h2>';
+$header .= '<h2><a href="/">'.PAGE_TITLE.'</a></h2>';
 $header .= $n_menu->return_ul();
 $header .= "\n";
 $header .= '</nav>'."\n";
@@ -64,9 +64,9 @@ $header .= '</header>'."\n";
 if ($logged_in) {
 	$header .= '<nav class="user-menu" id="user-menu">'."\n";
 	$header .= '<ul>';
-	$header .= '<li><a href="/n/dashboard/">'.str_replace('{n}', htmlspecialchars($user_info['username']), __('{n}\'s dashboard')).'</a></li>';
-	$header .= '<li><a href="/n/dashboard/settings/">'.__('Settings').'</a></li>';
-	$header .= '<li><a href="/n/log-out/">'.__('Log out').'</a></li>';
+	$header .= '<li><a href="/n/dashboard/">'.str_replace('{n}', htmlspecialchars($user_info['username']), _('{n}\'s dashboard')).'</a></li>';
+	$header .= '<li><a href="/n/dashboard/settings/">'._('Settings').'</a></li>';
+	$header .= '<li><a href="/n/log-out/">'._('Log out').'</a></li>';
 	$header .= '</ul>';
 	$header .= '</nav>'."\n";
 }

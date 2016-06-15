@@ -4,10 +4,10 @@ $folder = strtok('/');
 
 if (!$folder) {
 
-	$ns_title = __('My comics');
-$c .= '<h2>'.__('My comics').'</h2>';
+	$ns_title = _('My comics');
+$c .= '<h2>'._('My comics').'</h2>';
 	if (owns_comics($user_info['id'])) {
-		$c .= '<p><a href="/n/dashboard/new-comic/">'.__('Create a new comic').'</a></p>';
+		$c .= '<p><a href="/n/dashboard/new-comic/">'._('Create a new comic').'</a></p>';
 		$query = 'SELECT c.url, c.name FROM ns_comics AS c LEFT JOIN ns_user_comic_rel AS r ON c.id = r.comic WHERE r.user = '.$user_info['id'].' AND r.reltype IN (\'c\', \'e\') ORDER BY c.name';
 		$result = $conn->query($query);
 		while ($arr = $result->fetch_assoc()) {
@@ -16,8 +16,8 @@ $c .= '<h2>'.__('My comics').'</h2>';
 		}
 	}
 	else {
-		$c .= '<p>'.__('You haven\'t created any comics yet.').'</p>';
-		$c .= '<p><a href="/n/dashboard/new-comic/">'.__('Create your first comic now!').'</a></p>';
+		$c .= '<p>'._('You haven\'t created any comics yet.').'</p>';
+		$c .= '<p><a href="/n/dashboard/new-comic/">'._('Create your first comic now!').'</a></p>';
 	}
 }
 else {
@@ -38,6 +38,6 @@ else {
 		}
 	}
 	include($content_file);
-	$c .= '<p><a href="/n/dashboard/my-comics/">'.__('Return to "My comics"').'</a></p>';
+	$c .= '<p><a href="/n/dashboard/my-comics/">'._('Return to "My comics"').'</a></p>';
 	
 }

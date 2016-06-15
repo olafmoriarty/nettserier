@@ -7,13 +7,13 @@
 
 	$c_urls->add_line(['url' => 'comic', 'script' => $tpf.'show-comics.php']);
 
-	$c_menu->add_line(['text' => __('Comic'), 'link' => '/{comic}/comic/', 'order' => 10]);
+	$c_menu->add_line(['text' => _('Comic'), 'link' => '/{comic}/comic/', 'order' => 10]);
 
 	$comicadm_urls->add_line(['url' => 'add-strip', 'script' => $tpf.'add.php']);
-	$comicadm_menu->add_line(['text' => __('Upload new comic strip or page'), 'link' => '/n/dashboard/my-comics/{comic}/add-strip/', 'order' => 10]);
+	$comicadm_menu->add_line(['text' => _('Upload new comic strip or page'), 'link' => '/n/dashboard/my-comics/{comic}/add-strip/', 'order' => 10]);
 
 	$comicadm_urls->add_line(['url' => 'edit-strip', 'script' => $tpf.'edit.php']);
-	$comicadm_menu->add_line(['text' => __('Edit uploaded comic strips and pages'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/', 'order' => 11]);
+	$comicadm_menu->add_line(['text' => _('Edit uploaded comic strips and pages'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/', 'order' => 11]);
 
 $action['frontpage']->add_line(['function' => 'fp_splash', 'order' => 0]);
 $action['frontpage']->add_line(['function' => 'fp_recent', 'order' => 10]);
@@ -66,12 +66,12 @@ if ($feed_settings['comics_mine'] || $feed_settings['comics_i_follow'] || $feed_
 }
 
 // Related to editing comic strips
-$edit_comic_single_menu->add_line(['text' => __('Edit strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/{id}/', 'order' => 10]);
+$edit_comic_single_menu->add_line(['text' => _('Edit strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/{id}/', 'order' => 10]);
 
 
 // Scheduler - MOVE to separate plugin :-)
 $action['edit_strips_submit']->add_line(['function' => 'strip_scheduler']);
 
 // Related to deleting comic strips
-$edit_comic_single_menu->add_line(['text' => __('Delete strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/delete/{id}/', 'order' => 90]);
+$edit_comic_single_menu->add_line(['text' => _('Delete strip'), 'link' => '/n/dashboard/my-comics/{comic}/edit-strip/delete/{id}/', 'order' => 90]);
 

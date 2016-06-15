@@ -25,3 +25,5 @@ mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'blogs_mine IN
 mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'albums_mine INT(1) NOT NULL DEFAULT 1', 'albums_i_follow INT(1) NOT NULL DEFAULT 1', 'albums_other INT(1) NOT NULL DEFAULT 0']);
 
 mysql_install_table('ns_comments', ['parent INT(10) NOT NULL', 'user INT(10) NOT NULL', 'text TEXT NOT NULL', 'ip VARCHAR(45) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP']);
+
+mysql_install_table('ns_languages', ['root VARCHAR(2) NOT NULL', 'fullcode VARCHAR(10) NOT NULL', 'name VARCHAR(50) NOT NULL']);

@@ -19,11 +19,11 @@ if ($folder && is_numeric($folder)) {
 		$c .= '<h2>'.htmlspecialchars($arr['username']).'</h2>';
 		$c .= '<p class="profile_pic">'.avatar($user).'</p>';
 
-		$c .= '<h3>'.__('My comics').'</h3>';
-		$c .= '<p>'.__('{name} hasn\'t created any comics yet.').'</p>';
+		$c .= '<h3>'._('My comics').'</h3>';
+		$c .= '<p>'._('{name} hasn\'t created any comics yet.').'</p>';
 
-		$c .= '<h3>'.__('Comics I follow').'</h3>';
-		$c .= '<p>'.__('{name} isn\'t following any comics yet.').'</p>';
+		$c .= '<h3>'._('Comics I follow').'</h3>';
+		$c .= '<p>'._('{name} isn\'t following any comics yet.').'</p>';
 	}
 
 }

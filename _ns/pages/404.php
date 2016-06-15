@@ -1,7 +1,8 @@
 <?php
 header('HTTP/1.0 404 Not Found');
-$ns_title = __('Four Zero Four');
-$c .= '<h2>'.__('Four Zero Four').'</h2>';
-$c .= '<p>'.__('Well... This is awkward. We seem to have misplaced the page you\'re looking for. That\'s a bit embarrassing. We\'re very sorry.').'</p>';
-$c .= '<p>fhfxkfgjfdjgfc</p>';
+$ns_title = _('404: Page not found');
+$c .= '<h2>'._('404: Page not found').'</h2>';
+$c .= '<p>'._('Well... This is awkward. We can\'t find the page you\'re looking for. No idea where it could be.').'</p>';
+
+$c .= '<p>'._('Here are a few suggestions:').'</p>';
 ?>

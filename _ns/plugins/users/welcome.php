@@ -1,3 +1,3 @@
 <?php
-$ns_title = __('Registration successful!');
+$ns_title = _('Registration successful!');
 $c .= 'Welcome to Nettserier! Here\'s a few facts.';

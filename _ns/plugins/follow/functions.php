@@ -8,10 +8,10 @@ function follow_button($comic) {
 	}
 
 	if (is_following($user_info['id'], $comic)) {
-		return '<a href="/'.$url.'/follow/?do=unfollow&amp;returnurl='.urlencode(NS_URL).'" class="following" title="'.__('Unfollow this comic').'">'.__('Following').'</a>';
+		return '<a href="/'.$url.'/follow/?do=unfollow&amp;returnurl='.urlencode(NS_URL).'" class="following" title="'._('Unfollow this comic').'">'._('Following').'</a>';
 	}
 	else {
-		return '<a href="/'.$url.'/follow/?returnurl='.urlencode(NS_URL).'">'.__('Follow').'</a>';
+		return '<a href="/'.$url.'/follow/?returnurl='.urlencode(NS_URL).'">'._('Follow').'</a>';
 	}
 }
 

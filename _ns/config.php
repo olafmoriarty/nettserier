@@ -65,6 +65,7 @@ $filter['html'] = new ActionHook('filter');
 $action = array();
 $action['edit_strips_submit'] = new ActionHook();
 $action['frontpage'] = new ActionHook();
+$action['footer'] = new ActionHook();
 $action['delete_comic'] = new ActionHook();
 
 $action['showcomic_text_after'] = new ActionHook();
@@ -80,6 +81,81 @@ $head->add_line(['text' => '<script>document.cookie=\'resolution=\'+Math.max(scr
 
 define('PAGE_TITLE', 'Nettserier.no');
 $ns_tsep = ' :: ';
+
+// ---------------------------------------------------------------------------
+// LOCALIZATION
+// ---------------------------------------------------------------------------
+
+$locale = '';
+$gt_languages = ['nn', 'nb', 'en'];
+$gt_locales = ['nn' => 'nn_NO', 'nb' => 'nb_NO', 'en' => 'en_US'];
+
+if (isset($_GET['language']) && in_array($_GET['language'], $gt_locales)) {
+	$locale = $_GET['language'];
+	setcookie('language', $_GET['language'], time() + (60 * 60 * 24 * 365), '/');
+}
+elseif (isset($_COOKIE['language']) && in_array($_COOKIE['language'], $gt_locales)) {
+	$locale = $_COOKIE['language'];
+}
+else {
+	$httplangs_arr = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	$httplangs_count = count($httplangs_arr);
+	$http_languages = array();
+	$http_priorities = array();
+	for ($i = 0; $i < $httplangs_count; $i++) {
+		$tmp_arr = explode(';q=', $httplangs_arr[$i]);
+		$shortcode = substr($tmp_arr[0], 0, 2);
+		if (isset($tmp_arr[1]) && $tmp_arr[1]) {
+			$priority = $tmp_arr[1];
+		}
+		else {
+			$priority = 1;
+		}
+		if (in_array($shortcode, $http_languages)) {
+			reset($http_languages);
+			while ($lang_code = current($http_languages)) {
+				if ($lang_code == $shortcode) {
+					$key = key($http_languages);
+					break;
+				}
+				next($http_languages);
+			}
+			if ($priority > $http_priorities[$key]) {
+				$http_priorities[$key] = $priority;
+			}
+		}
+		else {
+			$http_languages[] = $shortcode;
+			$http_priorities[] = $priority;
+		}
+	}
+	array_multisort($http_priorities, SORT_DESC, $http_languages);
+	$httplangs_count = count($http_languages);
+	for ($i = 0; $i < $httplangs_count; $i++) {
+		if (in_array($http_languages[$i], $gt_languages)) {
+			$locale = $gt_locales[$http_languages[$i]];
+			break;
+		}
+	}
+}
+if (!$locale) {
+	$locale = 'en_US';
+}
+
+
+putenv('LANG='.$locale.'.UTF8'); 
+setlocale(LC_ALL, $locale.'.UTF8');
+
+$gtdomain = 'nettserier';
+
+if (isset($_GET['special']) && $_GET['special'] == 'language') {
+	bindtextdomain($gtdomain, NS_PATH.'translation/nocache'); 
+}
+bindtextdomain($gtdomain, NS_PATH.'translation'); 
+bind_textdomain_codeset($gtdomain, 'UTF-8');
+
+textdomain($gtdomain);
+
 
 // ---------------------------------------------------------------------------
 // LOG IN (stolen from https://github.com/peredurabefrog/phpSecureLogin/)

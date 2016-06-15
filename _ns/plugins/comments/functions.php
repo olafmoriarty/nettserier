@@ -54,7 +54,7 @@
 		$num = $result->num_rows;
 
 		if ($num) {
-			$c .= '<h4>'.str_replace('{n}', $num, __('{n} comments')).'</h4>';
+			$c .= '<h4>'.str_replace('{n}', $num, _('{n} comments')).'</h4>';
 
 			// Print comments
 			while ($r_arr = $result->fetch_assoc()) {
@@ -68,8 +68,8 @@
 				$c .= '<nav class="comment-meta">';
 				$comment_menu = new ArrayHandler;
 				if ($logged_in && can_edit_comment($user_info['id'], $r_arr['id'])) {
-					$comment_menu->add_line(['text' => __('Edit'), 'link' => '/'.$active_comic.'/comments/edit/'.$r_arr['id'].'/']);
-					$comment_menu->add_line(['text' => __('Delete'), 'link' => '/'.$active_comic.'/comments/delete/'.$r_arr['id'].'/']);
+					$comment_menu->add_line(['text' => _('Edit'), 'link' => '/'.$active_comic.'/comments/edit/'.$r_arr['id'].'/']);
+					$comment_menu->add_line(['text' => _('Delete'), 'link' => '/'.$active_comic.'/comments/delete/'.$r_arr['id'].'/']);
 				}
 				$c .= $comment_menu->return_ul();
 				$c .= '</nav>';
@@ -77,10 +77,10 @@
 			}
 
 			
-			$c .= '<h4>'.__('Join the discussion!').'</h4>'."\n";
+			$c .= '<h4>'._('Join the discussion!').'</h4>'."\n";
 		}
 		else {
-			$c .= '<h4>'.__('Write a comment!').'</h4>'."\n";
+			$c .= '<h4>'._('Write a comment!').'</h4>'."\n";
 		}
 
 		if ($logged_in) {
@@ -88,8 +88,8 @@
 			if (!$submitted || $errors) {
 				$c .= '<section class="comment-add">';
 				$c .= '<form method="post" name="comment_form" action="'.$target_url.'">'."\n";
-				$c .= input_field(['name' => 'comment_text', 'text' => __('Your comment'), 'type' => 'textarea']);
-				$c .= '<p><input type="submit" name="add_comment_submit" id="add_comment_submit" value="'.__('Add your comment!').'"></p>';
+				$c .= input_field(['name' => 'comment_text', 'text' => _('Your comment'), 'type' => 'textarea']);
+				$c .= '<p><input type="submit" name="add_comment_submit" id="add_comment_submit" value="'._('Add your comment!').'"></p>';
 				$c .= '</form>'."\n";
 				$c .= '</section>';
 
@@ -99,7 +99,7 @@
 		}
 		else {
 			$c .= '<section class="comment-add">';
-			$c .= '<p><a href="/n/log-in/?returnurl='.urlencode('/'.comic_url($arr['comic']).'/comic/'.$arr['slug'].'/').'">'.__('Log in to add your comment!').'</a></p>'."\n";
+			$c .= '<p><a href="/n/log-in/?returnurl='.urlencode('/'.comic_url($arr['comic']).'/comic/'.$arr['slug'].'/').'">'._('Log in to add your comment!').'</a></p>'."\n";
 			$c .= '</section>';
 		}
 		$c .= '</section>'."\n";

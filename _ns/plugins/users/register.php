@@ -1,9 +1,9 @@
 <?php
-$ns_title = __('Register new user');
+$ns_title = _('Register new user');
 if ($logged_in) {
-    $c .= '<h2>'.__('Register new user').'</h2>'."\n";
-	$c .= '<p>'.__('You can\'t register - you are already logged in.').'</p>';
-	$c .= '<p><a href="/n/log-out/">'.__('Log out').'</a></p>'."\n";
+    $c .= '<h2>'._('Register new user').'</h2>'."\n";
+	$c .= '<p>'._('You can\'t register - you are already logged in.').'</p>';
+	$c .= '<p><a href="/n/log-out/">'._('Log out').'</a></p>'."\n";
 }
 else {
 
@@ -16,37 +16,37 @@ else {
     $submitted = true;
 
     // VALIDATE DATA AND ADD TO DATABASE
-    if ($err = validate_input(['check' => 'unique', 'input' => 'reg_username', 'field' => 'username', 'table' => 'ns_users', 'error' => __('Sorry! The chosen username is already in use.')])) {
+    if ($err = validate_input(['check' => 'unique', 'input' => 'reg_username', 'field' => 'username', 'table' => 'ns_users', 'error' => _('Sorry! The chosen username is already in use.')])) {
       $error_array['reg_username'] = $err;
       $errors = true;
     }
 
-    if ($err = validate_input(['check' => 'empty', 'input' => 'reg_username', 'error' => __('Username can\'t be blank.')])) {
+    if ($err = validate_input(['check' => 'empty', 'input' => 'reg_username', 'error' => _('Username can\'t be blank.')])) {
       $error_array['reg_username'] = $err;
       $errors = true;
     }
 
-    if ($err = validate_input(['check' => 'email', 'input' => 'reg_email', 'error' => __('This is not a valid e-mail address.')])) {
+    if ($err = validate_input(['check' => 'email', 'input' => 'reg_email', 'error' => _('This is not a valid e-mail address.')])) {
       $error_array['reg_email'] = $err;
       $errors = true;
     }
 
-    if ($err = validate_input(['check' => 'empty', 'input' => 'reg_email', 'error' => __('E-mail address can\'t be blank.')])) {
+    if ($err = validate_input(['check' => 'empty', 'input' => 'reg_email', 'error' => _('E-mail address can\'t be blank.')])) {
       $error_array['reg_email'] = $err;
       $errors = true;
     }
 
-    if ($err = validate_input(['check' => 'unique', 'input' => 'reg_email', 'table' => 'ns_users', 'field' => 'email', 'error' => __('This e-mail address is already registered.')])) {
+    if ($err = validate_input(['check' => 'unique', 'input' => 'reg_email', 'table' => 'ns_users', 'field' => 'email', 'error' => _('This e-mail address is already registered.')])) {
       $error_array['reg_email'] = $err;
       $errors = true;
     }
     
-    if ($err = validate_input(['check' => 'empty', 'input' => 'reg_pass', 'error' => __('Password can\'t be blank.')])) {
+    if ($err = validate_input(['check' => 'empty', 'input' => 'reg_pass', 'error' => _('Password can\'t be blank.')])) {
       $error_array['reg_pass'] = $err;
       $errors = true;
     }
 
-    if ($err = validate_input(['check' => 'matching', 'input2' => 'reg_pass', 'input' => 'reg_pass2', 'error' => __('The "Password" and "Confirm password" fields don\'t match.')])) {
+    if ($err = validate_input(['check' => 'matching', 'input2' => 'reg_pass', 'input' => 'reg_pass2', 'error' => _('The "Password" and "Confirm password" fields don\'t match.')])) {
       $error_array['reg_pass2'] = $err;
       $errors = true;
     }
@@ -95,9 +95,9 @@ else {
 	  // Send user welcome e-mail with e-mail verification token
 
 		$email_sender = 'post@nettserier.no';
-	  $email_text = str_replace(array('{username}', '{pagetitle}', '{url}'), array($_POST['reg_username'], PAGE_TITLE, NS_DOMAIN.'/n/email-verify/'.$emailtoken), __('Dear {username},'."\r\n\r\n".'Welcome to {pagetitle}! We hope you will enjoy our wide selection of user-generated comics - or perhaps even add one (or more!) of your own?'."\r\n\r\n".'Your registration is almost complete. To finish it, we just need you to click this link to confirm that this is actually your e-mail address:'."\r\n".'{url}'."\r\n\r\n".'Have a wonderful day!'."\r\n\r\n".'Best wishes,'."\r\n".'{pagetitle}'))."\n";
+	  $email_text = str_replace(array('{username}', '{pagetitle}', '{url}'), array($_POST['reg_username'], PAGE_TITLE, NS_DOMAIN.'/n/email-verify/'.$emailtoken), _('Dear {username},'."\n\n".'Welcome to {pagetitle}! We hope you will enjoy our wide selection of user-generated comics - or perhaps even add one (or more!) of your own?'."\n\n".'Your registration is almost complete. To finish it, we just need you to click this link to confirm that this is actually your e-mail address:'."\n".'{url}'."\n\n".'Have a wonderful day!'."\n\n".'Best wishes,'."\n".'{pagetitle}'))."\n";
 
-	  mail($_POST['reg_email'], str_replace('{pagetitle}', PAGE_TITLE, __('{pagetitle} Registration Confirmation')), $email_text, 'From: "'.PAGE_TITLE.'" <'.$email_sender.'>');
+	  mail($_POST['reg_email'], str_replace('{pagetitle}', PAGE_TITLE, _('{pagetitle} Registration Confirmation')), $email_text, 'From: "'.PAGE_TITLE.'" <'.$email_sender.'>');
 
       header('Location: '.NS_DOMAIN.'/n/welcome/');
       exit;
@@ -108,13 +108,13 @@ else {
   if (!$submitted || $errors) {
     
     // Registration form
-    $c .= '<h2>'.__('Register new user').'</h2>'."\n";
+    $c .= '<h2>'._('Register new user').'</h2>'."\n";
     $c .= '<form method="post" name="registration_form" action="/n/register/">'."\n";
-    $c .= input_field(['name' => 'reg_username', 'text' => __('Your preferred username')]);
-    $c .= input_field(['name' => 'reg_email', 'text' => __('Your e-mail')]);
-    $c .= input_field(['name' => 'reg_pass', 'text' => __('Your password'), 'type' => 'password']);
-    $c .= input_field(['name' => 'reg_pass2', 'text' => __('Repeat password'), 'type' => 'password']);
-    $c .= '<p><input type="submit" name="reg_button" id="reg_button" value="'.__('Register!').'"></p>';
+    $c .= input_field(['name' => 'reg_username', 'text' => _('Your preferred username')]);
+    $c .= input_field(['name' => 'reg_email', 'text' => _('Your e-mail')]);
+    $c .= input_field(['name' => 'reg_pass', 'text' => _('Your password'), 'type' => 'password']);
+    $c .= input_field(['name' => 'reg_pass2', 'text' => _('Repeat password'), 'type' => 'password']);
+    $c .= '<p><input type="submit" name="reg_button" id="reg_button" value="'._('Register!').'"></p>';
     $c .= '</form>'."\n";
   }
 }

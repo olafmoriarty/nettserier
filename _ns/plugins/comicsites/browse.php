@@ -4,8 +4,8 @@
 
 $rows = 50;
 
-$ns_title = __('Browse comics');
-$c .= '<h2>'.__('Browse comics').'</h2>';
+$ns_title = _('Browse comics');
+$c .= '<h2>'._('Browse comics').'</h2>';
 
 
 $order_fields = ['updated' => 't1.last_update', 'name' => 't1.name', 'creator' => 'creator'];
@@ -45,9 +45,9 @@ $c .= $navigation;
 
 	$c .= '<table class="browse-table">'."\n";
 		$c .= '<tr>'."\n";
-		$c .= '<th><a href="'.NS_URL.'?order=name'.maybedesc('name').'">'.__('Name').'</a></th>'."\n";
-		$c .= '<th><a href="'.NS_URL.'?order=creator'.maybedesc('creator').'">'.__('Creator').'</a></th>'."\n";
-		$c .= '<th><a href="'.NS_URL.'?order=updated'.maybedesc('updated', true).'">'.__('Last update').'</a></th>'."\n";
+		$c .= '<th><a href="'.NS_URL.'?order=name'.maybedesc('name').'">'._('Name').'</a></th>'."\n";
+		$c .= '<th><a href="'.NS_URL.'?order=creator'.maybedesc('creator').'">'._('Creator').'</a></th>'."\n";
+		$c .= '<th><a href="'.NS_URL.'?order=updated'.maybedesc('updated', true).'">'._('Last update').'</a></th>'."\n";
 		$c .= '</tr>'."\n";
 	while ($arr = $result->fetch_assoc()) {
 		$c .= '<tr>'."\n";

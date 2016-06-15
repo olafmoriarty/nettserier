@@ -9,8 +9,8 @@ if ($folder == 'edit' || $folder == 'delete') {
 		exit;
 	}
 	elseif (!$logged_in || !can_edit_comment($user_info['id'], $comment_id)) {
-		$c .= '<h2>'.__('Error: Can\'t edit comment').'</h2>';
-		$c .= '<p>'.__('You don\'t have access to edit or delete this comment.').'</p>';
+		$c .= '<h2>'._('Error: Can\'t edit comment').'</h2>';
+		$c .= '<p>'._('You don\'t have access to edit or delete this comment.').'</p>';
 	}
 	else {
 
@@ -54,7 +54,7 @@ if ($folder == 'edit' || $folder == 'delete') {
 				// Comment text
 				if ($_POST['comment_text'] && ($_POST['comment_text'] != $old_values['comment_text'])) {
 				
-					if ($err = validate_input(['check' => 'empty', 'input' => 'comment_text', 'error' => __('Comment can\'t be blank!')])) {
+					if ($err = validate_input(['check' => 'empty', 'input' => 'comment_text', 'error' => _('Comment can\'t be blank!')])) {
 					  $error_array['comment_text'] = $err;
 					  $errors = true;
 					}
@@ -91,21 +91,21 @@ if ($folder == 'edit' || $folder == 'delete') {
 
 		if (!$submitted || $errors) {
 			if ($folder == 'edit') {
-				$c .= '<h2>'.__('Edit comment').'</h2>';
-				$buttontext = __('Deploy changes!');
+				$c .= '<h2>'._('Edit comment').'</h2>';
+				$buttontext = _('Deploy changes!');
 			}
 			elseif ($folder == 'delete') {
-				$c .= '<h2>'.__('Delete comment').'</h2>';
-				$buttontext = __('Yes, delete comment');
+				$c .= '<h2>'._('Delete comment').'</h2>';
+				$buttontext = _('Yes, delete comment');
 			}
 
 			$c .= '<form method="post" action="'.NS_URL.'">'."\n";
 
 			if ($folder == 'edit') {
-				$c .= input_field(['name' => 'comment_text', 'text' => __('Your comment'), 'type' => 'textarea', 'value' => $old_values['text']]);
+				$c .= input_field(['name' => 'comment_text', 'text' => _('Your comment'), 'type' => 'textarea', 'value' => $old_values['text']]);
 			}
 			elseif ($folder == 'delete') {
-				$c .= '<p>'.__('Are you sure you want to delete this comment?').'</p>';
+				$c .= '<p>'._('Are you sure you want to delete this comment?').'</p>';
 			}
 			$c .= '<p><input type="submit" name="comment_edit_submit" id="comment_edit_submit" value="'.$buttontext.'"></p>';
 			$c .= '</form>'."\n";

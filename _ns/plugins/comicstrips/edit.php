@@ -225,11 +225,11 @@ elseif ($folder == 'delete' || (isset($_POST['bulk']) && $_POST['bulk'] == 'dele
 
 		if ($num) {
 
-			$ns_title = __('Delete comic strips or pages');
-			$c .= '<h2>'.__('Delete comic strips or pages').'</h2>'."\n";
+			$ns_title = _('Delete comic strips or pages');
+			$c .= '<h2>'._('Delete comic strips or pages').'</h2>'."\n";
 
 			$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/delete">';
-			$c .= '<p>'.__('Are you sure you want to delete these comic strips?').'</p>';
+			$c .= '<p>'._('Are you sure you want to delete these comic strips?').'</p>';
 			$c .= '<ul>';
 			$ids = array();
 			while ($arr = $result->fetch_assoc()) {
@@ -238,7 +238,7 @@ elseif ($folder == 'delete' || (isset($_POST['bulk']) && $_POST['bulk'] == 'dele
 					$c .= htmlspecialchars($arr['title']);
 				}
 				else {
-					$c .= __('No title');
+					$c .= _('No title');
 				}
 				$c .= ' - <a href="/_ns/files/'.md5($arr['id'] . $arr['imgtype']).'.'.$arr['imgtype'].'" target="_blank">'.htmlspecialchars($arr['filename']).'</a>';
 				$c .= '</li>';
@@ -246,7 +246,7 @@ elseif ($folder == 'delete' || (isset($_POST['bulk']) && $_POST['bulk'] == 'dele
 			}
 			$c .= '</ul>';
 			$c .= '<input type="hidden" name="delete_ids" value="'.htmlspecialchars(serialize($ids)).'">';
-			$c .= '<p><input type="submit" value="'.__('Yes, delete them!').'"></p>';
+			$c .= '<p><input type="submit" value="'._('Yes, delete them!').'"></p>';
 			$c .= '</form>';
 		}
 		else {
@@ -294,23 +294,23 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 		// Comic exists
 
 		if ($folder == 'drafts') {
-			$ns_title = __('Edit drafts');
+			$ns_title = _('Edit drafts');
 			if ($_GET['uploaded']) {
-				$c .= '<h2>'.str_replace('{comic}', htmlspecialchars($comicname), __('Upload new comic strip or page for "{comic}"')).'</h2>'."\n";
-				$c .= '<h3>'.__('Step two: Edit metadata').'</h3>'."\n";
-				$c .= '<p>'.__('(Psst! Your comic strips are now uploaded and saved as drafts. If for some reason you abort the operation now, you can always come back to this page by clicking "Edit drafts" under "Edit comic strips and pages" in your dashboard.)').'</p>';
+				$c .= '<h2>'.str_replace('{comic}', htmlspecialchars($comicname), _('Upload new comic strip or page for "{comic}"')).'</h2>'."\n";
+				$c .= '<h3>'._('Step two: Edit metadata').'</h3>'."\n";
+				$c .= '<p>'._('(Psst! Your comic strips are now uploaded and saved as drafts. If for some reason you abort the operation now, you can always come back to this page by clicking "Edit drafts" under "Edit comic strips and pages" in your dashboard.)').'</p>';
 			}
 			else {
-				$c .= '<h2>'.__('Edit drafts').'</h2>'."\n";
+				$c .= '<h2>'._('Edit drafts').'</h2>'."\n";
 			}
 		}
 		elseif ($num > 1) {
-			$ns_title = __('Edit comic strips or pages');
-			$c .= '<h2>'.__('Edit comic strips or pages').'</h2>'."\n";
+			$ns_title = _('Edit comic strips or pages');
+			$c .= '<h2>'._('Edit comic strips or pages').'</h2>'."\n";
 		}
 		else {
-			$ns_title = __('Edit comic strip or page');
-			$c .= '<h2>'.__('Edit comic strip or page').'</h2>'."\n";
+			$ns_title = _('Edit comic strip or page');
+			$c .= '<h2>'._('Edit comic strip or page').'</h2>'."\n";
 		}
 		$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/">'."\n";
 
@@ -329,7 +329,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 				$comic_title = htmlspecialchars($old_values['title']);
 			}
 			else {
-				$comic_title = __('No title');
+				$comic_title = _('No title');
 			}
 
 			$c .= '<p class="edit-image-preview"><img src="/_ns/files/'.md5($old_values['id'] . $old_values['imgtype']).'.'.$old_values['imgtype'].'" alt="'.$comic_title.'"></p>'."\n";
@@ -338,14 +338,14 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= '<legend>'.htmlspecialchars($old_values['filename']).'</legend>'."\n";
 
 
-			$c .= input_field(['name' => 'comic-title-'.$id, 'text' => __('Title (optional)'), 'value' => $old_values['title']]);
+			$c .= input_field(['name' => 'comic-title-'.$id, 'text' => _('Title (optional)'), 'value' => $old_values['title']]);
 			$c .= '<fieldset class="pubtime-single">'."\n";
-			$c .= '<legend>'.__('Publication time:').'</legend>'."\n";
+			$c .= '<legend>'._('Publication time:').'</legend>'."\n";
 			$c .= '<ul><li><input name="comic-pubradio-'.$id.'" type="radio" value="now"';
 			if (!$old_values['pubtime']) {
 				$c .= ' checked="checked"';
 			}
-			$c .= '> '.__('The moment I press the "Publish" button"').'</li>'."\n";
+			$c .= '> '._('The moment I press the "Publish" button"').'</li>'."\n";
 			$c .= '<li><input name="comic-pubradio-'.$id.'" type="radio" value="time"';
 			if ($old_values['pubtime']) {
 				$c .= ' checked="checked"';
@@ -353,7 +353,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			}
 			$c .= '> At the following time:<br>'."\n".input_field(['name' => 'comic-datetime-'.$id, 'type' => 'datetime', 'class' => 'dateandtime', 'value' => $old_values['pubtime']]).'</li></ul></fieldset>'."\n";
 
-			$c .= input_field(['name' => 'comic-desc-'.$id, 'text' => __('Description (optional)'), 'type' => 'textarea', 'class' => 'wysiwyg', 'value' => $old_values['text']]);
+			$c .= input_field(['name' => 'comic-desc-'.$id, 'text' => _('Description (optional)'), 'type' => 'textarea', 'class' => 'wysiwyg', 'value' => $old_values['text']]);
 			$c .= '<input type="hidden" name="comic-order-'.$id.'" class="order" value="'.(++$i).'">'."\n";
 			$c .= '</fieldset>'."\n";
 			$c .= '</div>'."\n";
@@ -364,35 +364,35 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 		if ($num > 1) {
 			$body_js->add_js(['js' => '/_ns/plugins/comicstrips/comic-strips-mass-edit.js']);
 			$c .= '<fieldset class="bulk-schedule-change">'."\n";
-			$c .= '<legend>'.__('Bulk schedule change').'</legend>'."\n";
-			$c .= '<p>'.str_replace('{num}', $num, __('You are editing {num} comic strips or pages. You can select a publication time for each strip/page separately, or you can use one of these bulk options:')).'</p>'."\n";
+			$c .= '<legend>'._('Bulk schedule change').'</legend>'."\n";
+			$c .= '<p>'.str_replace('{num}', $num, _('You are editing {num} comic strips or pages. You can select a publication time for each strip/page separately, or you can use one of these bulk options:')).'</p>'."\n";
 			$c .= '<ul>'."\n";
 			$c .= '<li><input type="radio" name="schedule" value="nobulk"';
 			if ($has_dates) {
 				$c .= ' checked="checked"';
 			}
-			$c .= '> '.__('Choose publication time individually for each strip').'</li>';
+			$c .= '> '._('Choose publication time individually for each strip').'</li>';
 			$c .= '<li><input type="radio" name="schedule" value="sametime"';
 			if (!$has_dates) {
 				$c .= ' checked="checked"';
 			}
-			$c .= '> '.__('Publish all comic strips at the same time');
+			$c .= '> '._('Publish all comic strips at the same time');
 			$c .= '<ul>'."\n";
-			$c .= '<li><input type="radio" name="schedule-sametime" value="now" checked="checked"> '.__('The moment I press the "Publish" button').'</li>'."\n";
-			$c .= '<li><input type="radio" name="schedule-sametime" value="time"> '.__('At the following time:').'<br>'."\n";
+			$c .= '<li><input type="radio" name="schedule-sametime" value="now" checked="checked"> '._('The moment I press the "Publish" button').'</li>'."\n";
+			$c .= '<li><input type="radio" name="schedule-sametime" value="time"> '._('At the following time:').'<br>'."\n";
 			$c .= input_field(['name' => 'sametime-datetime', 'type' => 'datetime', 'class' => 'dateandtime']);
 			$c .= '</li>';
 			$c .= '</ul>';
 			$c .= '</li>';
 
 			$schedulefirst = '<ul>'."\n".
-				'<li><input type="radio" name="schedule-schedule-first" value="now" checked="checked"> '.__('The moment I press the "Publish" button').'</li>'."\n".
-				'<li><input type="radio" name="schedule-schedule-first" value="time"> '.__('At the following time:').'<br>'."\n".
+				'<li><input type="radio" name="schedule-schedule-first" value="now" checked="checked"> '._('The moment I press the "Publish" button').'</li>'."\n".
+				'<li><input type="radio" name="schedule-schedule-first" value="time"> '._('At the following time:').'<br>'."\n".
 				input_field(['name' => 'schedule-first-datetime', 'type' => 'datetime', 'class' => 'dateandtime']).
 				'</li>'.
 				'</ul>';
 
-			$weekdays_array = [__('Monday'), __('Tuesday'), __('Wednesday'), __('Thursday'), __('Friday'), __('Saturday'), __('Sunday')];
+			$weekdays_array = [_('Monday'), _('Tuesday'), _('Wednesday'), _('Thursday'), _('Friday'), _('Saturday'), _('Sunday')];
 			$weekdays_checked = [1, 2, 3, 4, 5];			
 
 			$weekdays = '<ul class="weekdays">';
@@ -401,24 +401,24 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 				if (in_array(($i + 1), $weekdays_checked)) {
 					$weekdays .= ' checked="checked"';
 				}
-				$weekdays .= '> '.__($weekdays_array[$i]).'</li>';
+				$weekdays .= '> '.$weekdays_array[$i].'</li>';
 			}
 			$weekdays .= '</ul>';
 
-			$c .= '<li><input type="radio" name="schedule" value="schedule"> '.__('Set a publication schedule');
+			$c .= '<li><input type="radio" name="schedule" value="schedule"> '._('Set a publication schedule');
 			$c .= '<ul>';
-			$c .= '<li>'.str_replace('{time}', $schedulefirst, __('The first strip should be published {time}')).'</li>';
-			$c .= '<li>'.str_replace('{weekdays}', $weekdays, __('After that, publish a new strip every {weekdays}')).'</li>';
+			$c .= '<li>'.str_replace('{time}', $schedulefirst, _('The first strip should be published {time}')).'</li>';
+			$c .= '<li>'.str_replace('{weekdays}', $weekdays, _('After that, publish a new strip every {weekdays}')).'</li>';
 			$c .= '</ul>';
 			$c .= '</li>';
-			$c .= '<li><input type="radio" name="schedule" value="album"> '.__('Create an album');
+			$c .= '<li><input type="radio" name="schedule" value="album"> '._('Create an album');
 			$c .= '<ul>';
-			$c .= '<li>'.input_field(['name' => 'album_title', 'text' => __('Album title')]).'</li>';
-			$c .= '<li>'.input_field(['name' => 'album_desc', 'text' => __('Album description'), 'type' => 'textarea', 'class' => 'wysiwyg']).'</li>';
-			$c .= '<li>'.__('Album publication time');
+			$c .= '<li>'.input_field(['name' => 'album_title', 'text' => _('Album title')]).'</li>';
+			$c .= '<li>'.input_field(['name' => 'album_desc', 'text' => _('Album description'), 'type' => 'textarea', 'class' => 'wysiwyg']).'</li>';
+			$c .= '<li>'._('Album publication time');
 			$c .= '<ul>'."\n";
-			$c .= '<li><input type="radio" name="schedule-album" value="now" checked="checked"> '.__('The moment I press the "Publish" button').'</li>'."\n";
-			$c .= '<li><input type="radio" name="schedule-album" value="time"> '.__('At the following time:').'<br>'."\n";
+			$c .= '<li><input type="radio" name="schedule-album" value="now" checked="checked"> '._('The moment I press the "Publish" button').'</li>'."\n";
+			$c .= '<li><input type="radio" name="schedule-album" value="time"> '._('At the following time:').'<br>'."\n";
 			$c .= input_field(['name' => 'album-datetime', 'type' => 'datetime', 'class' => 'dateandtime']);
 			$c .= '</li>';
 			$c .= '</ul>';
@@ -430,8 +430,8 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 		}
 
 
-		$c .= '<p><input type="submit" name="save-draft" value="'.__('Save as draft').'"></p>'."\n";
-		$c .= '<p><input type="submit" name="save-publish" value="'.__('Save and publish').'"></p>'."\n";
+		$c .= '<p><input type="submit" name="save-draft" value="'._('Save as draft').'"></p>'."\n";
+		$c .= '<p><input type="submit" name="save-publish" value="'._('Save and publish').'"></p>'."\n";
 		$c .= '</form>';
 	}
 	else {
@@ -442,8 +442,8 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 else {
 	// No comic to edit is selected
 
-	$ns_title = __('Edit comic strips and pages');
-	$c .= '<h2>'.__('Edit comic strips and pages').'</h2>';
+	$ns_title = _('Edit comic strips and pages');
+	$c .= '<h2>'._('Edit comic strips and pages').'</h2>';
 
 	$query = 'SELECT id, imgtype, title, pubtime, published, filename FROM ns_updates WHERE comic = '.$active_comic_id.' AND updtype = \'c\' ORDER BY published ASC, pubtime DESC, id DESC';
 	
@@ -451,12 +451,12 @@ else {
 	$num = $result->num_rows;
 
 	if ($num){
-		$c .= '<p>'.__('To edit a single strip/page, click it below. To edit multiple strips/pages, use the checkboxes to select them and then choose "Edit" from "Bulk actions" below.').'</p>';
+		$c .= '<p>'._('To edit a single strip/page, click it below. To edit multiple strips/pages, use the checkboxes to select them and then choose "Edit" from "Bulk actions" below.').'</p>';
 
 		$query = 'SELECT id FROM ns_updates WHERE comic = '.$active_comic_id.' AND updtype = \'c\' AND published = 0';
 		$drafts_result = $conn->query($query);
 		if ($drafts_result->num_rows) {
-			$c .= '<p><a href="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/drafts/">'.__('Edit all drafts').'</a></p>';
+			$c .= '<p><a href="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/drafts/">'._('Edit all drafts').'</a></p>';
 		}
 
 		$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/">'."\n";
@@ -474,7 +474,7 @@ else {
 				$comic_title = htmlspecialchars($arr['title']);
 			}
 			else {
-				$comic_title = __('No title');
+				$comic_title = _('No title');
 			}
 
 			// Image
@@ -503,13 +503,13 @@ else {
 			// Published status
 			$c .= '<td class="date-cell">';
 			if (!$arr['published']) {
-				$c .= __('Draft');
+				$c .= _('Draft');
 			}
 			elseif (time() < strtotime($arr['pubtime'])) {
-				$c .= str_replace('{time}', $arr['pubtime'], __('To be published {time}'));
+				$c .= str_replace('{time}', $arr['pubtime'], _('To be published {time}'));
 			}
 			else {
-				$c .= str_replace('{time}', $arr['pubtime'], __('Published {time}'));
+				$c .= str_replace('{time}', $arr['pubtime'], _('Published {time}'));
 			}
 			$c .= '</td>'."\n";
 
@@ -517,21 +517,21 @@ else {
 		}
 		$c .= '</table>'."\n";
 
-		$c .= '<p>'.__('Bulk actions:').'<br>'."\n";
+		$c .= '<p>'._('Bulk actions:').'<br>'."\n";
 		$c .= '<select name="bulk">'."\n";
-		$c .= '<option value="">'.__('Select an action ...').'</option>';
-		$c .= '<option value="edit">'.__('Edit selected strips/pages').'</option>';
-		$c .= '<option value="publish">'.__('Change status of selected strips/pages to Published').'</option>';
-		$c .= '<option value="draft">'.__('Change status of selected strips/pages to Draft').'</option>';
-		$c .= '<option value="delete">'.__('Delete selected strips/pages').'</option>';
+		$c .= '<option value="">'._('Select an action ...').'</option>';
+		$c .= '<option value="edit">'._('Edit selected strips/pages').'</option>';
+		$c .= '<option value="publish">'._('Change status of selected strips/pages to Published').'</option>';
+		$c .= '<option value="draft">'._('Change status of selected strips/pages to Draft').'</option>';
+		$c .= '<option value="delete">'._('Delete selected strips/pages').'</option>';
 		// Arrayhandler?
 		$c .= '</select></p>'."\n";
-		$c .= '<p><input type="submit" value="'.__('Apply').'"></p>';
+		$c .= '<p><input type="submit" value="'._('Apply').'"></p>';
 		$c .= '</form>'."\n";
 			
 	}
 	else {
 		// There are no comics
-		$c .= '<p>'.__('You haven\'t uploaded any comics yet!');
+		$c .= '<p>'._('You haven\'t uploaded any comics yet!');
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
-$ns_title = __('Plugin manager');
-$c .= '<h2>'.__('Plugin manager').'</h2>'."\n";
+$ns_title = _('Plugin manager');
+$c .= '<h2>'._('Plugin manager').'</h2>'."\n";
 
 // Get all plugins from database
 $query = 'SELECT name, folder, level, pos FROM ns_plugins ORDER BY IF(pos = 0, 99999, pos), name';
@@ -14,10 +14,10 @@ if ($result !== false) {
     // Open <table>
     $c .= '<table>'."\n";
     $c .= '<tr>'."\n";
-    $c .= '<th>'.__('Plugin name').'</th>';
-    $c .= '<th>'.__('Plugin folder').'</th>';
-    $c .= '<th>'.__('User level').'</th>';
-    $c .= '<th>'.__('Order').'</th>';
+    $c .= '<th>'._('Plugin name').'</th>';
+    $c .= '<th>'._('Plugin folder').'</th>';
+    $c .= '<th>'._('User level').'</th>';
+    $c .= '<th>'._('Order').'</th>';
     $c .= '</tr>'."\n";
     
     // Array which holds all folders in database
@@ -32,7 +32,7 @@ if ($result !== false) {
         $c .= '<input type="text" name="newvalue" value="'.htmlspecialchars($arr['name'], ENT_COMPAT, 'UTF-8').'" />'."\n";
         $c .= '<input type="hidden" name="folder" value="'.$arr['folder'].'" />'."\n";
         $c .= '<input type="hidden" name="field" value="name" />'."\n";
-        $c .= '<input type="submit" value="'.__('Update').'" />'."\n";
+        $c .= '<input type="submit" value="'._('Update').'" />'."\n";
         $c .= '</form>';
       }
       else {

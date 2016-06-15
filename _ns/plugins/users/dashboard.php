@@ -4,8 +4,8 @@ if ($logged_in) {
 	$folder = strtok('/');
 
 	if (!$folder) {
-		$ns_title = __('User dashboard');
-		$c .= '<h2>'.__('User dashboard').'</h2>';
+		$ns_title = _('User dashboard');
+		$c .= '<h2>'._('User dashboard').'</h2>';
 
 		$c .= $d_menu->return_ul('nav_menu');
 	}
@@ -20,7 +20,7 @@ if ($logged_in) {
 			$content_file = $folderscript['script'];
 		}
 		include($content_file);
-		$c .= '<p><a href="/n/dashboard/">'.__('Return to dashboard').'</a></p>';
+		$c .= '<p><a href="/n/dashboard/">'._('Return to dashboard').'</a></p>';
 	}
 }
 else {

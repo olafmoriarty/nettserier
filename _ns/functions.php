@@ -2,11 +2,6 @@
 
 // ===================================================================
 
-function __($str) {
-	return $str;
-} // __()
-
-
 // Slug creation
 // (function stolen from http://cubiq.org/the-perfect-php-clean-url-generator )
 
@@ -68,13 +63,13 @@ function limitstring_nav($pagecount, $getvar = 'page') {
 		$c .= '<li class="first"><a href="'.NS_URL;
 		if ($getstring)
 			$c .= '?'.substr($getstring, 5);
-		$c .= '">'.__('First page').'</a></li>';
-		$c .= '<li class="prev"><a href="'.NS_URL.'?page='.($page - 1).$getstring.'" rel="prev">'.__('Previous page').'</a></li>';
+		$c .= '">'._('First page').'</a></li>';
+		$c .= '<li class="prev"><a href="'.NS_URL.'?page='.($page - 1).$getstring.'" rel="prev">'._('Previous page').'</a></li>';
 	}
 	// Next page
 	if ($page < $pagecount) {
-		$c .= '<li class="next"><a href="'.NS_URL.'?page='.($page + 1).$getstring.'" rel="next">'.__('Next page').'</a></li>';
-		$c .= '<li class="last"><a href="'.NS_URL.'?page='.$pagecount.$getstring.'">'.__('Last page').'</a></li>';
+		$c .= '<li class="next"><a href="'.NS_URL.'?page='.($page + 1).$getstring.'" rel="next">'._('Next page').'</a></li>';
+		$c .= '<li class="last"><a href="'.NS_URL.'?page='.$pagecount.$getstring.'">'._('Last page').'</a></li>';
 	}
 	$c .= '</ul>'."\n";
 	$c .= '</nav>'."\n";
@@ -123,7 +118,7 @@ function validate_input($arr) {
 		$error = $arr['error'];
 	}
 	else {
-		$error = __('Something went wrong.');
+		$error = _('Something went wrong.');
 	}
 	if ($arr['check'] == 'unique') {
 		// Check if value is already in use in the specified field
@@ -252,8 +247,8 @@ function input_field($arr) {
 		}
 		$c .= '-date"';
 		
-		$c .= ' placeholder="'.__('Date (YYYY-MM-DD)').'"';
-		$c .= ' title="'.__('Date (YYYY-MM-DD)').'"';
+		$c .= ' placeholder="'._('Date (YYYY-MM-DD)').'"';
+		$c .= ' title="'._('Date (YYYY-MM-DD)').'"';
 		$c .= ' pattern="^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"';
 
 		if (isset($arr['class'])) {
@@ -283,8 +278,8 @@ function input_field($arr) {
 		}
 		$c .= '-time"';
 		
-		$c .= ' placeholder="'.__('Time (HH:MM:SS)').'"';
-		$c .= ' title="'.__('Time (HH:MM:SS)').'"';
+		$c .= ' placeholder="'._('Time (HH:MM:SS)').'"';
+		$c .= ' title="'._('Time (HH:MM:SS)').'"';
 		$c .= ' pattern="^([01][0-9]|2[0123])[.:][012345][0-9][.:][012345][0-9]$"';
 		if (isset($arr['class'])) {
 			$c .= ' class="'.htmlspecialchars($arr['class']).'"';

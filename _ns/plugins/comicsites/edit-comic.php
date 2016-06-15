@@ -25,19 +25,19 @@
   // URL change
 	if ($_POST['comic_url'] && ($_POST['comic_url'] != $old_values['url'])) {
 
-    if ($err = validate_input(['check' => 'unique', 'input' => 'comic_url', 'field' => 'url', 'table' => 'ns_comics', 'error' => __('Sorry! The chosen URL is already in use.')])) {
+    if ($err = validate_input(['check' => 'unique', 'input' => 'comic_url', 'field' => 'url', 'table' => 'ns_comics', 'error' => _('Sorry! The chosen URL is already in use.')])) {
       $error_array['comic_url'] = $err;
       $errors = true;
     }
     
-    if ($err = validate_input(['check' => 'regex', 'input' => 'comic_url', 'regex' => '[A-Za-z0-9-]+', 'error' => __('The comic\'s URL part can only contain letters (a-z), digits (0-9) and hyphens.')])) {
+    if ($err = validate_input(['check' => 'regex', 'input' => 'comic_url', 'regex' => '[A-Za-z0-9-]+', 'error' => _('The comic\'s URL part can only contain letters (a-z), digits (0-9) and hyphens.')])) {
       $error_array['comic_url'] = $err;
       $errors = true;
     }
 
 
     if ($_POST['comic_url'] == 'n') {
-      $error_array['comic_url'] = __('Sorry! The chosen URL is reserved by the system and therefore can\'t be used.');
+      $error_array['comic_url'] = _('Sorry! The chosen URL is reserved by the system and therefore can\'t be used.');
       $errors = true;
     }
 
@@ -73,14 +73,14 @@
 
   if (!$submitted || $errors) {
     
-		$ns_title = __('Edit comic settings');
+		$ns_title = _('Edit comic settings');
 		
     // Registration form
-    $c .= '<h2>'.__('Edit comic settings').'</h2>'."\n";
+    $c .= '<h2>'._('Edit comic settings').'</h2>'."\n";
     $c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit/">'."\n";
-    $c .= input_field(['name' => 'comic_name', 'text' => __('Name of the comic'), 'value' => $old_values['name']]);
-    $c .= input_field(['name' => 'comic_url', 'text' => __('Preferred URL to your comic'), 'text_before_field' => NS_DOMAIN.'/', 'text_after_field' => '/', 'class' => 'urlpart', 'value' => $old_values['url']]);
+    $c .= input_field(['name' => 'comic_name', 'text' => _('Name of the comic'), 'value' => $old_values['name']]);
+    $c .= input_field(['name' => 'comic_url', 'text' => _('Preferred URL to your comic'), 'text_before_field' => NS_DOMAIN.'/', 'text_after_field' => '/', 'class' => 'urlpart', 'value' => $old_values['url']]);
 
-    $c .= '<p><input type="submit" name="edit_comic_submit" id="edit_comic_submit" value="'.__('Deploy changes!').'"></p>';
+    $c .= '<p><input type="submit" name="edit_comic_submit" id="edit_comic_submit" value="'._('Deploy changes!').'"></p>';
     $c .= '</form>'."\n";
   }

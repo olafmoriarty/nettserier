@@ -4,7 +4,7 @@
 	$tpf = NS_PATH.'plugins/'.basename(dirname(__FILE__)).'/';
 
 	$n_urls->add_line(['url' => 'daily', 'script' => $tpf.'daily.php']);
-	$n_menu->add_line(['text' => __('Today'), 'link' => '/n/daily/', 'order' => 20]);
+	$n_menu->add_line(['text' => _('Today'), 'link' => '/n/daily/', 'order' => 20]);
 
 function show_calendar($year, $month, $url) {
 	$c = '<table class="calendar">';

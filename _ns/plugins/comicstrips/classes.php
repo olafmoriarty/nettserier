@@ -141,10 +141,10 @@ class ShowComic {
 		$nav = '';
 		if ($num == 1 && $this->comic) {
 
-			$nav .= $this->nav_element(__('First comic'), $comic_url, $this->comic, $arr['slug'], false, 'first');
-			$nav .= $this->nav_element(__('Previous comic'), $comic_url, $this->comic, $arr, true, 'prev');
-			$nav .= $this->nav_element(__('Next comic'), $comic_url, $this->comic, $arr, false, 'next');
-			$nav .= $this->nav_element(__('Latest comic'), $comic_url, $this->comic, $arr['slug'], true, 'last');
+			$nav .= $this->nav_element(_('First comic'), $comic_url, $this->comic, $arr['slug'], false, 'first');
+			$nav .= $this->nav_element(_('Previous comic'), $comic_url, $this->comic, $arr, true, 'prev');
+			$nav .= $this->nav_element(_('Next comic'), $comic_url, $this->comic, $arr, false, 'next');
+			$nav .= $this->nav_element(_('Latest comic'), $comic_url, $this->comic, $arr['slug'], true, 'last');
 			if ($nav) {
 				$nav = '<nav class="navigate-pages"><ul>'.$nav.'</ul></nav>';
 			}
@@ -188,7 +188,7 @@ class ShowComic {
 				$c .= $arr['text'];
 			}
 			
-			$c .= '<p class="comic-pubtime">'.str_replace('{time}', $arr['pubtime'], __('Published {time}')).'</p>';
+			$c .= '<p class="comic-pubtime">'.str_replace('{time}', $arr['pubtime'], _('Published {time}')).'</p>';
 			$c .= $action['showcomic_text_after']->run($arr);
 			$c .= '</div>'."\n";
 		}

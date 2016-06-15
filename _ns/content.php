@@ -46,13 +46,13 @@ $header = '';
 $header .= '<header>'."\n";
 
 // Page title
-$header .= '<h1 class="page-title"><a href="/">'.__(PAGE_TITLE).'</a></h1>'."\n";
+$header .= '<h1 class="page-title"><a href="/">'._(PAGE_TITLE).'</a></h1>'."\n";
 
 // For small screens: Links to show/hide menu and search
 $header .= '<nav class="show-menu" id="show-menu">'."\n";
 $header .= '<ul>';
-$header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'.__('Menu').'</a></li>';
-$header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'.__('Search').'</a></li>';
+$header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'._('Menu').'</a></li>';
+$header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'._('Search').'</a></li>';
 if ($logged_in) {
 	$header .= '<li><a href="" id="show-user-menu-link"><img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($user_info['email']))).'?s=24&amp;d=mm" alt="'.htmlspecialchars($user_info['username']).'"></a></li>';
 }
@@ -71,9 +71,9 @@ $header .= '</header>'."\n";
 if ($logged_in) {
 	$header .= '<nav class="user-menu" id="user-menu">'."\n";
 	$header .= '<ul>';
-	$header .= '<li><a href="/n/dashboard/">'.str_replace('{n}', htmlspecialchars($user_info['username']), __('{n}\'s dashboard')).'</a></li>';
-	$header .= '<li><a href="/n/dashboard/settings/">'.__('Settings').'</a></li>';
-	$header .= '<li><a href="/n/log-out/">'.__('Log out').'</a></li>';
+	$header .= '<li><a href="/n/dashboard/">'.str_replace('{n}', htmlspecialchars($user_info['username']), _('{n}\'s dashboard')).'</a></li>';
+	$header .= '<li><a href="/n/dashboard/settings/">'._('Settings').'</a></li>';
+	$header .= '<li><a href="/n/log-out/">'._('Log out').'</a></li>';
 	$header .= '</ul>';
 	$header .= '</nav>'."\n";
 }
@@ -92,7 +92,32 @@ $footer = '';
 $footer .= '</section>'."\n";
 
 $footer .= '<footer>'."\n";
-$footer .= '<nav><h2 class="expand">Language</h2><ul><li><a href="">English</a></li><li><a href="">Norsk bokmål</a></li><li><a href="">Norsk nynorsk</a></li></ul></nav>';
+$action['footer']->add_line(['function' => 'footer_language', 'order' => 10]);
+
+function footer_language() {
+	global $conn, $locale;
+	$query = 'SELECT name, fullcode FROM ns_languages ORDER BY name';
+	$result = $conn->query($query);
+	$c = '<nav>'."\n";
+	$c .= '<h2 class="expand">'._('Language').'</h2>';
+	$c .= '<ul>';
+	while ($arr = $result->fetch_assoc()) {
+		if ($locale == $arr['fullcode']) {
+			$c .= '<li>'.htmlentities($arr['name']).'</li>';
+		}
+		else {
+			$c .= '<li><a href="'.NS_URL.'?language='.$arr['fullcode'].'">'.htmlentities($arr['name']).'</a></li>';
+		}
+	}
+	$c .= '</ul>'."\n";
+	$c .= '</nav>'."\n";
+
+	return $c;
+
+}
+
+$footer .= $action['footer']->run();
+
 $footer .= '<nav><h2 class="expand">Help</h2><ul><li><a href="">About</a></li><li><a href="">FAQ</a></li><li><a href="">Privacy policy</a></li><li><a href="">Cookies</a></li></ul></nav>';
 $footer .= '<nav><h2 class="expand">Follow us!</h2><ul><li><a href="">Facebook</a></li><li><a href="">Twitter</a></li><li><a href="">YouTube</a></li><li><a href="">Patreon</a></li><li><a href="">Github</a></li></ul></nav>';
 $footer .= '<div class="copyright">Nettserier.no &copy; Comicopia AS, 2006-2016<br>All comics are &copy; their respective creators</div>';

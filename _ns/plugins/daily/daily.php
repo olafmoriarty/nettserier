@@ -10,10 +10,10 @@ else {
 
 	$month = strtok('/');
 	if (!$month || !is_numeric($month)) {
-		$pagetitle = str_replace('{time}', $year, __('Comics archive for {time}'));
+		$pagetitle = str_replace('{time}', $year, _('Comics archive for {time}'));
 		$ns_title = $pagetitle;
 		$c .= '<h2>'.$pagetitle.'</h2>';
-		$c .= '<p>'.__('Select a month:').'</p>';
+		$c .= '<p>'._('Select a month:').'</p>';
 		$c .= '<ul>';
 		for ($i = 1; $i <= 12; $i++) {
 			$c .= '<li>';
@@ -30,7 +30,7 @@ else {
 			$unixmonth = mktime(0, 0, 0, $month, 1, $year);
 			$ns_title = strftime('%B %Y', $unixmonth);
 			$c .= '<h2>'.$ns_title.'</h2>';
-			$c .= '<p>'.__('Select a day:').'</p>';
+			$c .= '<p>'._('Select a day:').'</p>';
 			$c .= show_calendar($year, $month, '/n/daily/{year}/{month}/{day}/');
 		}
 		else {
@@ -43,7 +43,7 @@ else {
 }
 
 if ($show_day) {
-	$pagetitle = strftime(__('%B %e, %Y'), $show_day);
+	$pagetitle = strftime(_('%B %e, %Y'), $show_day);
 	$ns_title = $pagetitle;
 	$c .= '<h2>'.$pagetitle.'</h2>';
 	$year = date('Y', $show_day);
@@ -61,6 +61,6 @@ if ($show_day) {
 		$c .= $comics;
 	}
 	else {
-		$c .= '<p>'.__('Sorry! There are no comics to show for this date.').'</p>';
+		$c .= '<p>'._('Sorry! There are no comics to show for this date.').'</p>';
 	}
 }

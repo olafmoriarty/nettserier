@@ -11,15 +11,15 @@
 	$n_urls->add_line(['url' => 'users', 'script' => $tpf.'profiles.php']);
 
 	if (!$logged_in) {
-		$n_menu->add_line(['text' => __('Sign up'), 'link' => '/n/register/', 'order' => 90]);
-		$n_menu->add_line(['text' => __('Log in'), 'link' => '/n/log-in/', 'order' => 91]);
+		$n_menu->add_line(['text' => _('Sign up'), 'link' => '/n/register/', 'order' => 90]);
+		$n_menu->add_line(['text' => _('Log in'), 'link' => '/n/log-in/', 'order' => 91]);
 	}
 
 	$d_urls->add_line(['url' => 'settings', 'script' => $tpf.'settings.php']);
 	$d_urls->add_line(['url' => 'delete-user', 'script' => $tpf.'delete-user.php']);
 
-	$d_menu->add_line(['text' => __('Settings'), 'link' => '/n/dashboard/settings/', 'order' => 99]);
-	$d_menu->add_line(['text' => __('Log out'), 'link' => '/n/log-out/', 'order' => 100]);
+	$d_menu->add_line(['text' => _('Settings'), 'link' => '/n/dashboard/settings/', 'order' => 99]);
+	$d_menu->add_line(['text' => _('Log out'), 'link' => '/n/log-out/', 'order' => 100]);
 
 	function delete_user($id) {
 		global $conn;
