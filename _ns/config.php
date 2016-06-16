@@ -56,6 +56,9 @@ $feed_functions = new ArrayHandler;
 
 $feed_sidebar_menu = new ArrayHandler;
 
+$open_source = new ArrayHandler;
+$cookie_info = new ArrayHandler;
+
 $head = new ArrayHandler;
 $body_js = new ArrayHandler;
 
@@ -80,6 +83,8 @@ $action['after_footer'] = new ActionHook();
 
 // Add javascript for Adaptive Images
 $head->add_line(['text' => '<script>document.cookie=\'resolution=\'+Math.max(screen.width,screen.height)+\'; path=/\';</script>']);
+$open_source->add_line(['name' => 'Adaptive Images', 'developer' => 'Matt Wilcox', 'link' => 'http://adaptive-images.com/', 'license' => 'Creative Commons Attribution 3.0 Unported License']);
+$cookie_info->add_line(['name' => 'resolution', 'desc' => _('This cookie is set by the <em>Adaptive Images</em> plugin and is used to preprocess image files based on your screen resolution before sending them to your device, so that we won\'t eat up all your cell phone data. (To be honest I have no idea why this operation requires cookies, but hey, it seems to work.)')]);
 
 define('PAGE_TITLE', 'Nettserier.no');
 $ns_tsep = ' :: ';
@@ -157,6 +162,8 @@ bindtextdomain($gtdomain, NS_PATH.'translation');
 bind_textdomain_codeset($gtdomain, 'UTF-8');
 
 textdomain($gtdomain);
+
+$cookie_info->add_line(['name' => 'language', 'desc' => str_replace('{page}', PAGE_TITLE, _('This cookie is set when you select a language and stores information about which language you prefer reading {page} in. This cookie won\'t be set until you\'re choosing a language, and deleting it is completely safe - without it, {page} will be shown in your browser\'s default language.'))]);
 
 
 // ---------------------------------------------------------------------------

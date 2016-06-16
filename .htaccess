@@ -2,6 +2,10 @@
 RewriteEngine On
 RewriteBase /
 
+RewriteCond %{HTTP_HOST} ^(.*)\.nettserier\.no
+RewriteCond %{HTTP_HOST} !^www\.nettserier\.no
+RewriteRule ^(.*)$ http://nettserier.no/%1/$1 [L,NC,QSA]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]

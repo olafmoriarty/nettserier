@@ -3,6 +3,8 @@
 	// Path to this folder
 	$tpf = NS_PATH.'plugins/'.basename(dirname(__FILE__)).'/';
 
+	$open_source->add_line(['name' => 'HTML Purifier', 'developer' => 'Edward Z. Yang', 'link' => 'http://htmlpurifier.org', 'license' => 'GNU Lesser General Public License 2.1']);
+
 	// Include library
     require_once $tpf.'library/HTMLPurifier.auto.php';
 

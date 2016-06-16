@@ -21,7 +21,7 @@ function fp_recent() {
 	$c = '<section class="fp-comics-display">';
 	$c .= '<h2>'._('Recent updates').'</h2>';
 	$cc = new ShowComic;
-	$cc->set_count(6);
+	$cc->set_count(15);
 	$cc->set_comic_title(true);
 	$cc->set_text(false);
 	$cc->set_linking(true);

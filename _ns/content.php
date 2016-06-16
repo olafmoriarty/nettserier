@@ -1,5 +1,8 @@
 <?php
 
+// Patreon added to menu. Will make this into a better function later ...
+$n_menu->add_line(['text' => 'Patreon', 'link' => 'http://patreon.com/nettserier', 'order' => 99]);
+
 // ---------------------------------------------------------------------------
 // GENERATE MAIN CONTENT
 // ---------------------------------------------------------------------------
@@ -116,11 +119,34 @@ function footer_language() {
 
 }
 
+$action['footer']->add_line(['function' => 'footer_some', 'order' => 50]);
+function footer_some() {
+	$some = new ArrayHandler;
+	$some->add_line(['text' => 'Facebook', 'link' => 'http://facebook.com/nettserier', 'order' => 10]);
+	$some->add_line(['text' => 'Twitter', 'link' => 'http://twitter.com/nettserier', 'order' => 20]);
+	$some->add_line(['text' => 'Patreon', 'link' => 'http://patreon.com/nettserier', 'order' => 99]);
+	$c = '<nav>';
+	$c .= '<h2 class="expand">'._('Follow us!').'</h2>';
+	$c .= $some->return_ul();
+	$c .= '</nav>';
+	return $c;
+}
+
+$action['footer']->add_line(['function' => 'footer_help', 'order' => 20]);
+function footer_help() {
+	$some = new ArrayHandler;
+	$some->add_line(['text' => _('About us'), 'link' => '/n/help/about/', 'order' => 10]);
+	$some->add_line(['text' => _('Cookies'), 'link' => '/n/help/cookies/', 'order' => 20]);
+	$c = '<nav>';
+	$c .= '<h2 class="expand">'._('Help').'</h2>';
+	$c .= $some->return_ul();
+	$c .= '</nav>';
+	return $c;
+}
+
 $footer .= $action['footer']->run();
 
-$footer .= '<nav><h2 class="expand">Help</h2><ul><li><a href="">About</a></li><li><a href="">FAQ</a></li><li><a href="">Privacy policy</a></li><li><a href="">Cookies</a></li></ul></nav>';
-$footer .= '<nav><h2 class="expand">Follow us!</h2><ul><li><a href="">Facebook</a></li><li><a href="">Twitter</a></li><li><a href="">YouTube</a></li><li><a href="">Patreon</a></li><li><a href="">Github</a></li></ul></nav>';
-$footer .= '<div class="copyright">Nettserier.no &copy; Comicopia AS, 2006-2016<br>All comics are &copy; their respective creators</div>';
+$footer .= '<div class="copyright">'.str_replace(['{page}', '{company}', '{startyear}', '{currentyear}'], [PAGE_TITLE, 'Comicopia AS', 2006, date('Y')], _('{page} &copy; {company}, {startyear}-{currentyear}<br>All comics are &copy; their respective creators')).'</div>';
 $footer .= '</footer>'."\n";
 
 // ---------------------------------------------------------------------------

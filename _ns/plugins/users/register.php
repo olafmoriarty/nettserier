@@ -84,21 +84,23 @@ else {
       $fields[] = 'level';
       $values[] = '1';
 
+/*
 	  // Unique token to be sent to user on e-mail
 	  $emailtoken = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
       $fields[] = 'emailtoken';
       $values[] = mysql_string($emailtoken);
-
+*/
       $query = 'INSERT INTO '.$table.' ('.implode(', ', $fields).') VALUES ('.implode(', ', $values).')';
       $conn->query($query);
 
 	  // Send user welcome e-mail with e-mail verification token
 
-		$email_sender = 'post@nettserier.no';
+/*
+	$email_sender = 'post@nettserier.no';
 	  $email_text = str_replace(array('{username}', '{pagetitle}', '{url}'), array($_POST['reg_username'], PAGE_TITLE, NS_DOMAIN.'/n/email-verify/'.$emailtoken), _('Dear {username},'."\n\n".'Welcome to {pagetitle}! We hope you will enjoy our wide selection of user-generated comics - or perhaps even add one (or more!) of your own?'."\n\n".'Your registration is almost complete. To finish it, we just need you to click this link to confirm that this is actually your e-mail address:'."\n".'{url}'."\n\n".'Have a wonderful day!'."\n\n".'Best wishes,'."\n".'{pagetitle}'))."\n";
 
 	  mail($_POST['reg_email'], str_replace('{pagetitle}', PAGE_TITLE, _('{pagetitle} Registration Confirmation')), $email_text, 'From: "'.PAGE_TITLE.'" <'.$email_sender.'>');
-
+*/
       header('Location: '.NS_DOMAIN.'/n/welcome/');
       exit;
     

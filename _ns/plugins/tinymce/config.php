@@ -2,6 +2,8 @@
 	// Path to this folder
 	$tpf = NS_PATH.'plugins/'.basename(dirname(__FILE__)).'/';
 
+	$open_source->add_line(['name' => 'TinyMCE', 'developer' => 'Ephox', 'link' => 'https://www.tinymce.com', 'license' => 'GNU Lesser General Public License 2.1']);
+
 $head->add_js(['js' => '/'.$tpf.'tinymce.min.js']);
 
 $tinymce_init = '<script>'."\n".'tinymce.init({'."\n";

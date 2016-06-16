@@ -2,6 +2,11 @@
 	// Path to this folder
 	$tpf = NS_PATH.'plugins/'.basename(dirname(__FILE__)).'/';
 
+	$open_source->add_line(['name' => 'phpSecureLogin', 'developer' => 'Peter Bradley', 'link' => 'https://github.com/peredurabefrog/phpSecureLogin/', 'license' => 'GNU General Public License 3']);
+	$cookie_info->add_line(['name' => 'sec_session_id', 'desc' => _('Used in login handling for security reasons.')]);
+	$cookie_info->add_line(['name' => 'user_id', 'desc' => _('When you log in to the website, and you check the box that says "Remember me", this is one of the cookies that make that box work.')]);
+	$cookie_info->add_line(['name' => 'login_string', 'desc' => _('When you log in to the website, and you check the box that says "Remember me", this is one of the cookies that make that box work.')]);
+
 	// Setup 
 	$n_urls->add_line(['url' => 'log-in', 'script' => $tpf.'login.php']);
 	$n_urls->add_line(['url' => 'register', 'script' => $tpf.'register.php']);

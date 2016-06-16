@@ -5,7 +5,6 @@ if ($logged_in) {
 }
 else {
 	$c .= $action['frontpage']->run();
-	$c .= '<p><a href="/n/log-in/">Log in</a></p>';
 }
 
 ?>
