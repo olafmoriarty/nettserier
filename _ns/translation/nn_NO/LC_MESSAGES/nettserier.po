@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
 "POT-Creation-Date: 2016-06-14 17:16+0100\n"
-"PO-Revision-Date: 2016-06-15 22:12+0100\n"
+"PO-Revision-Date: 2016-06-15 22:58+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
 "Language: nn_NO\n"
@@ -297,79 +297,84 @@ msgid ""
 "The comic's URL part can only contain letters (a-z), digits (0-9) and "
 "hyphens."
 msgstr ""
+"Nettadressa til teikneserien kan berre innehalde bokstavar (a-z), siffer "
+"(0-9) og bindestrekar."
 
 #: plugins/comicsites/edit-comic.php:40 plugins/comicsites/newpage.php:24
 msgid ""
 "Sorry! The chosen URL is reserved by the system and therefore can't be used."
 msgstr ""
+"Beklagar! Den valde nettadressa er reservert av systemet og kan ikkje "
+"brukast."
 
 #: plugins/comicsites/edit-comic.php:81 plugins/comicsites/newpage.php:94
 msgid "Name of the comic"
-msgstr ""
+msgstr "Namn på teikneserien"
 
 #: plugins/comicsites/edit-comic.php:82 plugins/comicsites/newpage.php:95
 msgid "Preferred URL to your comic"
-msgstr ""
+msgstr "Ønskja nettadresse til teikneserien"
 
 #: plugins/comicsites/edit-comic.php:84 plugins/comments/edit-comment.php:95
 #: plugins/users/settings.php:117
 msgid "Deploy changes!"
-msgstr ""
+msgstr "Utfør endringar!"
 
 #: plugins/comicsites/mycomics.php:10
 msgid "Create a new comic"
-msgstr ""
+msgstr "Opprett ny teikneserie"
 
 #: plugins/comicsites/mycomics.php:19
 msgid "You haven't created any comics yet."
-msgstr ""
+msgstr "Du har ikkje laga nokre teikneseriar enno."
 
 #: plugins/comicsites/mycomics.php:20
 msgid "Create your first comic now!"
-msgstr ""
+msgstr "Lag din første teikneserie no!"
 
 #: plugins/comicsites/mycomics.php:41
 msgid "Return to \"My comics\""
-msgstr ""
+msgstr "Gå tilbake til \"Mine teikneseriar\""
 
 #: plugins/comicsites/newpage.php:28
 msgid "Comic name can't be blank."
-msgstr ""
+msgstr "Namnet på teikneserien kan ikkje vera blankt."
 
 #: plugins/comicsites/newpage.php:33
 msgid "Comic URL can't be blank."
-msgstr ""
+msgstr "Nettadressa til teikneserien kan ikkje vera blank."
 
 #: plugins/comicsites/newpage.php:96
 msgid "More settings ..."
-msgstr ""
+msgstr "Fleire innstillingar ..."
 
 #: plugins/comicsites/newpage.php:97
 msgid "Create comic!"
-msgstr ""
+msgstr "Opprett teikneserie!"
 
 #: plugins/comicstrips/add.php:26 plugins/comicstrips/add.php:29
 msgid "{file} is not a valid image file."
-msgstr ""
+msgstr "{file} er ikkje ei gyldig biletfil."
 
 #: plugins/comicstrips/add.php:29 plugins/comicstrips/add.php:40
 #: plugins/comicstrips/add.php:52 plugins/comicstrips/add.php:64
 msgid "Could not upload file(s):"
-msgstr ""
+msgstr "Kunne ikkje laste opp fil(er):"
 
 #: plugins/comicstrips/add.php:37 plugins/comicstrips/add.php:40
 msgid "{file} exceeds the maximum allowed filesize of {size} kB."
-msgstr ""
+msgstr "{file} overskridar den tilletne filstorleiken, som er {size} kB."
 
 #: plugins/comicstrips/add.php:49 plugins/comicstrips/add.php:52
 msgid ""
 "{file} does not have a valid file type. Accepted file types are: "
 "{extensions}."
 msgstr ""
+"{file} har ikkje ein gyldig filtype. Tilletne filtypar er: {extensions}."
 
 #: plugins/comicstrips/add.php:61
 msgid "{file} could not be uploaded because something went horribly wrong."
-msgstr ""
+msgstr "{file} kunne ikkje lastast opp fordi noko gjekk frykteleg galent."
 
 #: plugins/comicstrips/add.php:64
 msgid ""
@@ -377,10 +382,13 @@ msgid ""
 "reason this may happen is if the file size is obscenely large, in which case "
 "you should definitely reduce it)."
 msgstr ""
+"{file} kunne ikkje lastast opp fordi noko gjekk frykteleg galent. Ein vanleg "
+"grunn til at denne feilmeldinga dukkar opp er at filstorleiken er absurd "
+"stor, og isåfall kan det vera ein god idé å redusere denne..."
 
 #: plugins/comicstrips/add.php:75
 msgid "You haven't chosen any files to upload!"
-msgstr ""
+msgstr "Du har ikkje vald nokre filer å laste opp!"
 
 #: plugins/comicstrips/add.php:146 plugins/comicstrips/config.php:13
 msgid "Upload new comic strip or page"

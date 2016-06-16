@@ -6,6 +6,9 @@
 	$n_urls->add_line(['url' => 'daily', 'script' => $tpf.'daily.php']);
 	$n_menu->add_line(['text' => _('Today'), 'link' => '/n/daily/', 'order' => 20]);
 
+	$feed_sidebar_menu->add_line(['text' => _('Today\'s updates'), 'link' => '/n/daily/', 'order' => 20]);
+
+
 function show_calendar($year, $month, $url) {
 	$c = '<table class="calendar">';
 	$day1 = mktime(0, 0, 0, $month, 1, $year);
@@ -33,5 +36,43 @@ function show_calendar($year, $month, $url) {
 	}
 	$c .= '</tr>';
 	$c .= '</table>';
+	return $c;
+}
+
+// Add daily updates to feed
+
+	$feed_queries->add_line(['text' => 'SELECT \'daily\' AS type, CONCAT(MIN(id), \'-\', MAX(id)) AS id, MAX(daily.comic) AS comic, MIN(daily.pubtime) AS pubtime, NULL as title, NULL as text, NULL as slug, NULL as user, NULL as other FROM ns_updates AS daily WHERE daily.updtype = \'c\' AND daily.pubtime >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND daily.published = 1 AND daily.pubtime <= NOW() GROUP BY DATE(daily.pubtime)']);
+
+	$feed_functions->add_line(['type' => 'daily', 'func' => 'feed_daily']);
+
+function feed_daily($arr) {
+	global $conn;
+	$day = strtotime($arr['pubtime']);
+	$c = '<h3><a href="/n/daily/'.date('Y', $day).'/'.date('m', $day).'/'.date('d', $day).'/">'.str_replace('{date}', strftime(_('%A %B %e'), $day), _('Updates {date}')).'</a></h3>';
+
+	$query = 'SELECT COUNT(id) AS thenumber FROM ns_updates WHERE updtype = \'c\' AND pubtime <= NOW() AND published = 1 AND DATE(pubtime) = DATE(\''.$arr['pubtime'].'\')';
+	$result = $conn->query($query);
+	echo $conn->error;
+	$arr = $result->fetch_assoc();
+	$count = $arr['thenumber'];
+	$c .= str_replace('{n}', $count, _('{n} new comic strips, including:'));
+
+	$c .= '<section class="fp-comics-display">';
+	$cc = new ShowComic;
+	$cc->set_count(3);
+	$cc->set_order('RAND()');
+	$cc->set_comic_title(true);
+	$cc->set_text(false);
+	$cc->set_linking(true);
+	$cc->set_min_time(mktime(0, 0, 0, date('n', $day), date('j', $day), date('Y', $day)));
+	$cc->set_max_time(mktime(23, 59, 59, date('n', $day), date('j', $day), date('Y', $day)));
+	$cc->set_result_type('comic');
+	
+	
+	$c .= '<div class="comics">';
+	$c .= $cc->show();
+	$c .= '</div>';
+	$c .= '</section>';
+
 	return $c;
 }

@@ -54,6 +54,8 @@ $delete_concequences = new ArrayHandler;
 $feed_queries = new ArrayHandler;
 $feed_functions = new ArrayHandler;
 
+$feed_sidebar_menu = new ArrayHandler;
+
 $head = new ArrayHandler;
 $body_js = new ArrayHandler;
 
