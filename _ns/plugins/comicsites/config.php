@@ -22,6 +22,8 @@
 	$feed_sidebar_menu->add_line(['text' => _('Browse all comics'), 'link' => '/n/browse/', 'order' => 10]);
 	$feed_sidebar_menu->add_line(['text' => _('Create new comic'), 'link' => '/n/dashboard/new-comic/', 'order' => 100]);
 
+	$action['user_page']->add_line(['function' => 'user_comics', 'order' => 10]);
+
 
 	if ($logged_in) {
 		if (owns_comics($user_info['id'])) {

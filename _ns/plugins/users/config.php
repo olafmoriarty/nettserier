@@ -53,3 +53,14 @@
 
 		return '<img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($arr['email']))).'?s='.$size.'&amp;d=mm" alt="'.htmlspecialchars($arr['username']).'">';
 	}
+
+function user_name($id) {
+	global $conn;
+	$query = 'SELECT IF(realname = \'\', username, realname) AS name FROM ns_users WHERE id = '.$id;
+	$result = $conn->query($query);
+	$num = $result->num_rows;
+	if ($num) {
+		$arr = $result->fetch_assoc();
+		return $arr['name'];
+	}
+}

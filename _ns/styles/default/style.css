@@ -431,8 +431,8 @@ header .header-buttons a.following:hover {
 }
 
 .main .profile_pic img {
-	border: solid 1px #808080;
-	border-radius: 10px;
+	border: solid 4px #e8e8e8;
+	border-radius: calc(50% + 4px);
 	max-width: 100%;
 }
 

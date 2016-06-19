@@ -87,3 +87,22 @@ function unblock($user, $comic) {
 	return false;
 }
 
+function user_follow($id) {
+	global $conn;
+	$c = '';
+	$query = 'SELECT c.url, c.name FROM ns_comics AS c LEFT JOIN ns_user_comic_rel AS r ON c.id = r.comic WHERE r.user = '.$id.' AND r.reltype = \'f\' ORDER BY c.name';
+	$result = $conn->query($query);
+	$num = $result->num_rows;
+	$c .= '<h3>'._('Comics I follow').'</h3>';
+	if ($num) {
+		$c .= '<ul>';
+		while ($arr = $result->fetch_assoc()) {
+			$c .= '<li><a href="/'.$arr['url'].'/">'.htmlspecialchars($arr['name']).'</a></li>';
+		}
+		$c .= '</ul>';
+	}
+	else {
+		$c .= '<p>'.str_replace('{name}', user_name($id), _('{name} isn\'t following any comics yet.')).'</p>';
+	}
+	return $c;
+}

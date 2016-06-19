@@ -79,6 +79,8 @@ $action['showcomic_on_page_after'] = new ActionHook();
 $action['comic_header_buttons'] = new ActionHook();
 $action['comic_below_header'] = new ActionHook();
 
+$action['user_page'] = new ActionHook();
+
 $action['after_footer'] = new ActionHook();
 
 // Add javascript for Adaptive Images
