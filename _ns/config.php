@@ -149,6 +149,8 @@ if (!$locale) {
 	$locale = 'en_US';
 }
 
+if ($locale == 'nb_NO')
+	$locale = 'nn_NO';
 
 putenv('LANG='.$locale.'.UTF8'); 
 setlocale(LC_ALL, $locale.'.UTF8');
@@ -157,10 +159,11 @@ $gtdomain = 'nettserier';
 
 if (isset($_GET['special']) && $_GET['special'] == 'language') {
 	bindtextdomain($gtdomain, NS_PATH.'translation/nocache'); 
+	bind_textdomain_codeset($gtdomain, 'UTF-8');
+	textdomain($gtdomain);
 }
 bindtextdomain($gtdomain, NS_PATH.'translation'); 
 bind_textdomain_codeset($gtdomain, 'UTF-8');
-
 textdomain($gtdomain);
 
 $cookie_info->add_line(['name' => 'language', 'desc' => str_replace('{page}', PAGE_TITLE, _('This cookie is set when you select a language and stores information about which language you prefer reading {page} in. This cookie won\'t be set until you\'re choosing a language, and deleting it is completely safe - without it, {page} will be shown in your browser\'s default language.'))]);

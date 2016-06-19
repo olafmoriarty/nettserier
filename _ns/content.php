@@ -148,6 +148,7 @@ $footer .= $action['footer']->run();
 
 $footer .= '<div class="copyright">'.str_replace(['{page}', '{company}', '{startyear}', '{currentyear}'], [PAGE_TITLE, 'Comicopia AS', 2006, date('Y')], _('{page} &copy; {company}, {startyear}-{currentyear}<br>All comics are &copy; their respective creators')).'</div>';
 $footer .= '</footer>'."\n";
+$footer .= $action['after_footer']->run();
 
 // ---------------------------------------------------------------------------
 // ADD HEADER/FOOTER TO CONTENT

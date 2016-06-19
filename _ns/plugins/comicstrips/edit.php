@@ -411,7 +411,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= '<li>'.str_replace('{weekdays}', $weekdays, _('After that, publish a new strip every {weekdays}')).'</li>';
 			$c .= '</ul>';
 			$c .= '</li>';
-			$c .= '<li><input type="radio" name="schedule" value="album"> '._('Create an album');
+/*			$c .= '<li><input type="radio" name="schedule" value="album"> '._('Create an album');
 			$c .= '<ul>';
 			$c .= '<li>'.input_field(['name' => 'album_title', 'text' => _('Album title')]).'</li>';
 			$c .= '<li>'.input_field(['name' => 'album_desc', 'text' => _('Album description'), 'type' => 'textarea', 'class' => 'wysiwyg']).'</li>';
@@ -425,6 +425,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= '</li>';
 			$c .= '</ul>';
 			$c .= '</li>';
+			*/
 			$c .= '</ul>';
 			$c .= '</fieldset>'."\n";
 		}
