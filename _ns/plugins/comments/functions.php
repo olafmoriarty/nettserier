@@ -49,7 +49,7 @@
 
 
 		$c = '<section class="comment-section">';
-		$query = 'SELECT c.id, c.user, u.username, c.text, c.regtime FROM ns_comments AS c LEFT JOIN ns_users AS u on c.user = u.id WHERE c.parent = '.$arr['id'];
+		$query = 'SELECT c.id, c.user, u.username, c.text, c.regtime FROM ns_comments AS c LEFT JOIN ns_users AS u on c.user = u.id WHERE c.parent = '.$arr['id'].' ORDER BY c.regtime';
 		$result = $conn->query($query);
 		$num = $result->num_rows;
 
