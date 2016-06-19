@@ -50,3 +50,4 @@ _ns/files/*.*
 _ns/plugins/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer/HTML/*.ser
 *.ser
 _striper/*.*
+stuff-git-should-ignore/*.*
