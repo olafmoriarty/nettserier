@@ -151,9 +151,6 @@ if (!$locale) {
 	$locale = 'en_US';
 }
 
-if ($locale == 'nb_NO')
-	$locale = 'nn_NO';
-
 putenv('LANG='.$locale.'.UTF8'); 
 setlocale(LC_ALL, $locale.'.UTF8');
 

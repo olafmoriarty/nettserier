@@ -1,10 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
-"POT-Creation-Date: 2016-06-18 14:44+0100\n"
-"PO-Revision-Date: 2016-06-18 20:10+0100\n"
+"POT-Creation-Date: 2016-06-20 07:04+0100\n"
+"PO-Revision-Date: 2016-06-20 07:41+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
+"Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,10 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __\n"
-"Language: en_US\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: config.php:87
+#: config.php:89
 msgid ""
 "This cookie is set by the <em>Adaptive Images</em> plugin and is used to "
 "preprocess image files based on your screen resolution before sending them "
@@ -24,131 +24,145 @@ msgid ""
 "honest I have no idea why this operation requires cookies, but hey, it seems "
 "to work.)"
 msgstr ""
+"Denne informasjonskapselen er opprettet av <em>Adaptive Images</em>-"
+"innstikket og brukes til å forhåndsbehandle bildefiler basert på "
+"skjermoppløsningen din før vi sender dem til dingsen din, slik at vi ikke "
+"tapper deg for mobildata. (For å være ærlig aner jeg ikke hvorfor en slik "
+"operasjon trenger informasjonskapsler, men hei, det ser ut som om det "
+"virker.)"
 
-#: config.php:166
+#: config.php:171
 msgid ""
 "This cookie is set when you select a language and stores information about "
 "which language you prefer reading {page} in. This cookie won't be set until "
 "you're choosing a language, and deleting it is completely safe - without it, "
 "{page} will be shown in your browser's default language."
 msgstr ""
+"Denne informasjonskapselen blir satt når du velger et språk og lagrer "
+"hvilket språk du foretrekker å lese {page} på. Kapselen blir ikke satt før "
+"du velger et språk, og det er helt trygt å slette den - uten den vil {page} "
+"rett og slett bli vist på nettleserens standardspråk."
 
 #: content.php:57 pages/comic.php:31
 msgid "Menu"
-msgstr ""
+msgstr "Meny"
 
 #: content.php:58 pages/comic.php:32
 msgid "Search"
-msgstr ""
+msgstr "Søk"
 
 #: content.php:77 pages/comic.php:67
 msgid "{n}'s dashboard"
-msgstr ""
+msgstr "{n}s kontrollpanel"
 
 #: content.php:78 pages/comic.php:68 plugins/users/config.php:26
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: content.php:79 pages/comic.php:69 plugins/users/config.php:27
 #: plugins/users/login.php:8 plugins/users/register.php:6
 msgid "Log out"
-msgstr ""
+msgstr "Logg ut"
 
 #: content.php:105 plugins/admin/language_manager.php:14
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 #: content.php:129
 msgid "Follow us!"
-msgstr ""
+msgstr "Følg oss!"
 
 #: content.php:138 plugins/help/help.php:6 plugins/help/help.php:55
 msgid "About us"
-msgstr ""
+msgstr "Om oss"
 
 #: content.php:139 plugins/help/help.php:36 plugins/help/help.php:55
 msgid "Cookies"
-msgstr ""
+msgstr "Informasjonskapsler"
 
 #: content.php:141 plugins/help/help.php:54
 msgid "Help"
-msgstr ""
+msgstr "Hjelp"
 
 #: content.php:149
 msgid ""
 "{page} &copy; {company}, {startyear}-{currentyear}<br>All comics are &copy; "
 "their respective creators"
 msgstr ""
+"{page} &copy; {company}, {startyear}-{currentyear}<br>Alle tegneserier er "
+"&copy; sine respektive tegneserieskapere"
 
 #: functions.php:66
 msgid "First page"
-msgstr ""
+msgstr "Første side"
 
 #: functions.php:67
 msgid "Previous page"
-msgstr ""
+msgstr "Forrige side"
 
 #: functions.php:71
 msgid "Next page"
-msgstr ""
+msgstr "Neste side"
 
 #: functions.php:72
 msgid "Last page"
-msgstr ""
+msgstr "Siste side"
 
 #: functions.php:121
 msgid "Something went wrong."
-msgstr ""
+msgstr "Noe gikk galt."
 
 #: functions.php:250 functions.php:251
 msgid "Date (YYYY-MM-DD)"
-msgstr ""
+msgstr "Dato (ÅÅÅÅ-MM-DD)"
 
 #: functions.php:281 functions.php:282
 msgid "Time (HH:MM:SS)"
-msgstr ""
+msgstr "Tid (TT:MM:SS)"
 
 #: pages/404.php:3 pages/404.php:4
 msgid "404: Page not found"
-msgstr ""
+msgstr "404: Side ikke funnet"
 
 #: pages/404.php:5
 msgid ""
 "Well... This is awkward. We can't find the page you're looking for. No idea "
 "where it could be."
 msgstr ""
+"Vel... Dette er flaut. Vi klarer ikke å finne siden du leter etter. Vi har "
+"ikke peiling på hvor den kan være."
 
 #: pages/404.php:7
 msgid "Sorry!"
-msgstr ""
+msgstr "Beklager!"
 
 #: pages/404.php:21
 msgid "Go back to the comic"
-msgstr ""
+msgstr "Gå tilbake til tegneserien"
 
 #: pages/404.php:24
 msgid "Go back to {page}"
-msgstr ""
+msgstr "Gå tilbake til {page}"
 
 #: pages/comic.php:25
 msgid "by {creator}"
-msgstr ""
+msgstr "av {creator}"
 
 #: pages/feed.php:59
 msgid "This is your user feed."
-msgstr ""
+msgstr "Dette er brukerstrømmen din."
 
 #: pages/feed.php:60
 msgid "To start getting interesting content here, you could:"
-msgstr ""
+msgstr "For å få mer interessant innhold her, jan du:;"
 
 #: pages/feed.php:62
 msgid "Follow more comics"
-msgstr ""
+msgstr "Følge flere tegneserier"
 
 #: pages/feed.php:63
 msgid "Change your feed settings to allow more updates through"
-msgstr ""
+msgstr "Endre innstillingene for strømmen din for å vise flere oppdateringer"
 
 #: pages/feed.php:96
 msgid ""
@@ -156,107 +170,114 @@ msgid ""
 "comics? To follow a comic, go to the comic and click on the big \"Follow\" "
 "button."
 msgstr ""
+"Visste du at du kan personliggjøre denne strømmen ved å skape eller følge "
+"tegneserier? For å følge en tegneserie, gå til tegneserien og klikk på den "
+"store «Følg»-knappen."
 
 #: plugins/admin/admin.php:4 plugins/admin/admin.php:19
 msgid "Administration dashboard"
-msgstr ""
+msgstr "Administrasjonspanel"
 
 #: plugins/admin/admin.php:22
 msgid "Plugins"
-msgstr ""
+msgstr "Innstikk"
 
 #: plugins/admin/admin.php:23
 msgid "Languages"
-msgstr ""
+msgstr "Språk"
 
 #: plugins/admin/language_manager.php:3 plugins/admin/language_manager.php:4
 msgid "Language manager"
-msgstr ""
+msgstr "Språkbehandling"
 
 #: plugins/admin/language_manager.php:15
 msgid "Language code"
-msgstr ""
+msgstr "Språkkode"
 
 #: plugins/admin/plugin_manager.php:3 plugins/admin/plugin_manager.php:4
 msgid "Plugin manager"
-msgstr ""
+msgstr "Innstikkbehandling"
 
 #: plugins/admin/plugin_manager.php:17
 msgid "Plugin name"
-msgstr ""
+msgstr "Innstikknavn"
 
 #: plugins/admin/plugin_manager.php:18
 msgid "Plugin folder"
-msgstr ""
+msgstr "Innstikkmappe"
 
 #: plugins/admin/plugin_manager.php:19
 msgid "User level"
-msgstr ""
+msgstr "Brukernivå"
 
 #: plugins/admin/plugin_manager.php:20
 msgid "Order"
-msgstr ""
+msgstr "Rekkefølge"
 
 #: plugins/admin/plugin_manager.php:35
 msgid "Update"
-msgstr ""
+msgstr "Oppdater"
 
 #: plugins/comicsites/browse.php:7 plugins/comicsites/browse.php:8
 msgid "Browse comics"
-msgstr ""
+msgstr "Bla gjennom tegneserier"
 
 #: plugins/comicsites/browse.php:48
 msgid "Name"
-msgstr ""
+msgstr "Navn"
 
 #: plugins/comicsites/browse.php:49
 msgid "Creator"
-msgstr ""
+msgstr "Serieskaper"
 
 #: plugins/comicsites/browse.php:50
 msgid "Last update"
-msgstr ""
+msgstr "Siste oppdatering"
 
 #: plugins/comicsites/config.php:15
 msgid "Comics"
-msgstr ""
+msgstr "Tegneserier"
 
 #: plugins/comicsites/config.php:20 plugins/comicsites/config.php:23
 #: plugins/comicsites/newpage.php:89 plugins/comicsites/newpage.php:92
 msgid "Create new comic"
-msgstr ""
+msgstr "Opprett ny tegneserie"
 
 #: plugins/comicsites/config.php:22
 msgid "Browse all comics"
-msgstr ""
+msgstr "Bla gjennom alle tegneserier"
 
-#: plugins/comicsites/config.php:28 plugins/comicsites/mycomics.php:7
-#: plugins/comicsites/mycomics.php:8 plugins/users/profiles.php:22
+#: plugins/comicsites/config.php:30 plugins/comicsites/functions.php:9
+#: plugins/comicsites/mycomics.php:7 plugins/comicsites/mycomics.php:8
 msgid "My comics"
-msgstr ""
-
-#: plugins/comicsites/config.php:34
-msgid "Go to comic"
-msgstr ""
-
-#: plugins/comicsites/config.php:35 plugins/comicsites/edit-comic.php:76
-#: plugins/comicsites/edit-comic.php:79
-msgid "Edit comic settings"
-msgstr ""
+msgstr "Mine tegneserier"
 
 #: plugins/comicsites/config.php:36
-msgid "Delete comic"
-msgstr ""
+msgid "Go to comic"
+msgstr "Gå til tegneserie"
+
+#: plugins/comicsites/config.php:37 plugins/comicsites/edit-comic.php:76
+#: plugins/comicsites/edit-comic.php:79
+msgid "Edit comic settings"
+msgstr "Rediger tegneserieinnstillinger"
 
 #: plugins/comicsites/config.php:38
+msgid "Delete comic"
+msgstr "Slett tegneserie"
+
+#: plugins/comicsites/config.php:40
 msgid ""
 "If you have created any comics: Any comic <strong>where you are the only "
 "listed creator or editor</strong> will be deleted. Deleting a comic also "
 "deletes all comic strips, blog posts, comments, statistics and everything "
 "else that is related to that comic."
 msgstr ""
+"Dersom du har opprettet tegneserier: Alle tegneserier <strong>hvor du er den "
+"eneste registrerte serieskaperen eller redaktøren</strong> vil bli slettet. "
+"Å slette en tegneserie sletter også alle striper, blogginnlegg, kommentarer, "
+"statistikk og alt annet som er relatert til den tegneserien."
 
-#: plugins/comicsites/config.php:39
+#: plugins/comicsites/config.php:41
 msgid ""
 "Any comic you have created or contributed to <strong>with more than one "
 "creator/editor listed</strong> will not be deleted automatically, but you "
@@ -264,28 +285,35 @@ msgid ""
 "comic. If you want to delete such a comic, you have to do that manually "
 "before deleting your profile."
 msgstr ""
+"Alle tegneserier du har opprettet eller bidratt til <strong>med mer enn en "
+"serieskaper/redaktør</strong> vil ikke bli automatisk slettet, men du vil "
+"bli fjernet fra listen over tegneserieskapere, og miste tilgangen til å "
+"redigere serien. Om du vil slette en slik serie, må du gjøre det manuelt før "
+"du sletter profilen din."
 
 #: plugins/comicsites/delete-comic.php:28 plugins/users/delete-user.php:27
 msgid "That's not the correct password."
-msgstr ""
+msgstr "Dette er ikke riktig passord."
 
 #: plugins/comicsites/delete-comic.php:33
 #: plugins/comicsites/delete-comic.php:38 plugins/users/delete-user.php:32
 #: plugins/users/delete-user.php:37
 msgid "Impossible error. Please try again."
-msgstr ""
+msgstr "En umulig feil oppstod. Prøv igjen."
 
 #: plugins/comicsites/delete-comic.php:46
 #: plugins/comicsites/delete-comic.php:48
 #: plugins/comicsites/delete-comic.php:55
 msgid "Delete \"{comic}\""
-msgstr ""
+msgstr "Slett «{comic}»"
 
 #: plugins/comicsites/delete-comic.php:49
 msgid ""
 "This is a pretty big deal: Are you absolutely sure you want to delete this "
 "comic?"
 msgstr ""
+"Dette er ganske heftig. Er du helt sikker på at du vil slette denne "
+"tegneserien?"
 
 #: plugins/comicsites/delete-comic.php:50
 msgid ""
@@ -293,99 +321,111 @@ msgid ""
 "deleting a comic you're also deleting all comic strips, blog posts, "
 "comments, statistics and everything else that is related to that comic."
 msgstr ""
+"Å slette en tegneserie er permanent og <strong>kan ikke angres</strong>. Når "
+"du sletter en tegneserie sletter du også alle striper, blogginnlegg, "
+"kommentarer, statistikk og alt annet som er relatert til den tegneserien."
 
 #: plugins/comicsites/delete-comic.php:51
 msgid ""
 "If you're absolutely sure you want to delete this comic, please enter your "
 "password to confirm."
 msgstr ""
+"Dersom du er helt sikker på at du vil slette denne serien, skriv inn "
+"passordet ditt for å bekrefte."
 
 #: plugins/comicsites/delete-comic.php:54 plugins/users/delete-user.php:59
 msgid "Password"
-msgstr ""
+msgstr "Passord"
 
 #: plugins/comicsites/edit-comic.php:28 plugins/comicsites/newpage.php:12
 msgid "Sorry! The chosen URL is already in use."
-msgstr ""
+msgstr "Beklager! Den valgte nettadressen er allerede i bruk."
 
 #: plugins/comicsites/edit-comic.php:33 plugins/comicsites/newpage.php:17
 msgid ""
 "The comic's URL part can only contain letters (a-z), digits (0-9) and "
 "hyphens."
 msgstr ""
+"URL-en til tegneserien kan bare inneholde bokstaver (a-z), tall (0-9) og "
+"bindestreker."
 
 #: plugins/comicsites/edit-comic.php:40 plugins/comicsites/newpage.php:24
 msgid ""
 "Sorry! The chosen URL is reserved by the system and therefore can't be used."
 msgstr ""
+"Beklager! Den valgte URL-en er reservert av systemet og kan ikke benyttes."
 
 #: plugins/comicsites/edit-comic.php:81 plugins/comicsites/newpage.php:94
 msgid "Name of the comic"
-msgstr ""
+msgstr "Navn på tegneserien"
 
 #: plugins/comicsites/edit-comic.php:82 plugins/comicsites/newpage.php:95
 msgid "Preferred URL to your comic"
-msgstr ""
+msgstr "Ønsket nettadresse til tegneserien"
 
 #: plugins/comicsites/edit-comic.php:84 plugins/comments/edit-comment.php:95
 #: plugins/users/settings.php:117
 msgid "Deploy changes!"
-msgstr ""
+msgstr "Utfør endringer!"
+
+#: plugins/comicsites/functions.php:18
+msgid "{name} hasn't created any comics yet."
+msgstr "{name} har ikke opprettet noen tegneserier ennå."
 
 #: plugins/comicsites/mycomics.php:10
 msgid "Create a new comic"
-msgstr ""
+msgstr "Opprett ny tegneserie"
 
 #: plugins/comicsites/mycomics.php:19
 msgid "You haven't created any comics yet."
-msgstr ""
+msgstr "Du har ikke laget noen tegneserier ennå."
 
 #: plugins/comicsites/mycomics.php:20
 msgid "Create your first comic now!"
-msgstr ""
+msgstr "Opprett din første tegneserie nå!"
 
 #: plugins/comicsites/mycomics.php:41
 msgid "Return to \"My comics\""
-msgstr ""
+msgstr "Gå tilbake til «Mine tegneserier»"
 
 #: plugins/comicsites/newpage.php:28
 msgid "Comic name can't be blank."
-msgstr ""
+msgstr "Navnet på tegneserien kan ikke være blankt."
 
 #: plugins/comicsites/newpage.php:33
 msgid "Comic URL can't be blank."
-msgstr ""
+msgstr "URL-en til tegneserien kan ikke være blank."
 
 #: plugins/comicsites/newpage.php:96
 msgid "More settings ..."
-msgstr ""
+msgstr "Flere innstillinger ..."
 
 #: plugins/comicsites/newpage.php:97
 msgid "Create comic!"
-msgstr ""
+msgstr "Opprett tegneserie!"
 
 #: plugins/comicstrips/add.php:26 plugins/comicstrips/add.php:29
 msgid "{file} is not a valid image file."
-msgstr ""
+msgstr "{file} er ikke en gyldig bildefil."
 
 #: plugins/comicstrips/add.php:29 plugins/comicstrips/add.php:40
 #: plugins/comicstrips/add.php:52 plugins/comicstrips/add.php:64
 msgid "Could not upload file(s):"
-msgstr ""
+msgstr "Kunne ikke laste opp fil(er):"
 
 #: plugins/comicstrips/add.php:37 plugins/comicstrips/add.php:40
 msgid "{file} exceeds the maximum allowed filesize of {size} kB."
-msgstr ""
+msgstr "{file} overskrider maksimal tillatt filstørrelse på {size} kB."
 
 #: plugins/comicstrips/add.php:49 plugins/comicstrips/add.php:52
 msgid ""
 "{file} does not have a valid file type. Accepted file types are: "
 "{extensions}."
-msgstr ""
+msgstr "{file} har ikke riktig filtype. Aksepterte filtyper er: {extensions}."
 
 #: plugins/comicstrips/add.php:61
 msgid "{file} could not be uploaded because something went horribly wrong."
-msgstr ""
+msgstr "{file} kunne ikke bli lastet opp fordi noe gikk fryktelig galt."
 
 #: plugins/comicstrips/add.php:64
 msgid ""
@@ -393,92 +433,97 @@ msgid ""
 "reason this may happen is if the file size is obscenely large, in which case "
 "you should definitely reduce it)."
 msgstr ""
+"{file} kunne ikke bli lastet opp fordi noe gikk fryktelig galt (en av "
+"grunnene til at man kan få denne feilmeldingen er dersom filstørrelsen er "
+"absurd stor - i så fall burde du forsøke å redusere den)."
 
 #: plugins/comicstrips/add.php:75
 msgid "You haven't chosen any files to upload!"
-msgstr ""
+msgstr "Du har ikke valgt noen filer å laste opp!"
 
 #: plugins/comicstrips/add.php:146 plugins/comicstrips/config.php:13
 msgid "Upload new comic strip or page"
-msgstr ""
+msgstr "Last opp ny tegneseriestripe eller -side"
 
 #: plugins/comicstrips/add.php:147 plugins/comicstrips/edit.php:299
 msgid "Upload new comic strip or page for \"{comic}\""
-msgstr ""
+msgstr "Last opp ny tegneseriestripe eller -side for «{comic}»"
 
 #: plugins/comicstrips/add.php:148
 msgid "Step one: Upload files"
-msgstr ""
+msgstr "Steg en: Last opp filer"
 
 #: plugins/comicstrips/add.php:149
 msgid ""
 "You can upload a single comic strip or page, or multiple at the same time."
 msgstr ""
+"Du kan laste opp en enkelt tegneseriestripe eller -side, eller mange på en "
+"gang."
 
 #: plugins/comicstrips/add.php:152
 msgid "Upload and proceed"
-msgstr ""
+msgstr "Last opp og fortsett"
 
 #: plugins/comicstrips/classes.php:144
 msgid "First comic"
-msgstr ""
+msgstr "Første stripe"
 
 #: plugins/comicstrips/classes.php:145
 msgid "Previous comic"
-msgstr ""
+msgstr "Forrige stripe"
 
 #: plugins/comicstrips/classes.php:146
 msgid "Next comic"
-msgstr ""
+msgstr "Neste stripe"
 
 #: plugins/comicstrips/classes.php:147
 msgid "Latest comic"
-msgstr ""
+msgstr "Siste stripe"
 
-#: plugins/comicstrips/classes.php:191 plugins/comicstrips/edit.php:512
+#: plugins/comicstrips/classes.php:191 plugins/comicstrips/edit.php:513
 msgid "Published {time}"
-msgstr ""
+msgstr "Publisert {time}"
 
 #: plugins/comicstrips/config.php:10
 msgid "Comic"
-msgstr ""
+msgstr "Tegneserie"
 
 #: plugins/comicstrips/config.php:16
 msgid "Edit uploaded comic strips and pages"
-msgstr ""
+msgstr "Rediger opplastede tegneseriestriper og -sider"
 
 #: plugins/comicstrips/config.php:69
 msgid "Edit strip"
-msgstr ""
+msgstr "Rediger stripe"
 
 #: plugins/comicstrips/config.php:76
 msgid "Delete strip"
-msgstr ""
+msgstr "Slett stripe"
 
 #: plugins/comicstrips/edit.php:228 plugins/comicstrips/edit.php:229
 msgid "Delete comic strips or pages"
-msgstr ""
+msgstr "Slett striper eller sider"
 
 #: plugins/comicstrips/edit.php:232
 msgid "Are you sure you want to delete these comic strips?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette disse tegneseriestripene?"
 
 #: plugins/comicstrips/edit.php:241 plugins/comicstrips/edit.php:332
-#: plugins/comicstrips/edit.php:477
+#: plugins/comicstrips/edit.php:478
 msgid "No title"
-msgstr ""
+msgstr "Ingen tittel"
 
 #: plugins/comicstrips/edit.php:249
 msgid "Yes, delete them!"
-msgstr ""
+msgstr "Ja, slett dem"
 
 #: plugins/comicstrips/edit.php:297 plugins/comicstrips/edit.php:304
 msgid "Edit drafts"
-msgstr ""
+msgstr "Rediger kladder"
 
 #: plugins/comicstrips/edit.php:300
 msgid "Step two: Edit metadata"
-msgstr ""
+msgstr "Steg to: Rediger metadata"
 
 #: plugins/comicstrips/edit.php:301
 msgid ""
@@ -487,34 +532,38 @@ msgid ""
 "clicking \"Edit drafts\" under \"Edit comic strips and pages\" in your "
 "dashboard.)"
 msgstr ""
+"(Psst! Stripene dine er nå lastet opp og lagret i kladd. Dersom du trenger å "
+"avbryte nå, kan du komme tilbake til denne siden når som helst ved å klikke "
+"«Rediger kladder» under «Rediger tegneseriestriper og -sider» i "
+"kontrollpanelet ditt.)"
 
 #: plugins/comicstrips/edit.php:308 plugins/comicstrips/edit.php:309
 msgid "Edit comic strips or pages"
-msgstr ""
+msgstr "Rediger tegneseriestriper og -sider"
 
 #: plugins/comicstrips/edit.php:312 plugins/comicstrips/edit.php:313
 msgid "Edit comic strip or page"
-msgstr ""
+msgstr "Rediger tegneseriestripe/-side"
 
 #: plugins/comicstrips/edit.php:341
 msgid "Title (optional)"
-msgstr ""
+msgstr "Tittel (valgfritt)"
 
 #: plugins/comicstrips/edit.php:343
 msgid "Publication time:"
-msgstr ""
+msgstr "Publiseringstidspunkt:"
 
 #: plugins/comicstrips/edit.php:348
 msgid "The moment I press the \"Publish\" button\""
-msgstr ""
+msgstr "Det øyeblikket jeg trykker «Publiser»"
 
 #: plugins/comicstrips/edit.php:356
 msgid "Description (optional)"
-msgstr ""
+msgstr "Beskrivelse (valgfritt)"
 
 #: plugins/comicstrips/edit.php:367
 msgid "Bulk schedule change"
-msgstr ""
+msgstr "Masseendring av publiseringsplan"
 
 #: plugins/comicstrips/edit.php:368
 msgid ""
@@ -522,348 +571,375 @@ msgid ""
 "time for each strip/page separately, or you can use one of these bulk "
 "options:"
 msgstr ""
+"Du redigerer {num} tegneseriestriper/-sider. Du kan velge "
+"publiseringstidspunkt for hver enkelt stripe/side, eller du kan masseendre "
+"med ett av disse valgene:"
 
 #: plugins/comicstrips/edit.php:374
 msgid "Choose publication time individually for each strip"
-msgstr ""
+msgstr "Velg tidspunkt individuelt for hver stripe"
 
 #: plugins/comicstrips/edit.php:379
 msgid "Publish all comic strips at the same time"
-msgstr ""
+msgstr "Publiser alle stripene samtidig"
 
 #: plugins/comicstrips/edit.php:381 plugins/comicstrips/edit.php:389
-#: plugins/comicstrips/edit.php:420
 msgid "The moment I press the \"Publish\" button"
-msgstr ""
+msgstr "Det øyeblikket jeg trykker «Publiser»"
 
 #: plugins/comicstrips/edit.php:382 plugins/comicstrips/edit.php:390
-#: plugins/comicstrips/edit.php:421
 msgid "At the following time:"
-msgstr ""
+msgstr "På dette tidspunktet:"
 
 #: plugins/comicstrips/edit.php:395
 msgid "Monday"
-msgstr ""
+msgstr "Mandag"
 
 #: plugins/comicstrips/edit.php:395
 msgid "Tuesday"
-msgstr ""
+msgstr "Tirsdag"
 
 #: plugins/comicstrips/edit.php:395
 msgid "Wednesday"
-msgstr ""
+msgstr "Onsdag"
 
 #: plugins/comicstrips/edit.php:395
 msgid "Thursday"
-msgstr ""
+msgstr "Torsdag"
 
 #: plugins/comicstrips/edit.php:395
 msgid "Friday"
-msgstr ""
+msgstr "Fredag"
 
 #: plugins/comicstrips/edit.php:395
 msgid "Saturday"
-msgstr ""
+msgstr "Lørdag"
 
 #: plugins/comicstrips/edit.php:395
 msgid "Sunday"
-msgstr ""
+msgstr "Søndag"
 
 #: plugins/comicstrips/edit.php:408
 msgid "Set a publication schedule"
-msgstr ""
+msgstr "Opprett en publiseringsplan"
 
 #: plugins/comicstrips/edit.php:410
 msgid "The first strip should be published {time}"
-msgstr ""
+msgstr "Første stripe skal publiseres {time}"
 
 #: plugins/comicstrips/edit.php:411
 msgid "After that, publish a new strip every {weekdays}"
-msgstr ""
-
-#: plugins/comicstrips/edit.php:414
-msgid "Create an album"
-msgstr ""
-
-#: plugins/comicstrips/edit.php:416
-msgid "Album title"
-msgstr ""
-
-#: plugins/comicstrips/edit.php:417
-msgid "Album description"
-msgstr ""
-
-#: plugins/comicstrips/edit.php:418
-msgid "Album publication time"
-msgstr ""
-
-#: plugins/comicstrips/edit.php:433
-msgid "Save as draft"
-msgstr ""
+msgstr "Etter det, publiser en ny stripe hver {weekdays}"
 
 #: plugins/comicstrips/edit.php:434
+msgid "Save as draft"
+msgstr "Lagre som kladd"
+
+#: plugins/comicstrips/edit.php:435
 msgid "Save and publish"
-msgstr ""
+msgstr "Lagre og publiser"
 
-#: plugins/comicstrips/edit.php:445 plugins/comicstrips/edit.php:446
+#: plugins/comicstrips/edit.php:446 plugins/comicstrips/edit.php:447
 msgid "Edit comic strips and pages"
-msgstr ""
+msgstr "Rediger tegneseriestriper og -sider"
 
-#: plugins/comicstrips/edit.php:454
+#: plugins/comicstrips/edit.php:455
 msgid ""
 "To edit a single strip/page, click it below. To edit multiple strips/pages, "
 "use the checkboxes to select them and then choose \"Edit\" from \"Bulk "
 "actions\" below."
 msgstr ""
+"For å redigere en enkelt stripe/side, klikk på den under. For å masseendre "
+"striper/sider, velg dem med avkrysningsboksene og velg «Rediger» fra "
+"rullegardinmenyen nederst på siden."
 
-#: plugins/comicstrips/edit.php:459
+#: plugins/comicstrips/edit.php:460
 msgid "Edit all drafts"
-msgstr ""
+msgstr "Rediger alle kladder"
 
-#: plugins/comicstrips/edit.php:506
+#: plugins/comicstrips/edit.php:507
 msgid "Draft"
-msgstr ""
+msgstr "Kladd"
 
-#: plugins/comicstrips/edit.php:509
+#: plugins/comicstrips/edit.php:510
 msgid "To be published {time}"
-msgstr ""
+msgstr "Blir publisert {time}"
 
-#: plugins/comicstrips/edit.php:520
+#: plugins/comicstrips/edit.php:521
 msgid "Bulk actions:"
-msgstr ""
-
-#: plugins/comicstrips/edit.php:522
-msgid "Select an action ..."
-msgstr ""
+msgstr "Masseendringer:"
 
 #: plugins/comicstrips/edit.php:523
-msgid "Edit selected strips/pages"
-msgstr ""
+msgid "Select an action ..."
+msgstr "Velg en handling ..."
 
 #: plugins/comicstrips/edit.php:524
-msgid "Change status of selected strips/pages to Published"
-msgstr ""
+msgid "Edit selected strips/pages"
+msgstr "Rediger valgte striper/sider"
 
 #: plugins/comicstrips/edit.php:525
-msgid "Change status of selected strips/pages to Draft"
-msgstr ""
+msgid "Change status of selected strips/pages to Published"
+msgstr "Endre status på valgte striper/sider til Publisert"
 
 #: plugins/comicstrips/edit.php:526
+msgid "Change status of selected strips/pages to Draft"
+msgstr "Endre status på valgte striper/sider til Kladd"
+
+#: plugins/comicstrips/edit.php:527
 msgid "Delete selected strips/pages"
-msgstr ""
+msgstr "Slett valgte striper/sider"
 
-#: plugins/comicstrips/edit.php:529
+#: plugins/comicstrips/edit.php:530
 msgid "Apply"
-msgstr ""
+msgstr "Utfør"
 
-#: plugins/comicstrips/edit.php:535
+#: plugins/comicstrips/edit.php:536
 msgid "You haven't uploaded any comics yet!"
-msgstr ""
+msgstr "Du har ikke lastet opp noen tegneserier ennå!"
 
 #: plugins/comicstrips/functions.php:22
 msgid "Recent updates"
-msgstr ""
+msgstr "Nylige oppdateringer"
+
+#: plugins/comments/comic_comments.php:41
+msgid "Comments for {comic}"
+msgstr "Kommentarer til {comic}"
+
+#: plugins/comments/comic_comments.php:64
+msgid "(no title)"
+msgstr "(ingen tittel)"
+
+#: plugins/comments/comic_comments.php:67
+msgid "Comment to {title}:"
+msgstr "Kommentar til {title}:"
+
+#: plugins/comments/comic_comments.php:72 plugins/comments/functions.php:79
+msgid "Edit"
+msgstr "Rediger"
+
+#: plugins/comments/comic_comments.php:73 plugins/comments/functions.php:80
+msgid "Delete"
+msgstr "Slett"
+
+#: plugins/comments/comic_comments.php:79
+msgid "Delete selected comments"
+msgstr "Slett valgte kommentarer"
+
+#: plugins/comments/comic_comments.php:86
+msgid "This comic hasn't received any comments yet."
+msgstr "Denne tegneserien har ikke fått noen kommentarer ennå"
+
+#: plugins/comments/config.php:12
+msgid "View/delete comments"
+msgstr "Vis/slett kommentarer"
 
 #: plugins/comments/edit-comment.php:12
 msgid "Error: Can't edit comment"
-msgstr ""
+msgstr "Feil: Kan ikke redigere kommentar"
 
 #: plugins/comments/edit-comment.php:13
 msgid "You don't have access to edit or delete this comment."
-msgstr ""
+msgstr "Du har ikke tilgang til å redigere eller slette denne kommentaren."
 
 #: plugins/comments/edit-comment.php:57
 msgid "Comment can't be blank!"
-msgstr ""
+msgstr "Kommentaren kan ikke være tom!"
 
 #: plugins/comments/edit-comment.php:94
 msgid "Edit comment"
-msgstr ""
+msgstr "Rediger kommentar"
 
 #: plugins/comments/edit-comment.php:98
 msgid "Delete comment"
-msgstr ""
+msgstr "Slett kommentar"
 
 #: plugins/comments/edit-comment.php:99
 msgid "Yes, delete comment"
-msgstr ""
+msgstr "Ja, slett kommentar"
 
-#: plugins/comments/edit-comment.php:105 plugins/comments/functions.php:91
+#: plugins/comments/edit-comment.php:105 plugins/comments/functions.php:99
 msgid "Your comment"
-msgstr ""
+msgstr "Din kommentar"
 
 #: plugins/comments/edit-comment.php:108
 msgid "Are you sure you want to delete this comment?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne kommentaren?"
 
 #: plugins/comments/functions.php:57
 msgid "{n} comments"
-msgstr ""
+msgstr "{n} kommentarer"
 
-#: plugins/comments/functions.php:71
-msgid "Edit"
-msgstr ""
-
-#: plugins/comments/functions.php:72
-msgid "Delete"
-msgstr ""
-
-#: plugins/comments/functions.php:80
+#: plugins/comments/functions.php:88
 msgid "Join the discussion!"
-msgstr ""
+msgstr "Bli med i diskusjonen!"
 
-#: plugins/comments/functions.php:83
+#: plugins/comments/functions.php:91
 msgid "Write a comment!"
-msgstr ""
+msgstr "Skriv en kommentar!"
 
-#: plugins/comments/functions.php:92
+#: plugins/comments/functions.php:100
 msgid "Add your comment!"
-msgstr ""
+msgstr "Legg til kommentar!"
 
-#: plugins/comments/functions.php:102
+#: plugins/comments/functions.php:110
 msgid "Log in to add your comment!"
-msgstr ""
+msgstr "Logg inn for å legge til en kommentar!"
 
 #: plugins/daily/config.php:7
 msgid "Today"
-msgstr ""
+msgstr "I dag"
 
 #: plugins/daily/config.php:9
 msgid "Today's updates"
-msgstr ""
+msgstr "Dagens oppdateringer"
 
 #: plugins/daily/config.php:51
 msgid "%A %B %e"
-msgstr ""
+msgstr "%A %e. %B"
 
 #: plugins/daily/config.php:51
 msgid "Updates {date}"
-msgstr ""
+msgstr "Oppdateringer {date}"
 
 #: plugins/daily/config.php:58
 msgid "{n} new comic strips, including:"
-msgstr ""
+msgstr "{n} nye tegneseriestriper, inkludert:"
 
 #: plugins/daily/daily.php:13
 msgid "Comics archive for {time}"
-msgstr ""
+msgstr "Tegneseriearkiv for {time}"
 
 #: plugins/daily/daily.php:16
 msgid "Select a month:"
-msgstr ""
+msgstr "Velg en måned:"
 
 #: plugins/daily/daily.php:33
 msgid "Select a day:"
-msgstr ""
+msgstr "Velg en dag:"
 
 #: plugins/daily/daily.php:46
 msgid "%B %e, %Y"
-msgstr ""
+msgstr "%e. %B %Y"
 
 #: plugins/daily/daily.php:64
 msgid "Sorry! There are no comics to show for this date."
-msgstr ""
+msgstr "Beklager! Det er ingen tegneserier å vise for denne datoen."
 
 #: plugins/follow/functions.php:11
 msgid "Unfollow this comic"
-msgstr ""
+msgstr "Avfølg denne tegneserien"
 
 #: plugins/follow/functions.php:11
 msgid "Following"
-msgstr ""
+msgstr "Følger"
 
 #: plugins/follow/functions.php:14
 msgid "Follow"
-msgstr ""
+msgstr "Følg"
+
+#: plugins/follow/functions.php:96
+msgid "Comics I follow"
+msgstr "Tegneserier jeg følger"
+
+#: plugins/follow/functions.php:105
+msgid "{name} isn't following any comics yet."
+msgstr "{name} følger ingen tegneserier ennå."
 
 #: plugins/help/help.php:7
 msgid "{page} is a Norwegian webcomics portal run and owned by {company}."
-msgstr ""
+msgstr "{page} er en norsk tegneserieportal drevet og eid av {company}."
 
 #: plugins/help/help.php:12
 msgid "Contact us"
-msgstr ""
+msgstr "Kontakt oss"
 
 #: plugins/help/help.php:13
 msgid "E-mail:"
-msgstr ""
+msgstr "E-post:"
 
 #: plugins/help/help.php:14
 msgid "Snail mail:"
-msgstr ""
+msgstr "Sneglepost:"
 
 #: plugins/help/help.php:16
 msgid "Who are we?"
-msgstr ""
+msgstr "Hvem er vi?"
 
 #: plugins/help/help.php:17
 msgid "Managing director:"
-msgstr ""
+msgstr "Daglig leder:"
 
 #: plugins/help/help.php:18
 msgid "Board members:"
-msgstr ""
+msgstr "Styremedlemmer:"
 
 #: plugins/help/help.php:20
 msgid "Open source code used for {page}"
-msgstr ""
+msgstr "Åpen kildekode benyttet i {page}"
 
 #: plugins/help/help.php:28
 msgid "Developed by {name} (released under {license})"
-msgstr ""
+msgstr "Utviklet av {name} (gjort tilgjengelig under {license})"
 
 #: plugins/help/help.php:31
 msgid "Developed by {name}"
-msgstr ""
+msgstr "Utviklet av {name}"
 
 #: plugins/help/help.php:38
 msgid ""
 "This website uses cookies to improve your user experience. We stribe to keep "
 "cookie usage at a minimum and as non-intrusive as possible."
 msgstr ""
+"Dette nettstedet bruker informasjonskapsler for å forbedre din "
+"brukeropplevelse. Vi forsøker å holde bruken av dette på et minimum og så "
+"lite påtrengende som mulig."
 
 #: plugins/help/help.php:39
 msgid "These are the cookies we use:"
-msgstr ""
+msgstr "Dette er de informasjonskapslene vi bruker:"
 
 #: plugins/users/config.php:6
 msgid "Used in login handling for security reasons."
-msgstr ""
+msgstr "Brukt i innloggingshåndtering av sikkerhetsgrunner."
 
 #: plugins/users/config.php:7 plugins/users/config.php:8
 msgid ""
 "When you log in to the website, and you check the box that says \"Remember me"
 "\", this is one of the cookies that make that box work."
 msgstr ""
+"Når du logger inn på siden og krysser av i «Husk meg»-boksen, er dette en av "
+"informasjonskapslene som gjør at den funksjonen virker."
 
 #: plugins/users/config.php:19
 msgid "Sign up"
-msgstr ""
+msgstr "Registrer deg"
 
 #: plugins/users/config.php:20 plugins/users/login.php:3
 #: plugins/users/login.php:6 plugins/users/login.php:28
 #: plugins/users/login.php:39
 msgid "Log in"
-msgstr ""
+msgstr "Logg inn"
 
 #: plugins/users/dashboard.php:7 plugins/users/dashboard.php:8
 msgid "User dashboard"
-msgstr ""
+msgstr "Kontrollpanel"
 
 #: plugins/users/dashboard.php:23
 msgid "Return to dashboard"
-msgstr ""
+msgstr "Tilbake til kontrollpanel"
 
 #: plugins/users/delete-user.php:44 plugins/users/delete-user.php:46
 #: plugins/users/delete-user.php:60
 msgid "Delete account"
-msgstr ""
+msgstr "Slett konto"
 
 #: plugins/users/delete-user.php:47
 msgid ""
 "This is a pretty big deal: Are you absolutely sure you want to delete your "
 "user account?"
 msgstr ""
+"Dette er ganske heftig: Er du helt sikker på at du vil slette brukerkontoen "
+"din?"
 
 #: plugins/users/delete-user.php:49
 msgid ""
@@ -872,201 +948,211 @@ msgid ""
 "businesses that never actually delete your data. When you hit delete, you're "
 "actually deleting it."
 msgstr ""
+"Når du sletter kontoen, er den borte for alltid. Dette er permanent og "
+"<strong>kan ikke gjøres om</strong>. Seriøst: Vi er ikke ett av de firmaene "
+"som aldri sletter dataene dine. Når du trykker Slett, sletter du det på "
+"virkelig."
 
 #: plugins/users/delete-user.php:51
 msgid "Your profile page, and all information stored to it, will be deleted."
-msgstr ""
+msgstr "Profilsiden din, og all informasjon lagret der, vil bli slettet."
 
 #: plugins/users/delete-user.php:56
 msgid ""
 "If you're absolutely sure you want to delete your user account, please enter "
 "your password to confirm."
 msgstr ""
+"Dersom du er helt sikker på at du vil slette brukerkontoen, skriv inn "
+"passordet ditt for å bekrefte."
 
 #: plugins/users/login.php:7
 msgid "You can't log in - you are already logged in."
-msgstr ""
+msgstr "Du kan ikke logge inn - du er allerede logget inn."
 
 #: plugins/users/login.php:31
 msgid "Wrong e-mail or password."
-msgstr ""
+msgstr "Feil e-postadresse eller passord."
 
 #: plugins/users/login.php:33
 msgid "Username or e-mail:"
-msgstr ""
+msgstr "Brukernavn eller e-postadresse:"
 
 #: plugins/users/login.php:34
 msgid "Password:"
-msgstr ""
+msgstr "Passord:"
 
 #: plugins/users/login.php:35
 msgid "Remember me in this browser"
-msgstr ""
+msgstr "Husk meg i denne nettleseren"
 
 #: plugins/users/login.php:45
 msgid "New user?"
-msgstr ""
+msgstr "Ny bruker?"
 
 #: plugins/users/login.php:45
 msgid "Forgot password?"
-msgstr ""
-
-#: plugins/users/profiles.php:23
-msgid "{name} hasn't created any comics yet."
-msgstr ""
-
-#: plugins/users/profiles.php:25
-msgid "Comics I follow"
-msgstr ""
-
-#: plugins/users/profiles.php:26
-msgid "{name} isn't following any comics yet."
-msgstr ""
+msgstr "Glemt passord?"
 
 #: plugins/users/register.php:2 plugins/users/register.php:4
 #: plugins/users/register.php:113
 msgid "Register new user"
-msgstr ""
+msgstr "Registrer ny bruker"
 
 #: plugins/users/register.php:5
 msgid "You can't register - you are already logged in."
-msgstr ""
+msgstr "Du kan ikke registrere deg - du er allerede innlogget."
 
 #: plugins/users/register.php:19 plugins/users/settings.php:19
 msgid "Sorry! The chosen username is already in use."
-msgstr ""
+msgstr "Beklager! Det valgte brukernavnet er allerede i bruk."
 
 #: plugins/users/register.php:24
 msgid "Username can't be blank."
-msgstr ""
+msgstr "Brukernavnet kan ikke være blankt."
 
 #: plugins/users/register.php:29 plugins/users/settings.php:42
 msgid "This is not a valid e-mail address."
-msgstr ""
+msgstr "Dette er ikke en gyldig e-postadresse."
 
 #: plugins/users/register.php:34
 msgid "E-mail address can't be blank."
-msgstr ""
+msgstr "E-postadressen kan ikke være blank."
 
 #: plugins/users/register.php:39 plugins/users/settings.php:37
 msgid "This e-mail address is already registered."
-msgstr ""
+msgstr "Denne e-postadressen er allerede registrert."
 
 #: plugins/users/register.php:44
 msgid "Password can't be blank."
-msgstr ""
+msgstr "Passordet kan ikke være blankt."
 
 #: plugins/users/register.php:49 plugins/users/settings.php:63
 msgid "The \"Password\" and \"Confirm password\" fields don't match."
-msgstr ""
+msgstr "Passordfeltene er ikke like."
 
 #: plugins/users/register.php:115 plugins/users/settings.php:109
 msgid "Your preferred username"
-msgstr ""
+msgstr "Ditt ønskede brukernavn"
 
 #: plugins/users/register.php:116 plugins/users/settings.php:111
 msgid "Your e-mail"
-msgstr ""
+msgstr "Din e-postadresse"
 
 #: plugins/users/register.php:117
 msgid "Your password"
-msgstr ""
+msgstr "Ditt passord"
 
 #: plugins/users/register.php:118 plugins/users/settings.php:116
 msgid "Repeat password"
-msgstr ""
+msgstr "Gjenta passord"
 
 #: plugins/users/register.php:119
 msgid "Register!"
-msgstr ""
+msgstr "Registrer!"
 
 #: plugins/users/settings.php:54
 msgid "That is not the correct password."
-msgstr ""
+msgstr "Det er ikke riktig passord."
 
 #: plugins/users/settings.php:58
 msgid "When changing your password, the new password can't be blank."
-msgstr ""
+msgstr "Når du endrer passord, kan ikke det nye passordet være blankt."
 
 #: plugins/users/settings.php:102 plugins/users/settings.php:103
 msgid "User settings"
-msgstr ""
+msgstr "Brukerinnstillinger"
 
 #: plugins/users/settings.php:104
 msgid ""
 "To update your registered information, change the values in the fields "
 "below, and click \"Deploy changes!\" at the bottom of the page."
 msgstr ""
+"For å oppdatere din registrerte informasjon, endre verdiene i feltene under, "
+"og klikk «Utfør endringer» nederst på siden."
 
 #: plugins/users/settings.php:108
 msgid "Update your profile"
-msgstr ""
+msgstr "Oppdater profilen"
 
 #: plugins/users/settings.php:110
 msgid "Your real name or preferred pseudonym"
-msgstr ""
+msgstr "Fullt navn eller pseudonym"
 
 #: plugins/users/settings.php:112
 msgid "Change your password"
-msgstr ""
+msgstr "Endre passord"
 
 #: plugins/users/settings.php:113
 msgid ""
 "(Leave these fields blank if you don't need to change your password right "
 "now.)"
-msgstr ""
+msgstr "(La feltene stå blanke om du ikke ønsker å endre passordet nå.)"
 
 #: plugins/users/settings.php:114
 msgid "Old password"
-msgstr ""
+msgstr "Gammelt passord"
 
 #: plugins/users/settings.php:115
 msgid "New password"
-msgstr ""
+msgstr "Nytt passord"
 
 #: plugins/users/settings.php:120
 msgid "Delete my account"
-msgstr ""
+msgstr "Slett kontoen"
 
 #: plugins/users/welcome.php:2 plugins/users/welcome.php:3
 msgid "Registration successful!"
-msgstr ""
+msgstr "Registrering vellykket!"
 
 #: plugins/users/welcome.php:4
 msgid "Log in to get started!"
-msgstr ""
+msgstr "Logg inn for å begynne!"
 
-msgid "Here are a few suggestions:"
-msgstr ""
+#~ msgid "Create an album"
+#~ msgstr "Opprett et album"
 
-msgid "Recommended comics"
-msgstr ""
+#~ msgid "Album title"
+#~ msgstr "Albumtittel"
 
-msgid "Feed settings"
-msgstr ""
+#~ msgid "Album description"
+#~ msgstr "Albumbeskrivelse"
 
-msgid ""
-"Use the checkboxes below to select what kinds of updates you want to see in "
-"your feed."
-msgstr ""
+#~ msgid "Album publication time"
+#~ msgstr "Publiseringstidspunkt for album"
 
-msgid "Comic strips"
-msgstr ""
+#~ msgid "Here are a few suggestions:"
+#~ msgstr "Her er nokre forslag:"
 
-msgid "Blog posts"
-msgstr ""
+#~ msgid "Recommended comics"
+#~ msgstr "Anbefalte teikneseriar"
 
-msgid "Albums"
-msgstr ""
+#~ msgid "Feed settings"
+#~ msgstr "Strauminnstillingar"
 
-msgid "Comments"
-msgstr ""
+#~ msgid ""
+#~ "Use the checkboxes below to select what kinds of updates you want to see "
+#~ "in your feed."
+#~ msgstr ""
+#~ "Bruk avkrysningsboksane under for å velja kva slags oppdateringar du vil "
+#~ "sjå i straumen."
 
-msgid "Other updates"
-msgstr ""
+#~ msgid "Comic strips"
+#~ msgstr "Teikneseriestriper"
 
-msgid "{comic} was created."
-msgstr ""
+#~ msgid "Blog posts"
+#~ msgstr "Blogginnlegg"
 
-msgid "Four Zero Four"
-msgstr ""
+#~ msgid "Albums"
+#~ msgstr "Teikneseriealbum"
+
+#~ msgid "Comments"
+#~ msgstr "Kommentarar"
+
+#~ msgid "Other updates"
+#~ msgstr "Andre oppdateringar"
+
+#~ msgid "{comic} was created."
+#~ msgstr "{comic} blei oppretta."
+
+#~ msgid "Four Zero Four"
+#~ msgstr "Fire null fire"
