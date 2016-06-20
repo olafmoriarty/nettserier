@@ -49,7 +49,7 @@
 
 
 		$c = '<section class="comment-section">';
-		$query = 'SELECT c.id, c.user, u.username, c.text, c.regtime FROM ns_comments AS c LEFT JOIN ns_users AS u on c.user = u.id WHERE c.parent = '.$arr['id'].' ORDER BY c.regtime';
+		$query = 'SELECT c.id, c.user, u.username, c.text, c.regtime, c.oldauthor FROM ns_comments AS c LEFT JOIN ns_users AS u on c.user = u.id WHERE c.parent = '.$arr['id'].' ORDER BY c.regtime';
 		$result = $conn->query($query);
 		$num = $result->num_rows;
 
@@ -60,9 +60,17 @@
 			while ($r_arr = $result->fetch_assoc()) {
 				$c .= '<article class="comment">';
 				$c .= '<div class="comment-header">';
-				$c .= '<p class="comment_author"><a href="/n/users/'.$r_arr['user'].'/">'.htmlspecialchars($r_arr['username']).'</a></p>';
+				if ($r_arr['user']) {
+					$c .= '<p class="comment_author"><a href="/n/users/'.$r_arr['user'].'/">'.htmlspecialchars($r_arr['username']).'</a></p>';
+				}
+				else {
+					$c .= '<p class="comment_author">'.htmlspecialchars($r_arr['oldauthor']).'</a></p>';
+				}
+
 				$c .= '<p class="comment_time">'.$r_arr['regtime'].'</p>';
-				$c .= '<p class="comment_avatar">'.avatar($r_arr['user'], 100).'</p>';
+				if ($r_arr['user']) {
+					$c .= '<p class="comment_avatar">'.avatar($r_arr['user'], 100).'</p>';
+				}
 				$c .= '</div>';
 				$c .= $r_arr['text'];
 				$c .= '<nav class="comment-meta">';
