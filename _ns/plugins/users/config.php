@@ -51,7 +51,7 @@
 
 		$arr = $result->fetch_assoc();
 
-		return '<img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($arr['email']))).'?s='.$size.'&amp;d=mm" alt="'.htmlspecialchars($arr['username']).'">';
+		return '<img src="https://www.gravatar.com/avatar/'.md5(strtolower(trim($arr['email']))).'?s='.$size.'&amp;d=mm" alt="'.htmlspecialchars($arr['username']).'">';
 	}
 
 function user_name($id) {

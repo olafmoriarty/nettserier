@@ -28,8 +28,8 @@ if (preg_match('/^\/dagfordag\/?(.*)/', NS_URL, $matches)) {
 	exit;
 }
 
-if (preg_match('/^\/dagfordag\/?(.*)/', NS_URL, $matches)) {
-	header('Location: '.NS_DOMAIN.'/n/daily/'.$matches[1]);
+if (preg_match('/^\/_striper\/jellyvampire-1304892000\.jpg(.*)/', NS_URL, $matches)) {
+	header('Location: '.NS_DOMAIN.'/jellyvampire/comic/27310/');
 	exit;
 }
 
