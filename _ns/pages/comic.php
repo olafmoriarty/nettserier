@@ -31,7 +31,7 @@ $header .= '<ul>';
 $header .= '<li><a href="" class="icons show-menu-link" id="show-menu-link">'._('Menu').'</a></li>';
 $header .= '<li><a href="" class="icons show-search-link" id="show-search-link">'._('Search').'</a></li>';
 if ($logged_in) {
-	$header .= '<li><a href="" id="show-user-menu-link"><img src="http://www.gravatar.com/avatar/'.md5(strtolower(trim($user_info['email']))).'?s=24&amp;d=mm" alt="'.htmlspecialchars($user_info['username']).'"></a></li>';
+	$header .= '<li><a href="" id="show-user-menu-link"><img src="https://www.gravatar.com/avatar/'.md5(strtolower(trim($user_info['email']))).'?s=24&amp;d=mm" alt="'.htmlspecialchars($user_info['username']).'"></a></li>';
 }
 $header .= '</ul>'."\n";
 $header .= '</nav>';
