@@ -41,7 +41,7 @@ function show_calendar($year, $month, $url) {
 
 // Add daily updates to feed
 
-	$feed_queries->add_line(['text' => 'SELECT \'daily\' AS type, CONCAT(MIN(id), \'-\', MAX(id)) AS id, MAX(daily.comic) AS comic, MIN(daily.pubtime) AS pubtime, NULL as title, NULL as text, NULL as slug, NULL as user, NULL as other FROM ns_updates AS daily WHERE daily.updtype = \'c\' AND daily.pubtime >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND daily.published = 1 AND daily.pubtime <= NOW() GROUP BY DATE(daily.pubtime)']);
+	$feed_queries->add_line(['text' => 'SELECT \'daily\' AS type, CONCAT(MIN(id), \'-\', MAX(id)) AS id, MAX(daily.comic) AS comic, MIN(daily.pubtime) AS pubtime, NULL as title, NULL as text, NULL as slug, NULL as user, NULL as other FROM ns_updates AS daily LEFT JOIN (SELECT comic, time FROM ns_user_comic_rel WHERE user = '.$user_info['id'].' AND reltype = \'b\') AS dblocked ON daily.comic = dblocked.comic WHERE daily.updtype = \'c\' AND daily.pubtime >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND daily.published = 1 AND daily.pubtime <= NOW() AND dblocked.time IS NULL GROUP BY DATE(daily.pubtime)']);
 
 	$feed_functions->add_line(['type' => 'daily', 'func' => 'feed_daily']);
 

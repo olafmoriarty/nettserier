@@ -36,10 +36,7 @@ else {
 		else {
 			$show_day = mktime(0, 0, 0, $month, $day, $year);
 		}
-
 	}
-
-	
 }
 
 if ($show_day) {
@@ -49,6 +46,31 @@ if ($show_day) {
 	$year = date('Y', $show_day);
 	$month = date('n', $show_day);
 	$day = date('j', $show_day);
+
+	$navigation = '<nav class="navigate-pages"><ul>';
+	$one_month_ago = strtotime(date('Y-m-d', $show_day).' - 1 month');
+	$navigation .= '<li><a href="/n/daily/'.date('Y/m/d', $one_month_ago).'/">'.str_replace('{date}', strftime(_('%B %e, %Y'), $one_month_ago), _('Previous month ({date})')).'</a></li>';
+
+	$one_day_ago = strtotime(date('Y-m-d', $show_day).' - 1 day');
+	$navigation .= '<li><a href="/n/daily/'.date('Y/m/d', $one_day_ago).'/" class="prev" rel="prev">'.str_replace('{date}', strftime(_('%B %e, %Y'), $one_day_ago), _('Previous day ({date})')).'</a></li>';
+
+	$today = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
+	if ($show_day < $today) {
+		$next_day = strtotime(date('Y-m-d', $show_day).' + 1 day');
+		$navigation .= '<li><a href="/n/daily/'.date('Y/m/d', $next_day).'/" class="next" rel="next">'.str_replace('{date}', strftime(_('%B %e, %Y'), $next_day), _('Next day ({date})')).'</a></li>';
+		$next_month = strtotime(date('Y-m-d', $show_day).' + 1 month');
+		if ($next_month > $today) {
+			$navigation .= '<li><a href="/n/daily/'.date('Y/m/d', $today).'/" class="next" rel="next">'._('Today').'</a></li>';
+		}
+		else {
+			$navigation .= '<li><a href="/n/daily/'.date('Y/m/d', $next_month).'/" class="next" rel="next">'.str_replace('{date}', strftime(_('%B %e, %Y'), $next_month), _('Next month ({date})')).'</a></li>';
+		}
+	}
+
+	$navigation .= '</ul></nav>';
+
+
+	$c .= $navigation;
 
 	$day_comics = new ShowComic;
 	$day_comics->set_min_time(mktime(0, 0, 0, $month, $day, $year));
@@ -63,4 +85,6 @@ if ($show_day) {
 	else {
 		$c .= '<p>'._('Sorry! There are no comics to show for this date.').'</p>';
 	}
+
+	$c .= $navigation;
 }

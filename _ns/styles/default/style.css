@@ -184,7 +184,7 @@ header .header-buttons {
 	z-index: 100;
 }
 header .header-buttons a {
-	display: block;
+	display: inline-block;
 	padding: 0 1em;
 	font-weight: bold;
 	border: solid 1px #e8e8e8;
@@ -204,6 +204,11 @@ header .header-buttons a.following:hover {
 	color: #ffffff;
 	border: solid 1px #e8e8e8;
 	background: #aa0000;
+}
+
+nav.user-menu a.block {
+	color: #aa0000;
+	font-weight: bold;
 }
 
 /* ------------------------------------------------------------------------ */

@@ -46,7 +46,7 @@ class ShowComic {
 	function set_result_type($type) {
 		$this->result_type = $type;
 	}
-	
+
   function set_slug($slug) {
     $this->slug = $slug;
   }
@@ -64,7 +64,7 @@ class ShowComic {
 	}
 
   function show() {
-    global $conn;
+    global $conn, $logged_in, $user_info;
     if (isset($this->count) && is_numeric($this->count)) {
       $count = $this->count;
     }
@@ -101,6 +101,10 @@ class ShowComic {
 		
 		$query .= 'LEFT JOIN ns_comics AS c ON u.comic = c.id ';
 
+		if ($logged_in && is_numeric($user_info['id'])) {
+			$query .= 'LEFT JOIN (SELECT comic, time FROM ns_user_comic_rel WHERE user = '.$user_info['id'].' AND reltype = \'b\') AS blocked ON u.comic = blocked.comic ';
+		}
+
     $query .= 'WHERE ';
     if ($this->comic && is_numeric($this->comic)) {
       $query .= 'u.comic = '.$this->comic.' AND ';
@@ -114,6 +118,9 @@ class ShowComic {
 	if ($this->maxtime != time()) {
 		$query .= 'u.pubtime <= FROM_UNIXTIME('.$this->maxtime.') AND ';
 	}
+	if ($logged_in && is_numeric($user_info['id'])) {
+		$query .= 'blocked.time IS NULL AND ';
+	}
 	$query .= 'u.pubtime <= NOW() AND u.published = 1 AND u.updtype IN (\'c\', \'i\') ORDER BY '.$order;
 	
 		if ($count) {
@@ -124,7 +131,7 @@ class ShowComic {
 //	exit;
 
 		$result = $conn->query($query);
-    $num = $result->num_rows;
+  $num = $result->num_rows;
 
     if ($num) {
 

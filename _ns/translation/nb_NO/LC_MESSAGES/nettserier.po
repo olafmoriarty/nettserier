@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
-"POT-Creation-Date: 2016-06-20 07:04+0100\n"
-"PO-Revision-Date: 2016-06-20 07:41+0100\n"
+"POT-Creation-Date: 2016-06-20 21:43+0100\n"
+"PO-Revision-Date: 2016-06-20 21:44+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -31,7 +31,7 @@ msgstr ""
 "operasjon trenger informasjonskapsler, men hei, det ser ut som om det "
 "virker.)"
 
-#: config.php:171
+#: config.php:168
 msgid ""
 "This cookie is set when you select a language and stores information about "
 "which language you prefer reading {page} in. This cookie won't be set until "
@@ -55,11 +55,11 @@ msgstr "Søk"
 msgid "{n}'s dashboard"
 msgstr "{n}s kontrollpanel"
 
-#: content.php:78 pages/comic.php:68 plugins/users/config.php:26
+#: content.php:78 pages/comic.php:69 plugins/users/config.php:26
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: content.php:79 pages/comic.php:69 plugins/users/config.php:27
+#: content.php:79 pages/comic.php:70 plugins/users/config.php:27
 #: plugins/users/login.php:8 plugins/users/register.php:6
 msgid "Log out"
 msgstr "Logg ut"
@@ -136,11 +136,11 @@ msgstr ""
 msgid "Sorry!"
 msgstr "Beklager!"
 
-#: pages/404.php:21
+#: pages/404.php:20
 msgid "Go back to the comic"
 msgstr "Gå tilbake til tegneserien"
 
-#: pages/404.php:24
+#: pages/404.php:23
 msgid "Go back to {page}"
 msgstr "Gå tilbake til {page}"
 
@@ -148,23 +148,7 @@ msgstr "Gå tilbake til {page}"
 msgid "by {creator}"
 msgstr "av {creator}"
 
-#: pages/feed.php:59
-msgid "This is your user feed."
-msgstr "Dette er brukerstrømmen din."
-
-#: pages/feed.php:60
-msgid "To start getting interesting content here, you could:"
-msgstr "For å få mer interessant innhold her, jan du:;"
-
-#: pages/feed.php:62
-msgid "Follow more comics"
-msgstr "Følge flere tegneserier"
-
-#: pages/feed.php:63
-msgid "Change your feed settings to allow more updates through"
-msgstr "Endre innstillingene for strømmen din for å vise flere oppdateringer"
-
-#: pages/feed.php:96
+#: pages/feed.php:98
 msgid ""
 "Did you know that you can personalize this feed by creating or following "
 "comics? To follow a comic, go to the comic and click on the big \"Follow\" "
@@ -464,23 +448,23 @@ msgstr ""
 msgid "Upload and proceed"
 msgstr "Last opp og fortsett"
 
-#: plugins/comicstrips/classes.php:144
+#: plugins/comicstrips/classes.php:151
 msgid "First comic"
 msgstr "Første stripe"
 
-#: plugins/comicstrips/classes.php:145
+#: plugins/comicstrips/classes.php:152
 msgid "Previous comic"
 msgstr "Forrige stripe"
 
-#: plugins/comicstrips/classes.php:146
+#: plugins/comicstrips/classes.php:153
 msgid "Next comic"
 msgstr "Neste stripe"
 
-#: plugins/comicstrips/classes.php:147
+#: plugins/comicstrips/classes.php:154
 msgid "Latest comic"
 msgstr "Siste stripe"
 
-#: plugins/comicstrips/classes.php:191 plugins/comicstrips/edit.php:513
+#: plugins/comicstrips/classes.php:198 plugins/comicstrips/edit.php:513
 msgid "Published {time}"
 msgstr "Publisert {time}"
 
@@ -785,7 +769,7 @@ msgstr "Legg til kommentar!"
 msgid "Log in to add your comment!"
 msgstr "Logg inn for å legge til en kommentar!"
 
-#: plugins/daily/config.php:7
+#: plugins/daily/config.php:7 plugins/daily/daily.php:63
 msgid "Today"
 msgstr "I dag"
 
@@ -817,11 +801,29 @@ msgstr "Velg en måned:"
 msgid "Select a day:"
 msgstr "Velg en dag:"
 
-#: plugins/daily/daily.php:46
+#: plugins/daily/daily.php:43 plugins/daily/daily.php:52
+#: plugins/daily/daily.php:55 plugins/daily/daily.php:60
+#: plugins/daily/daily.php:66
 msgid "%B %e, %Y"
 msgstr "%e. %B %Y"
 
-#: plugins/daily/daily.php:64
+#: plugins/daily/daily.php:52
+msgid "Previous month ({date})"
+msgstr "Forrige måned ({date})"
+
+#: plugins/daily/daily.php:55
+msgid "Previous day ({date})"
+msgstr "Forrige dag ({date})"
+
+#: plugins/daily/daily.php:60
+msgid "Next day ({date})"
+msgstr "Neste dag ({date})"
+
+#: plugins/daily/daily.php:66
+msgid "Next month ({date})"
+msgstr "Neste måned ({date})"
+
+#: plugins/daily/daily.php:86
 msgid "Sorry! There are no comics to show for this date."
 msgstr "Beklager! Det er ingen tegneserier å vise for denne datoen."
 
@@ -837,11 +839,19 @@ msgstr "Følger"
 msgid "Follow"
 msgstr "Følg"
 
-#: plugins/follow/functions.php:96
+#: plugins/follow/functions.php:26
+msgid "Unblock comic"
+msgstr "Opphev blokkering"
+
+#: plugins/follow/functions.php:29
+msgid "Block this comic"
+msgstr "Blokker denne tegneserien"
+
+#: plugins/follow/functions.php:113
 msgid "Comics I follow"
 msgstr "Tegneserier jeg følger"
 
-#: plugins/follow/functions.php:105
+#: plugins/follow/functions.php:122
 msgid "{name} isn't following any comics yet."
 msgstr "{name} følger ingen tegneserier ennå."
 
@@ -1107,6 +1117,19 @@ msgstr "Registrering vellykket!"
 #: plugins/users/welcome.php:4
 msgid "Log in to get started!"
 msgstr "Logg inn for å begynne!"
+
+#~ msgid "This is your user feed."
+#~ msgstr "Dette er brukerstrømmen din."
+
+#~ msgid "To start getting interesting content here, you could:"
+#~ msgstr "For å få mer interessant innhold her, jan du:;"
+
+#~ msgid "Follow more comics"
+#~ msgstr "Følge flere tegneserier"
+
+#~ msgid "Change your feed settings to allow more updates through"
+#~ msgstr ""
+#~ "Endre innstillingene for strømmen din for å vise flere oppdateringer"
 
 #~ msgid "Create an album"
 #~ msgstr "Opprett et album"

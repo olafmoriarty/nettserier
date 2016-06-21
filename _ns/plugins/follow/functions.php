@@ -15,6 +15,21 @@ function follow_button($comic) {
 	}
 }
 
+function block_button($comic) {
+	global $logged_in, $user_info;
+	$url = comic_url($comic);
+	if (!$logged_in || can_edit_comic($user_info['id'], $url)) {
+		return;
+	}
+
+	if (is_blocking($user_info['id'], $comic)) {
+		return '<a href="/'.$url.'/block/?do=unblock&amp;returnurl='.urlencode(NS_URL).'">'._('Unblock comic').'</a>';
+	}
+	else {
+		return '<a href="/'.$url.'/block/?returnurl=/" class="block">'._('Block this comic').'</a>';
+	}
+}
+
 function is_following($user, $comic) {
 	global $conn;
 	if (!is_numeric($user) || !is_numeric($comic)) {
@@ -50,6 +65,7 @@ function is_blocking($user, $comic) {
 function follow($user, $comic) {
 	global $conn;
 	if (is_numeric($user) && is_numeric($comic) && !is_following($user, $comic) && !can_edit_comic($user, $comic)) {
+		unblock($user, $comic);
 		$query = 'INSERT INTO ns_user_comic_rel (user, comic, reltype, time) VALUES ('.$user.', '.$comic.', \'f\', NOW())';
 		$conn->query($query);
 		return true;
@@ -70,6 +86,7 @@ function unfollow($user, $comic) {
 function block($user, $comic) {
 	global $conn;
 	if (is_numeric($user) && is_numeric($comic) && !is_blocking($user, $comic) && !can_edit_comic($user, $comic)) {
+		unfollow($user, $comic);
 		$query = 'INSERT INTO ns_user_comic_rel (user, comic, reltype, time) VALUES ('.$user.', '.$comic.', \'b\', NOW())';
 		$conn->query($query);
 		return true;

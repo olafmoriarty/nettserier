@@ -9,7 +9,6 @@ $c .= '<p>'._('Sorry!').'</p>';
 if (isset($comic_url)) {
 	if (preg_match('/\/([0-9]+)\/([0-9]+)\/([0-9]+)\/?/', NS_URL, $matches)) {
 		$query = 'SELECT slug FROM ns_updates WHERE updtype = \'c\' AND comic = '.comic_id($comic_url).' AND pubtime LIKE \''.$matches[1].'-'.$matches[2].'-'.$matches[3].'%\' LIMIT 1';
-		echo $query;
 		$result = $conn->query($query);
 		$num = $result->num_rows;
 		$arr = $result->fetch_assoc();

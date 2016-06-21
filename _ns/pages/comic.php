@@ -65,6 +65,7 @@ if ($logged_in) {
 	$header .= '<nav class="user-menu" id="user-menu">'."\n";
 	$header .= '<ul>';
 	$header .= '<li><a href="/n/dashboard/">'.str_replace('{n}', htmlspecialchars($user_info['username']), _('{n}\'s dashboard')).'</a></li>';
+	$header .= '<li>'.block_button($comic_id).'</li>';
 	$header .= '<li><a href="/n/dashboard/settings/">'._('Settings').'</a></li>';
 	$header .= '<li><a href="/n/log-out/">'._('Log out').'</a></li>';
 	$header .= '</ul>';

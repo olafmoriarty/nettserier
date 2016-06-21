@@ -56,12 +56,14 @@ if ($num) {
 	$c .= limitstring_nav($pagecount);
 }
 else {
-  $c .= '<p>'._('This is your user feed.').'</p>';
+//	$c .= $action['frontpage']->run();
+//	include(NS_PATH.'pages/main.php');
+/*  $c .= '<p>'._('This is your user feed.').'</p>';
   $c .= '<p>'._('To start getting interesting content here, you could:').'</p>';
   $c .= '<ul>';
   $c .= '<li><a href="/n/browse/">'._('Follow more comics').'</a></li>';
   $c .= '<li><a href="#feed-settings">'._('Change your feed settings to allow more updates through').'</a></li>';
-  $c .= '</ul>';
+  $c .= '</ul>'; */
 }
 $c .= '</section>'."\n";
 
