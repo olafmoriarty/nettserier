@@ -181,7 +181,7 @@ sec_session_start();
 
 $logged_in = login_check();
 if ($logged_in) {
-	$query = 'SELECT id, username, email, level FROM ns_users WHERE id = '.$_SESSION['user_id'].' LIMIT 1';
+	$query = 'SELECT id, username, email, level, sponsor FROM ns_users WHERE id = '.$_SESSION['user_id'].' LIMIT 1';
 	$result = $conn->query($query);
 	$user_info = $result->fetch_assoc();
 }

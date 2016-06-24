@@ -3,7 +3,7 @@
 // Install all MySQL tables (if they exist)
 
 // ns_users
-mysql_install_table('ns_users', ['username VARCHAR(100) NOT NULL', 'realname VARCHAR(100) NOT NULL', 'email VARCHAR(255) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP', 'password VARCHAR(255)', 'oldpass VARCHAR(255)', 'level INT(3)', 'salt CHAR(128) NOT NULL', 'emailtoken CHAR(128) NOT NULL']);
+mysql_install_table('ns_users', ['username VARCHAR(100) NOT NULL', 'realname VARCHAR(100) NOT NULL', 'email VARCHAR(255) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP', 'password VARCHAR(255)', 'oldpass VARCHAR(255)', 'level INT(3)', 'salt CHAR(128) NOT NULL', 'emailtoken CHAR(128) NOT NULL', 'sponsor INT(1) NOT NULL']);
 
 // ns_login_attempts
 mysql_install_table('ns_login_attempts', ['user_id INT(11) NOT NULL', 'time VARCHAR(30) NOT NULL']);

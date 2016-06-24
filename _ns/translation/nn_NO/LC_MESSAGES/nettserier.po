@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
-"POT-Creation-Date: 2016-06-24 16:09+0100\n"
-"PO-Revision-Date: 2016-06-24 16:10+0100\n"
+"POT-Creation-Date: 2016-06-24 20:52+0100\n"
+"PO-Revision-Date: 2016-06-24 20:54+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
 "Language: nn_NO\n"
@@ -71,15 +71,15 @@ msgstr "Språk"
 msgid "Follow us!"
 msgstr "Følg oss!"
 
-#: content.php:138 plugins/help/help.php:6 plugins/help/help.php:55
+#: content.php:138 plugins/help/help.php:6 plugins/help/help.php:61
 msgid "About us"
 msgstr "Om oss"
 
-#: content.php:139 plugins/help/help.php:36 plugins/help/help.php:55
+#: content.php:139 plugins/help/help.php:42 plugins/help/help.php:61
 msgid "Cookies"
 msgstr "Informasjonskapslar"
 
-#: content.php:141 plugins/help/help.php:54
+#: content.php:141 plugins/help/help.php:60
 msgid "Help"
 msgstr "Hjelp"
 
@@ -859,47 +859,62 @@ msgstr "Teikneseriar eg følgjer"
 msgid "{name} isn't following any comics yet."
 msgstr "{name} følgjer ingen teikneseriar enno."
 
-#: plugins/help/help.php:7
+#: plugins/help/help.php:8
 msgid "{page} is a Norwegian webcomics portal run and owned by {company}."
 msgstr "{page} er ein norsk teikneserieportal drive og eid av {company}."
 
-#: plugins/help/help.php:12
+#: plugins/help/help.php:13
 msgid "Contact us"
 msgstr "Kontakt oss"
 
-#: plugins/help/help.php:13
+#: plugins/help/help.php:14
 msgid "E-mail:"
 msgstr "E-post:"
 
-#: plugins/help/help.php:14
+#: plugins/help/help.php:15
 msgid "Snail mail:"
 msgstr "Sneglepost:"
 
-#: plugins/help/help.php:16
+#: plugins/help/help.php:17
 msgid "Who are we?"
 msgstr "Kven er vi?"
 
-#: plugins/help/help.php:17
+#: plugins/help/help.php:18
 msgid "Managing director:"
 msgstr "Dagleg leiar:"
 
-#: plugins/help/help.php:18
+#: plugins/help/help.php:19
 msgid "Board members:"
 msgstr "Styremedlemer:"
 
-#: plugins/help/help.php:20
+#: plugins/help/help.php:21
 msgid "Open source code used for {page}"
 msgstr "Åpen kjeldekode brukt på {page}"
 
-#: plugins/help/help.php:28
+#: plugins/help/help.php:29
 msgid "Developed by {name} (released under {license})"
 msgstr "Utvikla av {name} (utgitt under {license})"
 
-#: plugins/help/help.php:31
+#: plugins/help/help.php:32
 msgid "Developed by {name}"
 msgstr "Utvikla av {name}"
 
-#: plugins/help/help.php:38
+#: plugins/help/help.php:37
+msgid "Our sponsors"
+msgstr "Våre sponsorar"
+
+#: plugins/help/help.php:37
+msgid ""
+"This is a list of the amazing people who are currently supporting {page} on "
+"{service} with $10/month or more. They're really incredible, and it would "
+"have been a lot more difficult to run {page} without them. THANK YOU!"
+msgstr ""
+"Dette er ei liste over dei fantastiske menneska som for tida har vald å "
+"støtte {page} på {service} med $ 10 eller meir i månaden. Dei er heilt "
+"utrulege, og det hadde vore veldig mykje vanskelegare å drive {page} utan "
+"dei. TUSEN TAKK!"
+
+#: plugins/help/help.php:44
 msgid ""
 "This website uses cookies to improve your user experience. We stribe to keep "
 "cookie usage at a minimum and as non-intrusive as possible."
@@ -908,7 +923,7 @@ msgstr ""
 "brukaropplevinga di. Vi streber for å halde denne bruken på eit minimum og "
 "så lite påtrengjande som mogleg."
 
-#: plugins/help/help.php:39
+#: plugins/help/help.php:45
 msgid "These are the cookies we use:"
 msgstr "Vi bruker desse informasjonskapslane:"
 
@@ -1006,6 +1021,14 @@ msgstr "Ny brukar?"
 #: plugins/users/login.php:45
 msgid "Forgot password?"
 msgstr "Gløymd passord?"
+
+#: plugins/users/profiles.php:21
+msgid "({name})"
+msgstr "({name})"
+
+#: plugins/users/profiles.php:28
+msgid "This user supports {page} on Patreon!"
+msgstr "Denne brukaren støtter {page} på Patreon!"
 
 #: plugins/users/register.php:2 plugins/users/register.php:4
 #: plugins/users/register.php:118
@@ -1134,6 +1157,10 @@ msgstr "Registrering vellukka!"
 #: plugins/users/welcome.php:4
 msgid "Log in to get started!"
 msgstr "Logg inn for å starte!"
+
+#~ msgid ""
+#~ "People currently supporting {page} on {service} with $10/month or more:"
+#~ msgstr "Folk som støtter {page} på {service} med $ 10 eller meir i månaden:"
 
 #~ msgid "This is your user feed."
 #~ msgstr "Dette er brukarstraumen din."

@@ -433,12 +433,21 @@ nav.user-menu a.block {
 
 .main .profile_pic {
 	text-align: center;
+	position: relative;
 }
 
 .main .profile_pic img {
 	border: solid 4px #e8e8e8;
 	border-radius: calc(50% + 4px);
 	max-width: 100%;
+}
+
+.main .profile_pic .sponsor-icon {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	border: none;
 }
 
 .main table.strips-to-edit {
@@ -929,6 +938,11 @@ footer .copyright {text-align: center;}
 
 	.main .browse-table .main-cell {
 		white-space: normal;
+	}
+
+	.main .about-us {
+		columns: 3;
+		column-rule-style: solid 1px #ffffff;
 	}
 }
 
