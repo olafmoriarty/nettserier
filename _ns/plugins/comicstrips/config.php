@@ -18,6 +18,8 @@
 $action['frontpage']->add_line(['function' => 'fp_splash', 'order' => 0]);
 $action['frontpage']->add_line(['function' => 'fp_recent', 'order' => 10]);
 
+$action['delete_comic']->add_line(['function' => 'delete_all_strips']);
+
 // Stuff for user feed
 
 if ($logged_in) {

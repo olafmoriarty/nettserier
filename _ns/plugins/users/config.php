@@ -64,3 +64,19 @@ function user_name($id) {
 		return $arr['name'];
 	}
 }
+
+function is_admin($id) {
+	global $conn;
+	if (!is_numeric($id))
+		return false;
+	$query = 'SELECT level FROM ns_users WHERE id = '.$id.' LIMIT 1';
+	$result = $conn->query($query);
+	$num = $result->num_rows;
+	if (!$num)
+		return false;
+	$arr = $result->fetch_assoc();
+	if ($arr['level'] < 70)
+		return false;
+	else
+		return true;
+}

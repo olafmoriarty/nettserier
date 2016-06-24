@@ -60,6 +60,11 @@
 
 	function can_edit_comic($user, $url) {
 		global $conn;
+
+		if (is_admin($user)) {
+			return true;
+		}
+
 		$query = 'SELECT id FROM ns_user_comic_rel WHERE user = '.$user.' AND comic = '.comic_id($url).' AND reltype IN (\'c\', \'e\')';
 		$result = $conn->query($query);
 		$num = $result->num_rows;
@@ -80,15 +85,18 @@
 	}
 
 	function delete_comic($url) {
-		global $conn;
+		global $conn, $action;
 
-		$query = 'DELETE FROM ns_user_comic_rel WHERE comic = '.comic_id($url);
+		$comic_id = comic_id($url);
+
+		$action['delete_comic']->run($comic_id);
+
+		$query = 'DELETE FROM ns_user_comic_rel WHERE comic = '.$comic_id;
 		$conn->query($query);
 
 		$query = 'DELETE FROM ns_comics WHERE url = \''.($conn->escape_string($url)).'\'';
 		$conn->query($query);
 
-		// TODO: Add ArrayHandler functionality to this function
 	}
 
 	function delete_user_comics($id) {

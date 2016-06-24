@@ -83,6 +83,9 @@ $action['user_page'] = new ActionHook();
 
 $action['after_footer'] = new ActionHook();
 
+$action['delete_comic'] = new ActionHook();
+
+
 // Add javascript for Adaptive Images
 $head->add_line(['text' => '<script>document.cookie=\'resolution=\'+Math.max(screen.width,screen.height)+\'; path=/\';</script>']);
 $open_source->add_line(['name' => 'Adaptive Images', 'developer' => 'Matt Wilcox', 'link' => 'http://adaptive-images.com/', 'license' => 'Creative Commons Attribution 3.0 Unported License']);

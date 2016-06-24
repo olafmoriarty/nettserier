@@ -50,7 +50,12 @@ else {
       $error_array['reg_pass2'] = $err;
       $errors = true;
     }
-    
+
+    if (strtolower($_POST['captcha']) != 'batman') {
+      $error_array['captcha'] = _('Wrong answer! Are you a robot?');
+      $errors = true;
+    }
+
 
     if (!$errors) {
       $table = 'ns_users';
@@ -116,6 +121,7 @@ else {
     $c .= input_field(['name' => 'reg_email', 'text' => _('Your e-mail')]);
     $c .= input_field(['name' => 'reg_pass', 'text' => _('Your password'), 'type' => 'password']);
     $c .= input_field(['name' => 'reg_pass2', 'text' => _('Repeat password'), 'type' => 'password']);
+    $c .= input_field(['name' => 'captcha', 'text' => _('Spambot check: What is the name of the Gotham City superhero who dresses up like a bat?')]);
     $c .= '<p><input type="submit" name="reg_button" id="reg_button" value="'._('Register!').'"></p>';
     $c .= '</form>'."\n";
   }

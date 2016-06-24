@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
-"POT-Creation-Date: 2016-06-20 21:43+0100\n"
-"PO-Revision-Date: 2016-06-20 21:44+0100\n"
+"POT-Creation-Date: 2016-06-24 16:07+0100\n"
+"PO-Revision-Date: 2016-06-24 16:09+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: config.php:89
+#: config.php:92
 msgid ""
 "This cookie is set by the <em>Adaptive Images</em> plugin and is used to "
 "preprocess image files based on your screen resolution before sending them "
@@ -31,7 +31,7 @@ msgstr ""
 "operasjon trenger informasjonskapsler, men hei, det ser ut som om det "
 "virker.)"
 
-#: config.php:168
+#: config.php:171
 msgid ""
 "This cookie is set when you select a language and stores information about "
 "which language you prefer reading {page} in. This cookie won't be set until "
@@ -148,7 +148,7 @@ msgstr "Gå tilbake til {page}"
 msgid "by {creator}"
 msgstr "av {creator}"
 
-#: pages/feed.php:98
+#: pages/feed.php:99
 msgid ""
 "Did you know that you can personalize this feed by creating or following "
 "comics? To follow a comic, go to the comic and click on the big \"Follow\" "
@@ -218,6 +218,15 @@ msgstr "Serieskaper"
 msgid "Last update"
 msgstr "Siste oppdatering"
 
+#: plugins/comicsites/browse.php:52
+msgid "Admin options"
+msgstr "Adminvalg"
+
+#: plugins/comicsites/browse.php:61 plugins/comments/comic_comments.php:73
+#: plugins/comments/functions.php:80
+msgid "Delete"
+msgstr "Slett"
+
 #: plugins/comicsites/config.php:15
 msgid "Comics"
 msgstr "Tegneserier"
@@ -275,23 +284,23 @@ msgstr ""
 "redigere serien. Om du vil slette en slik serie, må du gjøre det manuelt før "
 "du sletter profilen din."
 
-#: plugins/comicsites/delete-comic.php:28 plugins/users/delete-user.php:27
+#: plugins/comicsites/delete-comic.php:33 plugins/users/delete-user.php:27
 msgid "That's not the correct password."
 msgstr "Dette er ikke riktig passord."
 
-#: plugins/comicsites/delete-comic.php:33
-#: plugins/comicsites/delete-comic.php:38 plugins/users/delete-user.php:32
+#: plugins/comicsites/delete-comic.php:38
+#: plugins/comicsites/delete-comic.php:43 plugins/users/delete-user.php:32
 #: plugins/users/delete-user.php:37
 msgid "Impossible error. Please try again."
 msgstr "En umulig feil oppstod. Prøv igjen."
 
-#: plugins/comicsites/delete-comic.php:46
-#: plugins/comicsites/delete-comic.php:48
-#: plugins/comicsites/delete-comic.php:55
+#: plugins/comicsites/delete-comic.php:51
+#: plugins/comicsites/delete-comic.php:53
+#: plugins/comicsites/delete-comic.php:60
 msgid "Delete \"{comic}\""
 msgstr "Slett «{comic}»"
 
-#: plugins/comicsites/delete-comic.php:49
+#: plugins/comicsites/delete-comic.php:54
 msgid ""
 "This is a pretty big deal: Are you absolutely sure you want to delete this "
 "comic?"
@@ -299,7 +308,7 @@ msgstr ""
 "Dette er ganske heftig. Er du helt sikker på at du vil slette denne "
 "tegneserien?"
 
-#: plugins/comicsites/delete-comic.php:50
+#: plugins/comicsites/delete-comic.php:55
 msgid ""
 "Deleting a comic is permanent and <strong>cannot be undone</strong>. When "
 "deleting a comic you're also deleting all comic strips, blog posts, "
@@ -309,7 +318,7 @@ msgstr ""
 "du sletter en tegneserie sletter du også alle striper, blogginnlegg, "
 "kommentarer, statistikk og alt annet som er relatert til den tegneserien."
 
-#: plugins/comicsites/delete-comic.php:51
+#: plugins/comicsites/delete-comic.php:56
 msgid ""
 "If you're absolutely sure you want to delete this comic, please enter your "
 "password to confirm."
@@ -317,7 +326,7 @@ msgstr ""
 "Dersom du er helt sikker på at du vil slette denne serien, skriv inn "
 "passordet ditt for å bekrefte."
 
-#: plugins/comicsites/delete-comic.php:54 plugins/users/delete-user.php:59
+#: plugins/comicsites/delete-comic.php:59 plugins/users/delete-user.php:59
 msgid "Password"
 msgstr "Passord"
 
@@ -476,11 +485,11 @@ msgstr "Tegneserie"
 msgid "Edit uploaded comic strips and pages"
 msgstr "Rediger opplastede tegneseriestriper og -sider"
 
-#: plugins/comicstrips/config.php:69
+#: plugins/comicstrips/config.php:71
 msgid "Edit strip"
 msgstr "Rediger stripe"
 
-#: plugins/comicstrips/config.php:76
+#: plugins/comicstrips/config.php:78
 msgid "Delete strip"
 msgstr "Slett stripe"
 
@@ -701,10 +710,6 @@ msgstr "Kommentar til {title}:"
 msgid "Edit"
 msgstr "Rediger"
 
-#: plugins/comments/comic_comments.php:73 plugins/comments/functions.php:80
-msgid "Delete"
-msgstr "Slett"
-
 #: plugins/comments/comic_comments.php:79
 msgid "Delete selected comments"
 msgstr "Slett valgte kommentarer"
@@ -777,15 +782,15 @@ msgstr "I dag"
 msgid "Today's updates"
 msgstr "Dagens oppdateringer"
 
-#: plugins/daily/config.php:51
+#: plugins/daily/config.php:52
 msgid "%A %B %e"
 msgstr "%A %e. %B"
 
-#: plugins/daily/config.php:51
+#: plugins/daily/config.php:52
 msgid "Updates {date}"
 msgstr "Oppdateringer {date}"
 
-#: plugins/daily/config.php:58
+#: plugins/daily/config.php:59
 msgid "{n} new comic strips, including:"
 msgstr "{n} nye tegneseriestriper, inkludert:"
 
@@ -1004,7 +1009,7 @@ msgid "Forgot password?"
 msgstr "Glemt passord?"
 
 #: plugins/users/register.php:2 plugins/users/register.php:4
-#: plugins/users/register.php:113
+#: plugins/users/register.php:118
 msgid "Register new user"
 msgstr "Registrer ny bruker"
 
@@ -1040,23 +1045,35 @@ msgstr "Passordet kan ikke være blankt."
 msgid "The \"Password\" and \"Confirm password\" fields don't match."
 msgstr "Passordfeltene er ikke like."
 
-#: plugins/users/register.php:115 plugins/users/settings.php:109
+#: plugins/users/register.php:55
+msgid "Wrong answer! Are you a robot?"
+msgstr "Feil svar! Er du en robot?"
+
+#: plugins/users/register.php:120 plugins/users/settings.php:109
 msgid "Your preferred username"
 msgstr "Ditt ønskede brukernavn"
 
-#: plugins/users/register.php:116 plugins/users/settings.php:111
+#: plugins/users/register.php:121 plugins/users/settings.php:111
 msgid "Your e-mail"
 msgstr "Din e-postadresse"
 
-#: plugins/users/register.php:117
+#: plugins/users/register.php:122
 msgid "Your password"
 msgstr "Ditt passord"
 
-#: plugins/users/register.php:118 plugins/users/settings.php:116
+#: plugins/users/register.php:123 plugins/users/settings.php:116
 msgid "Repeat password"
 msgstr "Gjenta passord"
 
-#: plugins/users/register.php:119
+#: plugins/users/register.php:124
+msgid ""
+"Spambot check: What is the name of the Gotham City superhero who dresses up "
+"like a bat?"
+msgstr ""
+"Spambotsjekk: Hva heter superhelten fra Gotham City som kler seg ut som en "
+"flaggermus? (Vi er på jakt etter det engelske navnet på seks bokstaver her.)"
+
+#: plugins/users/register.php:125
 msgid "Register!"
 msgstr "Registrer!"
 

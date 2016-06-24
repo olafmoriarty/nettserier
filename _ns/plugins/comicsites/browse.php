@@ -48,12 +48,18 @@ $c .= $navigation;
 		$c .= '<th><a href="'.NS_URL.'?order=name'.maybedesc('name').'">'._('Name').'</a></th>'."\n";
 		$c .= '<th><a href="'.NS_URL.'?order=creator'.maybedesc('creator').'">'._('Creator').'</a></th>'."\n";
 		$c .= '<th><a href="'.NS_URL.'?order=updated'.maybedesc('updated', true).'">'._('Last update').'</a></th>'."\n";
+		if (is_admin($user_info['id'])) {
+			$c .= '<th>'._('Admin options').'</th>';
+		}
 		$c .= '</tr>'."\n";
 	while ($arr = $result->fetch_assoc()) {
 		$c .= '<tr>'."\n";
 		$c .= '<td class="main-cell"><a href="/'.$arr['url'].'/">'.htmlspecialchars($arr['name']).'</a></td>'."\n";
 		$c .= '<td>'.htmlspecialchars($arr['creator']).'</td>'."\n";
 		$c .= '<td>'.$arr['last_update'].'</td>'."\n";
+		if ($logged_in && is_admin($user_info['id'])) {
+			$c .= '<td><a href="/n/dashboard/my-comics/'.$arr['url'].'/delete/?returnurl='.urlencode(NS_URL).'">'._('Delete').'</a></td>';
+		}
 		$c .= '</tr>'."\n";
 	}
 	$c .= '</table>'."\n";

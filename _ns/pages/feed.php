@@ -34,6 +34,7 @@ $pagecount = ceil($total_rows / $rows);
 
 $num = $result->num_rows;
 $c .= '<section class="feed">'."\n";
+
 if ($num) {
 	while ($arr = $result->fetch_assoc()) {
 		$other_fields = explode(chr(30), $arr['other']);
