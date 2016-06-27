@@ -51,3 +51,4 @@ _ns/plugins/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer/HTML/*.
 *.ser
 _striper/*.*
 stuff-git-should-ignore/*.*
+_ns/stuff/sponsor_icon.png
