@@ -7,6 +7,7 @@ RewriteCond %{HTTP_HOST} !^www\.(nettserier\.no|webcomics-x\.com|webcomicsx\.com
 RewriteRule ^(.*)$ https://nettserier.no/%1/$1 [L,NC,QSA]
 
 RewriteCond %{HTTPS} !=on
+RewriteCond %{REMOTE_ADDR} !=127.0.0.1
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{REQUEST_FILENAME} !-f
