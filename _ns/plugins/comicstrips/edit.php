@@ -104,6 +104,13 @@ elseif (isset($_POST['edit-ids'])) {
 					$unixtime = time();
 				} 
 			}
+			elseif ($_POST['comic-pubradio-'.$id] == 'time' && $_POST['comic-datetime-'.$id.'-date']) {
+				$pubtime = $_POST['comic-datetime-'.$id.'-date'].' 00:00:00';
+				$unixtime = strtotime($pubtime);
+				if ($unixtime === false) {
+					$unixtime = time();
+				} 
+			}
 			$pubtime = date('Y-m-d H:i:s', $unixtime);
 
 			// Save pubtime only if radio button is set to "choose time" or if status is set to "publish" (i.e. do NOT save time if radiobutton is left at "now" and we're saving as draft)

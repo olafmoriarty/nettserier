@@ -42,7 +42,7 @@
 				}
 
 				// Extension okay?
-				$extension = pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION);
+				$extension = strtolower(pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION));
 				if (!in_array($extension, $accepted_extensions)) {
 					$errors = true;
 					if (isset($error_array['file[]'])) {

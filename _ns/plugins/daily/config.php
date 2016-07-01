@@ -53,7 +53,6 @@ function feed_daily($arr) {
 
 	$query = 'SELECT COUNT(id) AS thenumber FROM ns_updates WHERE updtype = \'c\' AND pubtime <= NOW() AND published = 1 AND DATE(pubtime) = DATE(\''.$arr['pubtime'].'\')';
 	$result = $conn->query($query);
-	echo $conn->error;
 	$arr = $result->fetch_assoc();
 	$count = $arr['thenumber'];
 	$c .= str_replace('{n}', $count, _('{n} new comic strips, including:'));

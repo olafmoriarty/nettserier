@@ -34,7 +34,9 @@ if ($folder == 'about') {
 	}
 
 	// Having this hard-coded is STUPID. Must create a database over this. But hey, no rush, other things are more urgent ...
-	$c .= '<h3 class="expand">'._('Our sponsors').'</h3>'."\n".'<p>'.str_replace(['{page}', '{service}'], [PAGE_TITLE, '<a href="http://patreon.com/nettserier">Patreon.com</a>'], _('This is a list of the amazing people who are currently supporting {page} on {service} with $10/month or more. They\'re really incredible, and it would have been a lot more difficult to run {page} without them. THANK YOU!')).'</p>'."\n".'<ul><li>'.implode('</li><li>', ['Nils Petter Smeby', 'Eirik Andreas Vik', '<a href="http://dadaph.no" target="_blank" rel="nofollow">Bård Lilleøien</a>']).'</li></ul>';
+	$c .= '<h3 class="expand">'._('Our sponsors').'</h3>'."\n".'<p>'.str_replace(['{page}', '{service}'], [PAGE_TITLE, '<a href="http://patreon.com/nettserier">Patreon.com</a>'], _('This is a list of the amazing people who are currently supporting {page} on {service} with $10/month or more. They\'re really incredible, and it would have been a lot more difficult to run {page} without them. THANK YOU!')).'</p>'."\n".'<ul><li>';
+	$c .= implode('</li><li>', ['Kristin Arnesen', '<a href="http://dadaph.no" target="_blank" rel="nofollow">Bård Lilleøien</a>', 'Øystein Skartsæterhagen', 'Nils Petter Smeby', 'Eirik Andreas Vik']);
+	$c .= '</li></ul>';
 
 	$c .= '</div>';
 }
