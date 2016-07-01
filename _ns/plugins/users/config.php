@@ -26,6 +26,12 @@
 	$d_menu->add_line(['text' => _('Settings'), 'link' => '/n/dashboard/settings/', 'order' => 99]);
 	$d_menu->add_line(['text' => _('Log out'), 'link' => '/n/log-out/', 'order' => 100]);
 
+	if ($logged_in) {
+		$d_menu->add_line(['text' => _('Your profile page'), 'link' => '/n/users/'.$user_info['id'].'/', 'order' => 90]);
+		$feed_sidebar_menu->add_line(['text' => _('Your profile page'), 'link' => '/n/users/'.$user_info['id'].'/', 'order' => 90]);
+	}
+
+
 	function delete_user($id) {
 		global $conn;
 		if (is_numeric($id)) {

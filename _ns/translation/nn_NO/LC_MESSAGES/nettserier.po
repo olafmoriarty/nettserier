@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
-"POT-Creation-Date: 2016-06-24 20:52+0100\n"
-"PO-Revision-Date: 2016-06-24 20:54+0100\n"
+"POT-Creation-Date: 2016-07-01 19:52+0100\n"
+"PO-Revision-Date: 2016-07-01 19:52+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
 "Language: nn_NO\n"
@@ -71,15 +71,15 @@ msgstr "Språk"
 msgid "Follow us!"
 msgstr "Følg oss!"
 
-#: content.php:138 plugins/help/help.php:6 plugins/help/help.php:61
+#: content.php:138 plugins/help/help.php:6 plugins/help/help.php:63
 msgid "About us"
 msgstr "Om oss"
 
-#: content.php:139 plugins/help/help.php:42 plugins/help/help.php:61
+#: content.php:139 plugins/help/help.php:44 plugins/help/help.php:63
 msgid "Cookies"
 msgstr "Informasjonskapslar"
 
-#: content.php:141 plugins/help/help.php:60
+#: content.php:141 plugins/help/help.php:62
 msgid "Help"
 msgstr "Hjelp"
 
@@ -439,7 +439,7 @@ msgstr "Du har ikkje vald nokre filer å laste opp!"
 msgid "Upload new comic strip or page"
 msgstr "Last opp ny teikneseriestripe/-side"
 
-#: plugins/comicstrips/add.php:147 plugins/comicstrips/edit.php:299
+#: plugins/comicstrips/add.php:147 plugins/comicstrips/edit.php:306
 msgid "Upload new comic strip or page for \"{comic}\""
 msgstr "Last opp ny teikneseriestripe/-side for «{comic}»"
 
@@ -472,7 +472,7 @@ msgstr "Neste stripe"
 msgid "Latest comic"
 msgstr "Siste stripe"
 
-#: plugins/comicstrips/classes.php:198 plugins/comicstrips/edit.php:513
+#: plugins/comicstrips/classes.php:198 plugins/comicstrips/edit.php:520
 msgid "Published {time}"
 msgstr "Publisert {time}"
 
@@ -492,32 +492,32 @@ msgstr "Rediger stripe"
 msgid "Delete strip"
 msgstr "Slett stripe"
 
-#: plugins/comicstrips/edit.php:228 plugins/comicstrips/edit.php:229
+#: plugins/comicstrips/edit.php:235 plugins/comicstrips/edit.php:236
 msgid "Delete comic strips or pages"
 msgstr "Slett teikneseriestriper og -sider"
 
-#: plugins/comicstrips/edit.php:232
+#: plugins/comicstrips/edit.php:239
 msgid "Are you sure you want to delete these comic strips?"
 msgstr "Er du sikker på at du vil slette desse teikneseriestripene?"
 
-#: plugins/comicstrips/edit.php:241 plugins/comicstrips/edit.php:332
-#: plugins/comicstrips/edit.php:478
+#: plugins/comicstrips/edit.php:248 plugins/comicstrips/edit.php:339
+#: plugins/comicstrips/edit.php:485
 msgid "No title"
 msgstr "Ingen tittel"
 
-#: plugins/comicstrips/edit.php:249
+#: plugins/comicstrips/edit.php:256
 msgid "Yes, delete them!"
 msgstr "Ja, slett dei!"
 
-#: plugins/comicstrips/edit.php:297 plugins/comicstrips/edit.php:304
+#: plugins/comicstrips/edit.php:304 plugins/comicstrips/edit.php:311
 msgid "Edit drafts"
 msgstr "Rediger kladdar"
 
-#: plugins/comicstrips/edit.php:300
+#: plugins/comicstrips/edit.php:307
 msgid "Step two: Edit metadata"
 msgstr "Steg to: Rediger metadata"
 
-#: plugins/comicstrips/edit.php:301
+#: plugins/comicstrips/edit.php:308
 msgid ""
 "(Psst! Your comic strips are now uploaded and saved as drafts. If for some "
 "reason you abort the operation now, you can always come back to this page by "
@@ -529,35 +529,35 @@ msgstr ""
 "hit ved å klikke \"Rediger kladdar\" under \"Rediger teikneseriestriper og -"
 "sider\" i kontrollpanelet.)"
 
-#: plugins/comicstrips/edit.php:308 plugins/comicstrips/edit.php:309
+#: plugins/comicstrips/edit.php:315 plugins/comicstrips/edit.php:316
 msgid "Edit comic strips or pages"
 msgstr "Rediger teikneseriestriper og -sider"
 
-#: plugins/comicstrips/edit.php:312 plugins/comicstrips/edit.php:313
+#: plugins/comicstrips/edit.php:319 plugins/comicstrips/edit.php:320
 msgid "Edit comic strip or page"
 msgstr "Rediger teikneseriestripe eller -side"
 
-#: plugins/comicstrips/edit.php:341
+#: plugins/comicstrips/edit.php:348
 msgid "Title (optional)"
 msgstr "Tittel (valfri)"
 
-#: plugins/comicstrips/edit.php:343
+#: plugins/comicstrips/edit.php:350
 msgid "Publication time:"
 msgstr "Publiseringstidspunkt:"
 
-#: plugins/comicstrips/edit.php:348
+#: plugins/comicstrips/edit.php:355
 msgid "The moment I press the \"Publish\" button\""
 msgstr "Når eg trykkar «Publiser»-knappen"
 
-#: plugins/comicstrips/edit.php:356
+#: plugins/comicstrips/edit.php:363
 msgid "Description (optional)"
 msgstr "Skildring (valfri)"
 
-#: plugins/comicstrips/edit.php:367
+#: plugins/comicstrips/edit.php:374
 msgid "Bulk schedule change"
 msgstr "Masseendring av publiseringsplan"
 
-#: plugins/comicstrips/edit.php:368
+#: plugins/comicstrips/edit.php:375
 msgid ""
 "You are editing {num} comic strips or pages. You can select a publication "
 "time for each strip/page separately, or you can use one of these bulk "
@@ -567,75 +567,75 @@ msgstr ""
 "publiseringstidspunkt for kvar enkelt stripe/side separat, eller du kan "
 "bruke eit av desse masseendringsvala:"
 
-#: plugins/comicstrips/edit.php:374
+#: plugins/comicstrips/edit.php:381
 msgid "Choose publication time individually for each strip"
 msgstr "Vel publiseringstid enkeltvis for kvar stripe"
 
-#: plugins/comicstrips/edit.php:379
+#: plugins/comicstrips/edit.php:386
 msgid "Publish all comic strips at the same time"
 msgstr "Publiser alle teikneseriestriper samtidig"
 
-#: plugins/comicstrips/edit.php:381 plugins/comicstrips/edit.php:389
+#: plugins/comicstrips/edit.php:388 plugins/comicstrips/edit.php:396
 msgid "The moment I press the \"Publish\" button"
 msgstr "Når eg trykkar «Publiser»-knappen"
 
-#: plugins/comicstrips/edit.php:382 plugins/comicstrips/edit.php:390
+#: plugins/comicstrips/edit.php:389 plugins/comicstrips/edit.php:397
 msgid "At the following time:"
 msgstr "På dette tidspunktet:"
 
-#: plugins/comicstrips/edit.php:395
+#: plugins/comicstrips/edit.php:402
 msgid "Monday"
 msgstr "Måndag"
 
-#: plugins/comicstrips/edit.php:395
+#: plugins/comicstrips/edit.php:402
 msgid "Tuesday"
 msgstr "Tysdag"
 
-#: plugins/comicstrips/edit.php:395
+#: plugins/comicstrips/edit.php:402
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: plugins/comicstrips/edit.php:395
+#: plugins/comicstrips/edit.php:402
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: plugins/comicstrips/edit.php:395
+#: plugins/comicstrips/edit.php:402
 msgid "Friday"
 msgstr "Fredag"
 
-#: plugins/comicstrips/edit.php:395
+#: plugins/comicstrips/edit.php:402
 msgid "Saturday"
 msgstr "Laurdag"
 
-#: plugins/comicstrips/edit.php:395
+#: plugins/comicstrips/edit.php:402
 msgid "Sunday"
 msgstr "Sundag"
 
-#: plugins/comicstrips/edit.php:408
+#: plugins/comicstrips/edit.php:415
 msgid "Set a publication schedule"
 msgstr "Lag ein publiseringsplan"
 
-#: plugins/comicstrips/edit.php:410
+#: plugins/comicstrips/edit.php:417
 msgid "The first strip should be published {time}"
 msgstr "Den første stripa skal publiserast {time}"
 
-#: plugins/comicstrips/edit.php:411
+#: plugins/comicstrips/edit.php:418
 msgid "After that, publish a new strip every {weekdays}"
 msgstr "Etter det: publiser ei ny stripe kvar {weekdays}"
 
-#: plugins/comicstrips/edit.php:434
+#: plugins/comicstrips/edit.php:441
 msgid "Save as draft"
 msgstr "Lagre som kladd"
 
-#: plugins/comicstrips/edit.php:435
+#: plugins/comicstrips/edit.php:442
 msgid "Save and publish"
 msgstr "Lagre og publiser"
 
-#: plugins/comicstrips/edit.php:446 plugins/comicstrips/edit.php:447
+#: plugins/comicstrips/edit.php:453 plugins/comicstrips/edit.php:454
 msgid "Edit comic strips and pages"
 msgstr "Rediger teikneseriestriper og -sider"
 
-#: plugins/comicstrips/edit.php:455
+#: plugins/comicstrips/edit.php:462
 msgid ""
 "To edit a single strip/page, click it below. To edit multiple strips/pages, "
 "use the checkboxes to select them and then choose \"Edit\" from \"Bulk "
@@ -645,47 +645,47 @@ msgstr ""
 "fleire striper/sider samtidig, kryss av for dei stripene du vil endre og vel "
 "«Rediger» under «Massehandlingar» under."
 
-#: plugins/comicstrips/edit.php:460
+#: plugins/comicstrips/edit.php:467
 msgid "Edit all drafts"
 msgstr "Rediger alle kladdar"
 
-#: plugins/comicstrips/edit.php:507
+#: plugins/comicstrips/edit.php:514
 msgid "Draft"
 msgstr "Kladd"
 
-#: plugins/comicstrips/edit.php:510
+#: plugins/comicstrips/edit.php:517
 msgid "To be published {time}"
 msgstr "Blir publisert {time}"
 
-#: plugins/comicstrips/edit.php:521
+#: plugins/comicstrips/edit.php:528
 msgid "Bulk actions:"
 msgstr "Massehandlingar:"
 
-#: plugins/comicstrips/edit.php:523
+#: plugins/comicstrips/edit.php:530
 msgid "Select an action ..."
 msgstr "Vel ei handling ..."
 
-#: plugins/comicstrips/edit.php:524
+#: plugins/comicstrips/edit.php:531
 msgid "Edit selected strips/pages"
 msgstr "Rediger valde stripe/sider"
 
-#: plugins/comicstrips/edit.php:525
+#: plugins/comicstrips/edit.php:532
 msgid "Change status of selected strips/pages to Published"
 msgstr "Endre status på valde striper til Publisert"
 
-#: plugins/comicstrips/edit.php:526
+#: plugins/comicstrips/edit.php:533
 msgid "Change status of selected strips/pages to Draft"
 msgstr "Endre status på valde striper til Kladd"
 
-#: plugins/comicstrips/edit.php:527
+#: plugins/comicstrips/edit.php:534
 msgid "Delete selected strips/pages"
 msgstr "Slett valde striper"
 
-#: plugins/comicstrips/edit.php:530
+#: plugins/comicstrips/edit.php:537
 msgid "Apply"
 msgstr "Utfør"
 
-#: plugins/comicstrips/edit.php:536
+#: plugins/comicstrips/edit.php:543
 msgid "You haven't uploaded any comics yet!"
 msgstr "Du har ikkje lasta opp nokre teikneseriar enno!"
 
@@ -789,7 +789,7 @@ msgstr "%A %e. %B"
 msgid "Updates {date}"
 msgstr "Oppdateringar {date}"
 
-#: plugins/daily/config.php:59
+#: plugins/daily/config.php:58
 msgid "{n} new comic strips, including:"
 msgstr "{n} nye striper, inkludert:"
 
@@ -914,7 +914,7 @@ msgstr ""
 "utrulege, og det hadde vore veldig mykje vanskelegare å drive {page} utan "
 "dei. TUSEN TAKK!"
 
-#: plugins/help/help.php:44
+#: plugins/help/help.php:46
 msgid ""
 "This website uses cookies to improve your user experience. We stribe to keep "
 "cookie usage at a minimum and as non-intrusive as possible."
@@ -923,7 +923,7 @@ msgstr ""
 "brukaropplevinga di. Vi streber for å halde denne bruken på eit minimum og "
 "så lite påtrengjande som mogleg."
 
-#: plugins/help/help.php:45
+#: plugins/help/help.php:47
 msgid "These are the cookies we use:"
 msgstr "Vi bruker desse informasjonskapslane:"
 
@@ -948,6 +948,10 @@ msgstr "Registrer"
 #: plugins/users/login.php:39
 msgid "Log in"
 msgstr "Logg inn"
+
+#: plugins/users/config.php:30 plugins/users/config.php:31
+msgid "Your profile page"
+msgstr "Din profil"
 
 #: plugins/users/dashboard.php:7 plugins/users/dashboard.php:8
 msgid "User dashboard"
