@@ -4,7 +4,7 @@
 	$errors = false;
 	$error_array = array();
 	$comicname = comic_name($active_comic);
-	$max_file_size = 2 * 1024 * 1024;
+	$max_file_size = 10 * 1024 * 1024;
 	$accepted_extensions = ['jpg', 'jpeg', 'gif', 'png'];
 
 	if (isset($_POST) && isset($_POST['upload']) && $_POST['upload']) {
