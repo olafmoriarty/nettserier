@@ -58,10 +58,10 @@
 		return 0;
 	}
 
-	function can_edit_comic($user, $url) {
+	function can_edit_comic($user, $url, $include_admin = true) {
 		global $conn;
 
-		if (is_admin($user)) {
+		if ($include_admin && is_admin($user)) {
 			return true;
 		}
 

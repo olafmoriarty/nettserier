@@ -3,7 +3,7 @@
 function follow_button($comic) {
 	global $logged_in, $user_info;
 	$url = comic_url($comic);
-	if (!$logged_in || can_edit_comic($user_info['id'], $url)) {
+	if (!$logged_in || can_edit_comic($user_info['id'], $url, false)) {
 		return;
 	}
 
@@ -18,7 +18,7 @@ function follow_button($comic) {
 function block_button($comic) {
 	global $logged_in, $user_info;
 	$url = comic_url($comic);
-	if (!$logged_in || can_edit_comic($user_info['id'], $url)) {
+	if (!$logged_in || can_edit_comic($user_info['id'], $url, false)) {
 		return;
 	}
 
@@ -64,7 +64,7 @@ function is_blocking($user, $comic) {
 
 function follow($user, $comic) {
 	global $conn;
-	if (is_numeric($user) && is_numeric($comic) && !is_following($user, $comic) && !can_edit_comic($user, $comic)) {
+	if (is_numeric($user) && is_numeric($comic) && !is_following($user, $comic) && !can_edit_comic($user, $comic, false)) {
 		unblock($user, $comic);
 		$query = 'INSERT INTO ns_user_comic_rel (user, comic, reltype, time) VALUES ('.$user.', '.$comic.', \'f\', NOW())';
 		$conn->query($query);
@@ -85,7 +85,7 @@ function unfollow($user, $comic) {
 
 function block($user, $comic) {
 	global $conn;
-	if (is_numeric($user) && is_numeric($comic) && !is_blocking($user, $comic) && !can_edit_comic($user, $comic)) {
+	if (is_numeric($user) && is_numeric($comic) && !is_blocking($user, $comic) && !can_edit_comic($user, $comic, false)) {
 		unfollow($user, $comic);
 		$query = 'INSERT INTO ns_user_comic_rel (user, comic, reltype, time) VALUES ('.$user.', '.$comic.', \'b\', NOW())';
 		$conn->query($query);
