@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
-"POT-Creation-Date: 2016-07-01 19:51+0100\n"
-"PO-Revision-Date: 2016-07-01 19:52+0100\n"
+"POT-Creation-Date: 2016-07-13 17:58+0100\n"
+"PO-Revision-Date: 2016-07-13 17:59+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -223,7 +223,7 @@ msgid "Admin options"
 msgstr "Adminvalg"
 
 #: plugins/comicsites/browse.php:61 plugins/comments/comic_comments.php:73
-#: plugins/comments/functions.php:80
+#: plugins/comments/functions.php:80 plugins/comments/showcomments.php:73
 msgid "Delete"
 msgstr "Slett"
 
@@ -438,7 +438,7 @@ msgstr "Du har ikke valgt noen filer å laste opp!"
 msgid "Upload new comic strip or page"
 msgstr "Last opp ny tegneseriestripe eller -side"
 
-#: plugins/comicstrips/add.php:147 plugins/comicstrips/edit.php:306
+#: plugins/comicstrips/add.php:147 plugins/comicstrips/edit.php:319
 msgid "Upload new comic strip or page for \"{comic}\""
 msgstr "Last opp ny tegneseriestripe eller -side for «{comic}»"
 
@@ -473,7 +473,7 @@ msgstr "Neste stripe"
 msgid "Latest comic"
 msgstr "Siste stripe"
 
-#: plugins/comicstrips/classes.php:198 plugins/comicstrips/edit.php:520
+#: plugins/comicstrips/classes.php:198 plugins/comicstrips/edit.php:534
 msgid "Published {time}"
 msgstr "Publisert {time}"
 
@@ -493,32 +493,32 @@ msgstr "Rediger stripe"
 msgid "Delete strip"
 msgstr "Slett stripe"
 
-#: plugins/comicstrips/edit.php:235 plugins/comicstrips/edit.php:236
+#: plugins/comicstrips/edit.php:248 plugins/comicstrips/edit.php:249
 msgid "Delete comic strips or pages"
 msgstr "Slett striper eller sider"
 
-#: plugins/comicstrips/edit.php:239
+#: plugins/comicstrips/edit.php:252
 msgid "Are you sure you want to delete these comic strips?"
 msgstr "Er du sikker på at du vil slette disse tegneseriestripene?"
 
-#: plugins/comicstrips/edit.php:248 plugins/comicstrips/edit.php:339
-#: plugins/comicstrips/edit.php:485
+#: plugins/comicstrips/edit.php:261 plugins/comicstrips/edit.php:352
+#: plugins/comicstrips/edit.php:499
 msgid "No title"
 msgstr "Ingen tittel"
 
-#: plugins/comicstrips/edit.php:256
+#: plugins/comicstrips/edit.php:269
 msgid "Yes, delete them!"
 msgstr "Ja, slett dem"
 
-#: plugins/comicstrips/edit.php:304 plugins/comicstrips/edit.php:311
+#: plugins/comicstrips/edit.php:317 plugins/comicstrips/edit.php:324
 msgid "Edit drafts"
 msgstr "Rediger kladder"
 
-#: plugins/comicstrips/edit.php:307
+#: plugins/comicstrips/edit.php:320
 msgid "Step two: Edit metadata"
 msgstr "Steg to: Rediger metadata"
 
-#: plugins/comicstrips/edit.php:308
+#: plugins/comicstrips/edit.php:321
 msgid ""
 "(Psst! Your comic strips are now uploaded and saved as drafts. If for some "
 "reason you abort the operation now, you can always come back to this page by "
@@ -530,35 +530,39 @@ msgstr ""
 "«Rediger kladder» under «Rediger tegneseriestriper og -sider» i "
 "kontrollpanelet ditt.)"
 
-#: plugins/comicstrips/edit.php:315 plugins/comicstrips/edit.php:316
+#: plugins/comicstrips/edit.php:328 plugins/comicstrips/edit.php:329
 msgid "Edit comic strips or pages"
 msgstr "Rediger tegneseriestriper og -sider"
 
-#: plugins/comicstrips/edit.php:319 plugins/comicstrips/edit.php:320
+#: plugins/comicstrips/edit.php:332 plugins/comicstrips/edit.php:333
 msgid "Edit comic strip or page"
 msgstr "Rediger tegneseriestripe/-side"
 
-#: plugins/comicstrips/edit.php:348
+#: plugins/comicstrips/edit.php:360
 msgid "Title (optional)"
 msgstr "Tittel (valgfritt)"
 
-#: plugins/comicstrips/edit.php:350
+#: plugins/comicstrips/edit.php:362
 msgid "Publication time:"
 msgstr "Publiseringstidspunkt:"
 
-#: plugins/comicstrips/edit.php:355
+#: plugins/comicstrips/edit.php:367
 msgid "The moment I press the \"Publish\" button\""
 msgstr "Det øyeblikket jeg trykker «Publiser»"
 
-#: plugins/comicstrips/edit.php:363
+#: plugins/comicstrips/edit.php:375
 msgid "Description (optional)"
 msgstr "Beskrivelse (valgfritt)"
 
-#: plugins/comicstrips/edit.php:374
+#: plugins/comicstrips/edit.php:376
+msgid "Image file (leave blank to keep the current file)"
+msgstr "Bildefil (la feltet stå blankt for å beholde nåværende bilde)"
+
+#: plugins/comicstrips/edit.php:388
 msgid "Bulk schedule change"
 msgstr "Masseendring av publiseringsplan"
 
-#: plugins/comicstrips/edit.php:375
+#: plugins/comicstrips/edit.php:389
 msgid ""
 "You are editing {num} comic strips or pages. You can select a publication "
 "time for each strip/page separately, or you can use one of these bulk "
@@ -568,75 +572,75 @@ msgstr ""
 "publiseringstidspunkt for hver enkelt stripe/side, eller du kan masseendre "
 "med ett av disse valgene:"
 
-#: plugins/comicstrips/edit.php:381
+#: plugins/comicstrips/edit.php:395
 msgid "Choose publication time individually for each strip"
 msgstr "Velg tidspunkt individuelt for hver stripe"
 
-#: plugins/comicstrips/edit.php:386
+#: plugins/comicstrips/edit.php:400
 msgid "Publish all comic strips at the same time"
 msgstr "Publiser alle stripene samtidig"
 
-#: plugins/comicstrips/edit.php:388 plugins/comicstrips/edit.php:396
+#: plugins/comicstrips/edit.php:402 plugins/comicstrips/edit.php:410
 msgid "The moment I press the \"Publish\" button"
 msgstr "Det øyeblikket jeg trykker «Publiser»"
 
-#: plugins/comicstrips/edit.php:389 plugins/comicstrips/edit.php:397
+#: plugins/comicstrips/edit.php:403 plugins/comicstrips/edit.php:411
 msgid "At the following time:"
 msgstr "På dette tidspunktet:"
 
-#: plugins/comicstrips/edit.php:402
+#: plugins/comicstrips/edit.php:416
 msgid "Monday"
 msgstr "Mandag"
 
-#: plugins/comicstrips/edit.php:402
+#: plugins/comicstrips/edit.php:416
 msgid "Tuesday"
 msgstr "Tirsdag"
 
-#: plugins/comicstrips/edit.php:402
+#: plugins/comicstrips/edit.php:416
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: plugins/comicstrips/edit.php:402
+#: plugins/comicstrips/edit.php:416
 msgid "Thursday"
 msgstr "Torsdag"
 
-#: plugins/comicstrips/edit.php:402
+#: plugins/comicstrips/edit.php:416
 msgid "Friday"
 msgstr "Fredag"
 
-#: plugins/comicstrips/edit.php:402
+#: plugins/comicstrips/edit.php:416
 msgid "Saturday"
 msgstr "Lørdag"
 
-#: plugins/comicstrips/edit.php:402
+#: plugins/comicstrips/edit.php:416
 msgid "Sunday"
 msgstr "Søndag"
 
-#: plugins/comicstrips/edit.php:415
+#: plugins/comicstrips/edit.php:429
 msgid "Set a publication schedule"
 msgstr "Opprett en publiseringsplan"
 
-#: plugins/comicstrips/edit.php:417
+#: plugins/comicstrips/edit.php:431
 msgid "The first strip should be published {time}"
 msgstr "Første stripe skal publiseres {time}"
 
-#: plugins/comicstrips/edit.php:418
+#: plugins/comicstrips/edit.php:432
 msgid "After that, publish a new strip every {weekdays}"
 msgstr "Etter det, publiser en ny stripe hver {weekdays}"
 
-#: plugins/comicstrips/edit.php:441
+#: plugins/comicstrips/edit.php:455
 msgid "Save as draft"
 msgstr "Lagre som kladd"
 
-#: plugins/comicstrips/edit.php:442
+#: plugins/comicstrips/edit.php:456
 msgid "Save and publish"
 msgstr "Lagre og publiser"
 
-#: plugins/comicstrips/edit.php:453 plugins/comicstrips/edit.php:454
+#: plugins/comicstrips/edit.php:467 plugins/comicstrips/edit.php:468
 msgid "Edit comic strips and pages"
 msgstr "Rediger tegneseriestriper og -sider"
 
-#: plugins/comicstrips/edit.php:462
+#: plugins/comicstrips/edit.php:476
 msgid ""
 "To edit a single strip/page, click it below. To edit multiple strips/pages, "
 "use the checkboxes to select them and then choose \"Edit\" from \"Bulk "
@@ -646,47 +650,47 @@ msgstr ""
 "striper/sider, velg dem med avkrysningsboksene og velg «Rediger» fra "
 "rullegardinmenyen nederst på siden."
 
-#: plugins/comicstrips/edit.php:467
+#: plugins/comicstrips/edit.php:481
 msgid "Edit all drafts"
 msgstr "Rediger alle kladder"
 
-#: plugins/comicstrips/edit.php:514
+#: plugins/comicstrips/edit.php:528
 msgid "Draft"
 msgstr "Kladd"
 
-#: plugins/comicstrips/edit.php:517
+#: plugins/comicstrips/edit.php:531
 msgid "To be published {time}"
 msgstr "Blir publisert {time}"
 
-#: plugins/comicstrips/edit.php:528
+#: plugins/comicstrips/edit.php:542
 msgid "Bulk actions:"
 msgstr "Masseendringer:"
 
-#: plugins/comicstrips/edit.php:530
+#: plugins/comicstrips/edit.php:544
 msgid "Select an action ..."
 msgstr "Velg en handling ..."
 
-#: plugins/comicstrips/edit.php:531
+#: plugins/comicstrips/edit.php:545
 msgid "Edit selected strips/pages"
 msgstr "Rediger valgte striper/sider"
 
-#: plugins/comicstrips/edit.php:532
+#: plugins/comicstrips/edit.php:546
 msgid "Change status of selected strips/pages to Published"
 msgstr "Endre status på valgte striper/sider til Publisert"
 
-#: plugins/comicstrips/edit.php:533
+#: plugins/comicstrips/edit.php:547
 msgid "Change status of selected strips/pages to Draft"
 msgstr "Endre status på valgte striper/sider til Kladd"
 
-#: plugins/comicstrips/edit.php:534
+#: plugins/comicstrips/edit.php:548
 msgid "Delete selected strips/pages"
 msgstr "Slett valgte striper/sider"
 
-#: plugins/comicstrips/edit.php:537
+#: plugins/comicstrips/edit.php:551
 msgid "Apply"
 msgstr "Utfør"
 
-#: plugins/comicstrips/edit.php:543
+#: plugins/comicstrips/edit.php:557
 msgid "You haven't uploaded any comics yet!"
 msgstr "Du har ikke lastet opp noen tegneserier ennå!"
 
@@ -694,27 +698,28 @@ msgstr "Du har ikke lastet opp noen tegneserier ennå!"
 msgid "Recent updates"
 msgstr "Nylige oppdateringer"
 
-#: plugins/comments/comic_comments.php:41
+#: plugins/comments/comic_comments.php:41 plugins/comments/showcomments.php:41
 msgid "Comments for {comic}"
 msgstr "Kommentarer til {comic}"
 
-#: plugins/comments/comic_comments.php:64
+#: plugins/comments/comic_comments.php:64 plugins/comments/showcomments.php:64
 msgid "(no title)"
 msgstr "(ingen tittel)"
 
-#: plugins/comments/comic_comments.php:67
+#: plugins/comments/comic_comments.php:67 plugins/comments/showcomments.php:67
 msgid "Comment to {title}:"
 msgstr "Kommentar til {title}:"
 
 #: plugins/comments/comic_comments.php:72 plugins/comments/functions.php:79
+#: plugins/comments/showcomments.php:72
 msgid "Edit"
 msgstr "Rediger"
 
-#: plugins/comments/comic_comments.php:79
+#: plugins/comments/comic_comments.php:79 plugins/comments/showcomments.php:79
 msgid "Delete selected comments"
 msgstr "Slett valgte kommentarer"
 
-#: plugins/comments/comic_comments.php:86
+#: plugins/comments/comic_comments.php:86 plugins/comments/showcomments.php:86
 msgid "This comic hasn't received any comments yet."
 msgstr "Denne tegneserien har ikke fått noen kommentarer ennå"
 
