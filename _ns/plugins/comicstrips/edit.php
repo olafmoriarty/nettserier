@@ -2,6 +2,8 @@
 
 $folder = strtok('/');
 $comicname = comic_name($active_comic);
+$max_file_size = 10 * 1024 * 1024;
+$accepted_extensions = ['jpg', 'jpeg', 'gif', 'png'];
 
 // HANDLING BULK CHANGES
 
@@ -118,6 +120,17 @@ elseif (isset($_POST['edit-ids'])) {
 				$values[$id]['pubtime'] = mysql_string($pubtime);
 			}
 
+			// Replace image file if new submitted
+			if ($_FILES['comic-file-'.$id]['tmp_name'] && getimagesize($_FILES['comic-file-'.$id]['tmp_name']) !== false && $_FILES['comic-file-'.$id]['size'] <= $max_file_size && in_array($extension = strtolower(pathinfo($_FILES['comic-file-'.$id]['name'], PATHINFO_EXTENSION)), $accepted_extensions)) {
+			
+				move_uploaded_file($_FILES['comic-file-'.$id]['tmp_name'], NS_PATH.'files/'.md5($id . $extension).'.'.$extension);
+
+				// What's the image type?
+				$values[$id]['imgtype'] = mysql_string($extension);
+
+				// What's the original filename?
+				$values[$id]['filename'] = mysql_string($_FILES['comic-file-'.$id]['name']);
+			}
 		}
 
 
@@ -319,7 +332,7 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$ns_title = _('Edit comic strip or page');
 			$c .= '<h2>'._('Edit comic strip or page').'</h2>'."\n";
 		}
-		$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/">'."\n";
+		$c .= '<form method="post" action="/n/dashboard/my-comics/'.$active_comic.'/edit-strip/" enctype="multipart/form-data">'."\n";
 
 		$i = 0;
 		$ids = array();
@@ -344,7 +357,6 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= '<fieldset class="edit-comic-info">'."\n";
 			$c .= '<legend>'.htmlspecialchars($old_values['filename']).'</legend>'."\n";
 
-
 			$c .= input_field(['name' => 'comic-title-'.$id, 'text' => _('Title (optional)'), 'value' => $old_values['title']]);
 			$c .= '<fieldset class="pubtime-single">'."\n";
 			$c .= '<legend>'._('Publication time:').'</legend>'."\n";
@@ -361,6 +373,8 @@ elseif ($folder || (isset($_POST['bulk']) && $_POST['bulk'] == 'edit')) {
 			$c .= '> At the following time:<br>'."\n".input_field(['name' => 'comic-datetime-'.$id, 'type' => 'datetime', 'class' => 'dateandtime', 'value' => $old_values['pubtime']]).'</li></ul></fieldset>'."\n";
 
 			$c .= input_field(['name' => 'comic-desc-'.$id, 'text' => _('Description (optional)'), 'type' => 'textarea', 'class' => 'wysiwyg', 'value' => $old_values['text']]);
+			$c .= input_field(['name' => 'comic-file-'.$id, 'type' => 'file', 'text' => _('Image file (leave blank to keep the current file)')]);
+
 			$c .= '<input type="hidden" name="comic-order-'.$id.'" class="order" value="'.(++$i).'">'."\n";
 			$c .= '</fieldset>'."\n";
 			$c .= '</div>'."\n";
