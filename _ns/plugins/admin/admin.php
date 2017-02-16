@@ -20,11 +20,11 @@ if ($logged_in && is_admin($user_info['id'])) {
 // I NEED TO ADD AN ARRAYHANDLER FOR THIS, but for now ...
 
 	elseif ($folder == 'users') {
-		include('../moderation/users.php');
+		include(NS_PATH.'plugins/moderation/users.php');
 	}
 
 	elseif ($folder == 'comments') {
-		include('../moderation/comments.php');
+		include(NS_PATH.'plugins/moderation/comments.php');
 	}
 
 	elseif (!$folder) {
