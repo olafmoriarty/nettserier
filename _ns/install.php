@@ -3,7 +3,7 @@
 // Install all MySQL tables (if they exist)
 
 // ns_users
-mysql_install_table('ns_users', ['username VARCHAR(100) NOT NULL', 'realname VARCHAR(100) NOT NULL', 'email VARCHAR(255) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP', 'password VARCHAR(255)', 'oldpass VARCHAR(255)', 'level INT(3)', 'salt CHAR(128) NOT NULL', 'emailtoken CHAR(128) NOT NULL', 'sponsor INT(1) NOT NULL']);
+mysql_install_table('ns_users', ['username VARCHAR(100) NOT NULL', 'realname VARCHAR(100) NOT NULL', 'email VARCHAR(255) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP', 'password VARCHAR(255)', 'oldpass VARCHAR(255)', 'level INT(3)', 'salt CHAR(128) NOT NULL', 'emailtoken CHAR(128) NOT NULL', 'sponsor INT(1) NOT NULL', 'verified INT(1) NOT NULL']);
 
 // ns_login_attempts
 mysql_install_table('ns_login_attempts', ['user_id INT(11) NOT NULL', 'time VARCHAR(30) NOT NULL']);
@@ -24,6 +24,6 @@ mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'comics_mine I
 mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'blogs_mine INT(1) NOT NULL DEFAULT 1', 'blogs_i_follow INT(1) NOT NULL DEFAULT 1', 'blogs_other INT(1) NOT NULL DEFAULT 0']);
 mysql_install_table('ns_feed_settings', ['user INT(10) NOT NULL', 'albums_mine INT(1) NOT NULL DEFAULT 1', 'albums_i_follow INT(1) NOT NULL DEFAULT 1', 'albums_other INT(1) NOT NULL DEFAULT 0']);
 
-mysql_install_table('ns_comments', ['parent INT(10) NOT NULL', 'user INT(10) NOT NULL', 'text TEXT NOT NULL', 'ip VARCHAR(45) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP', 'oldauthor VARCHAR(100)']);
+mysql_install_table('ns_comments', ['parent INT(10) NOT NULL', 'user INT(10) NOT NULL', 'text TEXT NOT NULL', 'ip VARCHAR(45) NOT NULL', 'regtime TIMESTAMP NULL', 'updtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP', 'oldauthor VARCHAR(100)', 'flagged INT(1) NOT NULL']);
 
 mysql_install_table('ns_languages', ['root VARCHAR(2) NOT NULL', 'fullcode VARCHAR(10) NOT NULL', 'name VARCHAR(50) NOT NULL']);
