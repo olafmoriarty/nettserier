@@ -207,4 +207,3 @@ if ($result !== false) {
 		}
 	}
 }
-?>
