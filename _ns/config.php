@@ -191,7 +191,7 @@ if ($logged_in) {
 // ---------------------------------------------------------------------------
 
 // FOR TESTING; REMOVE LATER!!!!!
-$user_info['level'] = 100;
+// $user_info['level'] = 100;
 
 $query = 'SELECT folder FROM ns_plugins WHERE level <= '.$user_info['level'];
 $result = $conn->query($query);
