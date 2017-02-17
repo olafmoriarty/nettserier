@@ -39,8 +39,9 @@
 			$query = 'DELETE FROM ns_users WHERE id = '.$id;
 			$conn->query($query);
 
-			// Delete user comics (MOVE TO ARRAYHANDLER!)
+			// Delete user comics and comments (MOVE TO ARRAYHANDLER!)
 			delete_user_comics($id);
+			delete_user_comments($id);
 		}
 	}
 
