@@ -408,6 +408,13 @@ nav.user-menu a.block {
 	border-radius: .5em;
 }
 
+.main .nav_menu li.good {
+	background: #ddffdd;
+}
+.main .nav_menu li.bad {
+	background: #ffdddd;
+}
+
 .main input, .main select, .main textarea {
   width: 100%;
   border: solid 1px #808080;
@@ -628,6 +635,11 @@ nav.user-menu a.block {
 	border: solid 2px #e8e8e8;
 	min-height: calc(104px - 1em);
 	overflow: hidden;
+}
+
+.main .comment-section .comment .last-comment {
+	max-height: 250px;
+	overflow-y: auto;
 }
 
 .main .comment-section .comment .comment-header {

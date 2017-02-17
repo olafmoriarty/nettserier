@@ -53,21 +53,44 @@
 
 	else {
 
+		$c .= '<h2>'._('User moderation').'</h2>';
+
 		// Select active unverified users from database
-		$query = 'SELECT cc.user, cc.lastcomm, IFNULL(u.username, '._('[User not found]').') AS username, u.regtime, c2.text AS lastcomment FROM (SELECT DISTINCT c.user, MAX(c.id) AS lastcomm FROM ns_comments AS c GROUP BY c.user) AS cc LEFT JOIN ns_users AS u ON cc.user = u.id LEFT JOIN ns_comments AS c2 ON cc.lastcomm = c2.id WHERE u.level < 10 ORDER BY c2.regtime DESC';
+		$query = 'SELECT cc.user, cc.lastcomm, IFNULL(u.username, \''._('[User not found]').'\') AS username, u.regtime, c2.text AS lastcomment, c2.regtime AS lastcommtime FROM (SELECT DISTINCT c.user, MAX(c.id) AS lastcomm FROM ns_comments AS c GROUP BY c.user) AS cc LEFT JOIN ns_users AS u ON cc.user = u.id LEFT JOIN ns_comments AS c2 ON cc.lastcomm = c2.id WHERE u.level < 10 ORDER BY c2.regtime DESC';
 		$result = $conn->query($query);
 
-		// For each row ...
-		while ($r_arr = $result->fetch_assoc()) {
-			// Username
-			$c .= '<h3><a href="/n/users/'.$r_arr['user'].'/">'.htmlentities($r_arr['username']).'</a></h3>'."\n";
+		// If no rows ...
+		
+		$num = $result->num_rows;
 
-			// Registered:
-			$c .= '<p><strong>'._('Registered:').'</strong> '.$r_arr['regtime'].'</p>';
+		if (!$num) {
+			$c .= '<p>'._('No new users to approve!').'</p>';
+		}
 
-			// Last comment
-			$c .= '<h4>'._('Last comment:').'</h4>'."\n";
-			$c .= $r_arr['lastcomment'];
-			$c .= '<p><a href="/n/admin/users/approve/'.$r_arr['user'].'/">'._('Approve user').'</a> | <a href="/n/admin/users/delete/'.$r_arr['user'].'/">'._('Delete user').'</a></p>';
+		else {
+
+			$c .= '<p>'.str_replace('{n}', $num, _('{n} new users to edit')).'</p>';
+
+			$c .= '<section class="comment-section">';
+
+			// For each row ...
+			while ($r_arr = $result->fetch_assoc()) {
+				$c .= '<article class="comment">';
+				// Username
+				$c .= '<h3><a href="/n/users/'.$r_arr['user'].'/">'.htmlentities($r_arr['username']).'</a></h3>'."\n";
+
+				// Registered:
+				$c .= '<p><strong>'._('Registered:').'</strong> '.$r_arr['regtime'].'</p>';
+
+				// Last comment
+				$c .= '<div class="last-comment">';
+				$c .= '<h4>'._('Last comment:').'</h4>'."\n";
+				$c .= '<p><strong>'._('Published:').'</strong> '.$r_arr['lastcommtime'].'</p>';
+				$c .= $r_arr['lastcomment'];
+				$c .= '</div>';
+				$c .= '<ul class="nav_menu"><li class="good"><a href="/n/admin/users/approve/'.$r_arr['user'].'/">'._('Approve user').'</li><li class="bad"><a href="/n/admin/users/delete/'.$r_arr['user'].'/">'._('Delete user').'</a></li></ul>';
+				$c .= '</article>';
+			}
+			$c .= '</section>';
 		}
 	}
