@@ -15,6 +15,7 @@
 			$query = 'UPDATE ns_users SET level = 10 WHERE id = '.$user;
 			$conn->query($query);
 		}
+		header('Location: '.NS_DOMAIN.'/n/admin/users/');
 	}
 
 // --------------------
@@ -22,6 +23,28 @@
 	// Folder "delete": Delete user
 
 	elseif ($folder == 'delete') {
+		$user = strtok('/');
+
+		if ($user && is_numeric($user)) {
+			if (isset($_POST['confirm']) && $_POST['confirm'] && $user && is_numeric($user)) {
+				delete_user($user);
+				header('Location: '.NS_DOMAIN.'/n/admin/users/');
+			}
+			else {
+
+				$c .= '<p>'._('Are you sure you want to delete this user?').'</p>'."\n";
+				
+				// TO ADD: User information so we know who we're deleting!
+				$c .= '<p>'.$user.'</p>';
+				
+				$c .= '<form method="post" action="/n/admin/users/delete/'.$user.'/">'."\n";
+				$c .= '<p><input type="submit" name="confirm" value="'._('Yes!').'"> | <a href="/n/admin/users/">'._('No!').'</a></p>';
+				$c .= '</form>'."\n";
+			}
+		}
+		else {
+			header('Location: '.NS_DOMAIN.'/n/admin/users/');
+		}
 	}
 
 // --------------------
