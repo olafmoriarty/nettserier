@@ -55,9 +55,19 @@
 
 		$c .= '<h2>'._('User moderation').'</h2>';
 
+		// How many users to show per page?
+		$rows = 20;
+
 		// Select active unverified users from database
-		$query = 'SELECT cc.user, cc.lastcomm, IFNULL(u.username, \''._('[User not found]').'\') AS username, u.regtime, c2.text AS lastcomment, c2.regtime AS lastcommtime FROM (SELECT DISTINCT c.user, MAX(c.id) AS lastcomm FROM ns_comments AS c GROUP BY c.user) AS cc LEFT JOIN ns_users AS u ON cc.user = u.id LEFT JOIN ns_comments AS c2 ON cc.lastcomm = c2.id WHERE u.level < 10 ORDER BY c2.regtime DESC';
+		$query = 'SELECT SQL_CALC_FOUND_ROWS cc.user, cc.lastcomm, IFNULL(u.username, \''._('[User not found]').'\') AS username, u.regtime, c2.text AS lastcomment, c2.regtime AS lastcommtime, c2.ip FROM (SELECT DISTINCT c.user, MAX(c.id) AS lastcomm FROM ns_comments AS c GROUP BY c.user) AS cc LEFT JOIN ns_users AS u ON cc.user = u.id LEFT JOIN ns_comments AS c2 ON cc.lastcomm = c2.id WHERE u.level < 10 ORDER BY c2.regtime DESC '.limitstring($rows);
 		$result = $conn->query($query);
+
+		$query = 'SELECT FOUND_ROWS()';
+		$fr_result = $conn->query($query);
+		$fr_arr = $fr_result->fetch_row();
+		$total_rows = $fr_arr[0];
+		$pagecount = ceil($total_rows / $rows);
+
 
 		// If no rows ...
 		
@@ -69,7 +79,7 @@
 
 		else {
 
-			$c .= '<p>'.str_replace('{n}', $num, _('{n} new users to edit')).'</p>';
+			$c .= '<p>'.str_replace('{n}', $total_rows, _('{n} new users to approve/delete')).'</p>';
 
 			$c .= '<section class="comment-section">';
 
@@ -81,6 +91,7 @@
 
 				// Registered:
 				$c .= '<p><strong>'._('Registered:').'</strong> '.$r_arr['regtime'].'</p>';
+				$c .= '<p><strong>'._('Last IP:').'</strong> '.$r_arr['ip'].'</p>';
 
 				// Last comment
 				$c .= '<div class="last-comment">';
@@ -91,6 +102,7 @@
 				$c .= '<ul class="nav_menu"><li class="good"><a href="/n/admin/users/approve/'.$r_arr['user'].'/">'._('Approve user').'</li><li class="bad"><a href="/n/admin/users/delete/'.$r_arr['user'].'/">'._('Delete user').'</a></li></ul>';
 				$c .= '</article>';
 			}
+			$c .= limitstring_nav($pagecount);
 			$c .= '</section>';
 		}
 	}
