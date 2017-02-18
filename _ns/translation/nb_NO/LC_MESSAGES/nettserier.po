@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nettserier.no\n"
 "POT-Creation-Date: 2017-02-18 16:05+0100\n"
-"PO-Revision-Date: 2017-02-18 16:11+0100\n"
+"PO-Revision-Date: 2017-02-18 16:24+0100\n"
 "Last-Translator: Olaf Moriarty Solstrand <olafmoriarty@gmail.com>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -1052,7 +1052,7 @@ msgstr "Publisert:"
 
 #: plugins/moderation/users.php:118
 msgid "Approve user"
-msgstr "Godkjen bruker:"
+msgstr "Godkjenn bruker"
 
 #: plugins/moderation/users.php:118
 msgid "Delete user"
