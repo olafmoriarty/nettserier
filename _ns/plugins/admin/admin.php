@@ -32,22 +32,23 @@ if ($logged_in && is_admin($user_info['id'])) {
 
 // I NEED TO ADD AN ARRAYHANDLER FOR THIS, but for now ...
 		
-		$c .= '<h3>'._('Moderation').'</h3>';
+		$c .= '<h3>'._('Administrator options').'</h3>';
 		$c .= '<ul>';
-		$c .= '<li><a href="/n/admin/users/">'._('Users').'</a></li>';
-		$c .= '<li><a href="/n/admin/comments/">'._('Comments').'</a></li>';
-		$c .= '</ul>';
-		
-		$c .= '<h3>'._('Advanced configuration').'</h3>';
-		$c .= '<ul>';
+		$c .= '<li><a href="/n/admin/users/">'._('Approve/delete users').'</a></li>';
 		$c .= '<li><a href="/n/admin/plugins/">'._('Plugins').'</a></li>';
 		$c .= '<li><a href="/n/admin/languages/">'._('Languages').'</a></li>';
 		$c .= '</ul>';
 	}
 	else {
-		// *** 404!
+		include(NS_PATH.'pages/404.php');
 	}
 }
 else {
-	// *** Show an error message here! The user is not supposed to be here!
+	if (!$logged_in) {
+		header('Location: '.NS_DOMAIN.'/n/log-in/?returnurl='.urlencode(NS_URL));
+		exit;
+	}
+	else {
+		$c .= '<p>'._('You don\'t have access to view this page.').'</p>';
+	}
 }

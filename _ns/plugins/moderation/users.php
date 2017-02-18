@@ -35,10 +35,26 @@
 				$c .= '<p>'._('Are you sure you want to delete this user?').'</p>'."\n";
 				
 				// TO ADD: User information so we know who we're deleting!
-				$c .= '<p>'.$user.'</p>';
-				
+				$query = 'SELECT username, realname, regtime, email FROM ns_users WHERE id = '.$user;
+				$result = $conn->query($query);
+				$num = $result->num_rows;
+
+				if ($num) {
+					$r_arr = $result->fetch_assoc();
+					$c .= '<ul>';
+					$c .= '<li><strong>'._('Username:').'</strong> '.htmlentities($r_arr['username']).'</li>';
+					$c .= '<li><strong>'._('Real name:').'</strong> '.htmlentities($r_arr['realname']).'</li>';
+					$c .= '<li><strong>'._('E-mail').'</strong> '.htmlentities($r_arr['email']).'</li>';
+					$c .= '<li><strong>'._('User registered:').'</strong> '.htmlentities($r_arr['regtime']).'</li>';
+					$c .= '<li><strong>'._('User ID:').'</strong> '.$user.'</li>';
+					$c .= '</ul>'."\n";
+
+				}
+				else {
+					$c .= '<p><em>'._('The user was not found in the database.').'</em></p>';
+				}
 				$c .= '<form method="post" action="/n/admin/users/delete/'.$user.'/">'."\n";
-				$c .= '<p><input type="submit" name="confirm" value="'._('Yes!').'"> | <a href="/n/admin/users/">'._('No!').'</a></p>';
+				$c .= '<p><input type="submit" name="confirm" value="'._('Yes!').'"></p>'."\n".'<p><a href="/n/admin/users/">'._('No!').'</a></p>'."\n";
 				$c .= '</form>'."\n";
 			}
 		}
@@ -53,7 +69,7 @@
 
 	else {
 
-		$c .= '<h2>'._('User moderation').'</h2>';
+		$c .= '<h2>'._('Approve/delete users').'</h2>';
 
 		// How many users to show per page?
 		$rows = 20;
