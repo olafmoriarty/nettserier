@@ -180,10 +180,14 @@ include(NS_PATH.'plugins/users/psl-config.php');
 sec_session_start();
 
 $logged_in = login_check();
+$user_info = array();
 if ($logged_in) {
 	$query = 'SELECT id, username, email, level, sponsor FROM ns_users WHERE id = '.$_SESSION['user_id'].' LIMIT 1';
 	$result = $conn->query($query);
 	$user_info = $result->fetch_assoc();
+}
+else {
+	$user_info['level'] = 0;
 }
 
 // ---------------------------------------------------------------------------
@@ -191,7 +195,7 @@ if ($logged_in) {
 // ---------------------------------------------------------------------------
 
 // FOR TESTING; REMOVE LATER!!!!!
-$user_info['level'] = 100;
+// $user_info['level'] = 100;
 
 $query = 'SELECT folder FROM ns_plugins WHERE level <= '.$user_info['level'];
 $result = $conn->query($query);
@@ -207,4 +211,3 @@ if ($result !== false) {
 		}
 	}
 }
-?>

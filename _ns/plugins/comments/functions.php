@@ -134,3 +134,11 @@
 		}
 		return false;
 	}
+
+	function delete_user_comments($id) {
+		global $conn;
+		if (is_numeric($id)) {
+			$query = 'DELETE FROM ns_comments WHERE user = '.$id;
+			$conn->query($query);
+		}
+	}
