@@ -193,5 +193,3 @@ class ActionHook extends ArrayHandler {
 		
 	}
 } // class ActionHook
-
-?>
