@@ -194,17 +194,21 @@ else {
 // LOAD PLUGINS
 // ---------------------------------------------------------------------------
 
-// FOR TESTING; REMOVE LATER!!!!!
-// $user_info['level'] = 100;
-
 $query = 'SELECT folder FROM ns_plugins WHERE level <= '.$user_info['level'];
 $result = $conn->query($query);
 if ($result !== false) {
 	$num = $result->num_rows;
 	if ($num) {
 		$result->data_seek(0);
+		$folderarr = array();
 		while ($arr = $result->fetch_assoc()) {
 			$folder = $arr['folder'];
+			$folderarr[] = $folder;
+			if (is_dir(NS_PATH.'plugins/'.$folder) && file_exists(NS_PATH.'plugins/'.$folder.'/preconfig.php')) {
+				include(NS_PATH.'plugins/'.$folder.'/preconfig.php');
+			}
+		}
+		foreach ($folderarr as $folder) {
 			if (is_dir(NS_PATH.'plugins/'.$folder) && file_exists(NS_PATH.'plugins/'.$folder.'/config.php')) {
 				include(NS_PATH.'plugins/'.$folder.'/config.php');
 			}
