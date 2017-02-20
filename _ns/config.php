@@ -43,53 +43,26 @@ $is_comic_page = false;
 
 $n_urls = new ArrayHandler;
 $c_urls = new ArrayHandler;
-$d_urls = new ArrayHandler;
 
 $n_menu = new ArrayHandler;
 $c_menu = new ArrayHandler;
-$d_menu = new ArrayHandler;
-
-$delete_concequences = new ArrayHandler;
 
 $feed_queries = new ArrayHandler;
 $feed_functions = new ArrayHandler;
-
 $feed_sidebar_menu = new ArrayHandler;
-
-$open_source = new ArrayHandler;
-$cookie_info = new ArrayHandler;
 
 $head = new ArrayHandler;
 $body_js = new ArrayHandler;
-
-$edit_comic_single_menu = new ArrayHandler;
 
 $filter = array();
 $filter['html'] = new ActionHook('filter');
 
 $action = array();
-$action['edit_strips_submit'] = new ActionHook();
 $action['frontpage'] = new ActionHook();
 $action['footer'] = new ActionHook();
-$action['delete_comic'] = new ActionHook();
-
-$action['showcomic_text_after'] = new ActionHook();
-$action['showcomic_on_page_after'] = new ActionHook();
-
 $action['comic_header_buttons'] = new ActionHook();
 $action['comic_below_header'] = new ActionHook();
-
-$action['user_page'] = new ActionHook();
-
 $action['after_footer'] = new ActionHook();
-
-$action['delete_comic'] = new ActionHook();
-
-
-// Add javascript for Adaptive Images
-$head->add_line(['text' => '<script>document.cookie=\'resolution=\'+Math.max(screen.width,screen.height)+\'; path=/\';</script>']);
-$open_source->add_line(['name' => 'Adaptive Images', 'developer' => 'Matt Wilcox', 'link' => 'http://adaptive-images.com/', 'license' => 'Creative Commons Attribution 3.0 Unported License']);
-$cookie_info->add_line(['name' => 'resolution', 'desc' => _('This cookie is set by the <em>Adaptive Images</em> plugin and is used to preprocess image files based on your screen resolution before sending them to your device, so that we won\'t eat up all your cell phone data. (To be honest I have no idea why this operation requires cookies, but hey, it seems to work.)')]);
 
 define('PAGE_TITLE', 'Nettserier.no');
 $ns_tsep = ' :: ';
@@ -168,7 +141,6 @@ bindtextdomain($gtdomain, NS_PATH.'translation');
 bind_textdomain_codeset($gtdomain, 'UTF-8');
 textdomain($gtdomain);
 
-$cookie_info->add_line(['name' => 'language', 'desc' => str_replace('{page}', PAGE_TITLE, _('This cookie is set when you select a language and stores information about which language you prefer reading {page} in. This cookie won\'t be set until you\'re choosing a language, and deleting it is completely safe - without it, {page} will be shown in your browser\'s default language.'))]);
 
 
 // ---------------------------------------------------------------------------
@@ -215,3 +187,10 @@ if ($result !== false) {
 		}
 	}
 }
+
+
+// Add javascript for Adaptive Images
+$head->add_line(['text' => '<script>document.cookie=\'resolution=\'+Math.max(screen.width,screen.height)+\'; path=/\';</script>']);
+$open_source->add_line(['name' => 'Adaptive Images', 'developer' => 'Matt Wilcox', 'link' => 'http://adaptive-images.com/', 'license' => 'Creative Commons Attribution 3.0 Unported License']);
+$cookie_info->add_line(['name' => 'resolution', 'desc' => _('This cookie is set by the <em>Adaptive Images</em> plugin and is used to preprocess image files based on your screen resolution before sending them to your device, so that we won\'t eat up all your cell phone data. (To be honest I have no idea why this operation requires cookies, but hey, it seems to work.)')]);
+$cookie_info->add_line(['name' => 'language', 'desc' => str_replace('{page}', PAGE_TITLE, _('This cookie is set when you select a language and stores information about which language you prefer reading {page} in. This cookie won\'t be set until you\'re choosing a language, and deleting it is completely safe - without it, {page} will be shown in your browser\'s default language.'))]);
