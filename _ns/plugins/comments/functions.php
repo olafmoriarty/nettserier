@@ -1,7 +1,7 @@
 <?php
 
 	function show_comments($arr) {
-		global $conn, $logged_in, $filter, $user_info;
+		global $conn, $logged_in, $filter, $action, $user_info;
 		$submitted = false;
 		$errors = false;
 		$error_array = array();
@@ -11,6 +11,7 @@
 			$submitted = true;
 			if ($logged_in) {
 				// Comment has been submitted, all functions for sanitizing will be added here
+				$errors = $action['check_comment']->run();
 			}
 			else {
 				$errors = true;	

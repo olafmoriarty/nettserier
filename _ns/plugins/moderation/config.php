@@ -14,6 +14,7 @@
 		}
 	}
 	$filter['comment_field']->add_line(['function' => 'too_many_comments_field']);
+	$action['check_comment']->add_line(['function' => 'too_many_comments']);
 
 	function too_many_comments() {
 		global $conn, $logged_in, $user_info;
