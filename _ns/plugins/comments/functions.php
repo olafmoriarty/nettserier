@@ -95,12 +95,12 @@
 
 			if (!$submitted || $errors) {
 				$c .= '<section class="comment-add">';
-				$c .= '<form method="post" name="comment_form" action="'.$target_url.'">'."\n";
-				$c .= input_field(['name' => 'comment_text', 'text' => _('Your comment'), 'type' => 'textarea']);
-				$c .= '<p><input type="submit" name="add_comment_submit" id="add_comment_submit" value="'._('Add your comment!').'"></p>';
-				$c .= '</form>'."\n";
+				$cf = '<form method="post" name="comment_form" action="'.$target_url.'">'."\n";
+				$cf .= input_field(['name' => 'comment_text', 'text' => _('Your comment'), 'type' => 'textarea']);
+				$cf .= '<p><input type="submit" name="add_comment_submit" id="add_comment_submit" value="'._('Add your comment!').'"></p>';
+				$cf .= '</form>'."\n";
+				$c .= $filter['comment_field']->run($cf);
 				$c .= '</section>';
-
 			}
 			
 			
